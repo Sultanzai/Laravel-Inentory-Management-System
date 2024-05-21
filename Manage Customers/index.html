@@ -24,7 +24,7 @@
           <img class="buttons" src="img/buttons.svg" />
           <div class="text-wrapper-2">Manage</div>
         </div>
-        <div class="element-button"><div class="text-wrapper-3">Dashboard</div></div>
+        <a href="/Dashboard/index.html"><div class="element-button"><div class="text-wrapper-3">Dashboard</div></div></a>
         <div class="list">
           <div class="text-wrapper-4">Customer</div>
           <div class="search">
@@ -193,8 +193,34 @@
             </div>
           </div>
         </div>
-        <div class="element-button-2"><div class="text-wrapper-13">Add New Customer</div></div>
+        
+        <div class="element-button-2"><button class="mybtn" onclick="openForm()">Add New Customer</button></div>
+        
+        <!-- Pop Up form -->
+        <div class="popup" id="popupForm">
+          <div class="popup-content">
+              <button class="close-btn" onclick="closeForm()">&times;</button>
+              <h2>Add New Customer</h2>
+              <form>
+                  <input type="text" placeholder="Name" required>
+                  <input type="text" placeholder="Phone" required>
+                  <input type="text" placeholder="Address" required>
+                  <button type="submit" class="submit-btn">Submit</button>
+              </form>
+          </div>
+      </div>
       </div>
     </div>
+    
+<script>
+  function openForm() {
+      document.getElementById("popupForm").style.display = "flex";
+  }
+
+  function closeForm() {
+      document.getElementById("popupForm").style.display = "none";
+  }
+</script>
+
   </body>
 </html>
