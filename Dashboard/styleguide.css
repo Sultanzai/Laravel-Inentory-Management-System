@@ -1,0 +1,15 @@
+:root {
+  --presets-body2-font-family: "Inter", Helvetica;
+  --presets-body2-font-weight: 400;
+  --presets-body2-font-size: 16px;
+  --presets-body2-letter-spacing: 0px;
+  --presets-body2-line-height: 24px;
+  --presets-body2-font-style: normal;
+  --small-text-font-family: "Inter", Helvetica;
+  --small-text-font-weight: 500;
+  --small-text-font-size: 16px;
+  --small-text-letter-spacing: 0px;
+  --small-text-line-height: 150%;
+  --small-text-font-style: normal;
+  --button-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+}

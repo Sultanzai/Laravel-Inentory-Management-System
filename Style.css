@@ -1,0 +1,17 @@
+
+.btn2{
+    height: 25px;
+    background-color: #f9f9f9;
+    margin-right: 5px;
+    border: solid 2px white;
+    border-radius: 4px;
+    transition: ease-in;
+  }
+  .btn2:hover{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+  }
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
