@@ -209,12 +209,13 @@
   height: 40px;
   align-items: center;
   gap: 12px;
-  padding: 8px 16px 8px 12px;
   position: relative;
   background-color: #ffffff;
   border-radius: 8px;
   border: 1px solid;
   border-color: #e0e0e0;
+  top: 200px;
+  left: 80px;
 }
 
 .dashboard .label {
@@ -222,20 +223,14 @@
   font-weight: var(--presets-body2-font-weight);
   color: #828282;
   font-size: var(--presets-body2-font-size);
-  line-height: var(--presets-body2-line-height);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+  line-height: 36px;
   position: relative;
-  margin-top: -1px;
   font-family: var(--presets-body2-font-family);
-  letter-spacing: var(--presets-body2-letter-spacing);
   font-style: var(--presets-body2-font-style);
-  background: transparent;
+  /* background: transparent; */
   border: none;
   padding: 0;
+  padding-left: 10px;
 }
 
 .dashboard .list-2 {
