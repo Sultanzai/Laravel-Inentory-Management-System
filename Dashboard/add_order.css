@@ -262,6 +262,7 @@
   background-color: #f7f7f7;
   border-radius: 20px;
   overflow-y: scroll;
+  overflow-x: hidden;
   scrollbar-width: 2px;
   margin-bottom: 40px;
 }
@@ -655,4 +656,25 @@
   line-height: 36px;
 }
 
+/* Add Payment  */
+.flex-items{
+  display: flex;
+  align-items: center;
+  width: 90%;
+  justify-content: space-between;
+  margin-left: 40px;
+  font-size: var(--presets-body2-font-size);
+  font-family: var(--presets-body2-font-family);
+  color: #828282;
+  padding: 0 20px;
+  border-bottom: solid 1px #828282;
+}
+.group-3 p{
+  font-size: 20px;
+  font-family: var(--body-text-font-family);
+}
+.itemslist{
+  display: flex;
+  flex-direction: column;
 
+}
