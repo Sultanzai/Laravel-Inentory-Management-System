@@ -425,12 +425,18 @@
   width: 600px;
   left: 97px;
   top: 200px;
+  /* background-color: red; */
+}
+.group-3{
+  font-family: var(--presets-body2-font-family);
 }
 .description{
   height: 300px;
-  margin-top: -190px;
+  margin-top: -350px;
   width: 600px;
-  margin-left: 750px;
+  margin-left: 700px;
+  text-align: justify;
+  /* background-color: blue; */
 }
 .description .message textarea{
   width: 550px;
@@ -671,10 +677,26 @@
 }
 .group-3 p{
   font-size: 20px;
-  font-family: var(--body-text-font-family);
+  font-family: var(--presets-body2-font-family);
 }
-.itemslist{
-  display: flex;
-  flex-direction: column;
+.group-3 div{
+  padding: 10px;
+}
 
+.group-3 .title{
+  margin-top: -40px;
+}
+.group-3 .price input{
+  padding: 5px;
+  height: 25px;
+  width: 220px;
+  font-size: 18px;
+}
+.group-3 select{
+  width: 100px;
+  height: 30px;
+  font-family: var(--presets-body2-font-family);
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 18px;
 }

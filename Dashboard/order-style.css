@@ -214,8 +214,9 @@
   border-radius: 8px;
   border: 1px solid;
   border-color: #e0e0e0;
-  top: 200px;
-  left: 80px;
+  padding: 10px;
+  /* top: 200px; */
+  /* left: 80px; */
 }
 
 .dashboard .label {
@@ -236,11 +237,12 @@
 .dashboard .list-2 {
   width: 1238px;
   position: relative;
-  flex: 0 0 auto;
+  /* flex: 0 0 auto; */
   margin-bottom: -6px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
 }
 
 .dashboard .navbar {
