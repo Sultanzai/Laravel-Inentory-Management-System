@@ -432,7 +432,7 @@
 }
 .description{
   height: 300px;
-  margin-top: -350px;
+  margin-top: -180px;
   width: 600px;
   margin-left: 700px;
   text-align: justify;
@@ -683,9 +683,6 @@
   padding: 10px;
 }
 
-.group-3 .title{
-  margin-top: -40px;
-}
 .group-3 .price input{
   padding: 5px;
   height: 25px;

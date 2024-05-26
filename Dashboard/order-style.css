@@ -218,7 +218,21 @@
   /* top: 200px; */
   /* left: 80px; */
 }
-
+.dashboard .search2 {
+  display: flex;
+  width: 405px;
+  height: 40px;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid;
+  border-color: #e0e0e0;
+  padding: 10px;
+  top: 200px;
+  left: 80px;
+}
 .dashboard .label {
   flex: 1;
   font-weight: var(--presets-body2-font-weight);
