@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset ('css/globals.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/styleguide.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/customer-style.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/MainStyle.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <div class="dashboard">
@@ -193,32 +194,67 @@
           </div>
         </div>
         
-        <div class="element-button-2"><button class="mybtn" onclick="openForm()">Add New Customer</button></div>
+        <div class="element-button-2"><button class="mybtn" id="openFormBtn">Add New Customer</button></div>
         
         <!-- Pop Up form -->
         <div class="popup" id="popupForm">
           <div class="popup-content">
-              <button class="close-btn" onclick="closeForm()">&times;</button>
+              <button class="close-btn">&times;</button>
               <h2>Add New Customer</h2>
-              <form>
-                  <input type="text" placeholder="Name" required>
-                  <input type="text" placeholder="Phone" required>
-                  <input type="text" placeholder="Address" required>
-                  <button type="submit" class="submit-btn">Submit</button>
+              
+              <form id="customerForm">
+                @csrf
+                <input type="text" id="Name" name="Name" placeholder="Name" required>
+                <input type="text" id="Phone" name="Phone" placeholder="Phone" required>
+                <input type="text" id="Address" name="Address" placeholder="Address" required>
+                <button type="submit" class="submit-btn">Submit</button>
               </form>
+              
           </div>
       </div>
       </div>
     </div>
     
 <script>
-  function openForm() {
-      document.getElementById("popupForm").style.display = "flex";
-  }
+  $(document).ready(function() {
+    // Open the form
+    $("#openFormBtn").click(function() {
+        $("#popupForm").css("display", "block");
+    });
 
-  function closeForm() {
-      document.getElementById("popupForm").style.display = "none";
-  }
+    // Close the form
+    $(".close-btn").click(function() {
+        $("#popupForm").css("display", "none");
+    });
+
+    // Submit the form via AJAX
+    $("#customerForm").submit(function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: '/customers',
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                Name: $("#Name").val(),
+                Address: $("#Address").val(),
+                Phone: $("#Phone").val()
+            },
+            success: function(response) {
+                alert("Customer created successfully!");
+                $("#popupForm").css("display", "none");
+                $("#customerForm")[0].reset();
+            },
+            error: function(response) {
+                alert("An error occurred while creating the customer.");
+                console.log(response.responseJSON.errors); // Log validation errors
+            }
+        });
+    });
+});
+
 </script>
 
   </body>
