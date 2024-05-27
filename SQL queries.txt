@@ -1,0 +1,17 @@
+SQL Queries 
+
+Customers: 
+Insertion: INSERT INTO `tbl_customer` (`C_ID`, `C_Name`, `C_Phone`, `C_Address`, `C_Balance`) VALUES (NULL, 'Jack', '+1-235-456-4502', 'New Jersey ', '0');
+
+Product: 
+Instertion: INSERT INTO `tbl_products` (`P_ID`, `P_Name`, `P_Units`, `P_Barcode`, `P_Price`, `P_Description`, `P_Status`, `P_Date`) VALUES (NULL, 'Halo-vape2', '40', '54215487', '300', 'Assume your table is named Products and the P_Description column is currently defined as VARCHAR(100).', 'Shipped', '2024-05-26');
+
+Order Details: 
+Inserting multiple record in single row: INSERT INTO `tbl_orderdetail` (`OD_ID`, `OD_units`, `OD_Price`, `Order_ID`, `Product_ID`)
+VALUES 
+    (NULL, '10', '120', '1', '1'),
+    (NULL, '5', '60', '1', '2'),
+    (NULL, '7', '84', '1', '3');
+
+Payment: 
+Inserting: INSERT INTO `tbl_payment` (`P_ID`, `P_Amount`, `P_Status`, `P_Date`, `Customer_ID`, `Order_ID`) VALUES (NULL, '1200', 'Paid', '2024-05-26', '1', '1');
