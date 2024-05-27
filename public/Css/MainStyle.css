@@ -1,0 +1,52 @@
+:root{
+  --white: #ffffff;
+  --light-font: #ffffff;
+  --button-bg: #ffffff;
+  --black: #ffffff;
+  --gray: #828282;
+  --lightwhite: #e0e0e0;
+  --lightwhite2:#f7f7f7;
+}
+
+.btn2{
+    height: 25px;
+    background-color: #f9f9f9;
+    margin-right: 5px;
+    border: solid 2px white;
+    border-radius: 4px;
+    transition: ease-in;
+  }
+  .btn2:hover{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+  }
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .dashboard .element-button-2 {
+    display: flex;
+    width: 164px;
+    height: 49px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: absolute;
+    top: 304px;
+    left: 1225px;
+    background-color: #000000;
+    border-radius: 8px;
+    box-shadow: var(--button-shadow);
+  }
+  .mybtn{
+    height: 50px;
+    width: 170px;
+    background-color:transparent;
+    color: var(--white);
+    border-radius: 10px;
+    transition: ease-in;
+  }
+  .mybtn:hover{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  }

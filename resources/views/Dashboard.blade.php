@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="styleguide.css" />
-    <link rel="stylesheet" href="Dashboardstyle.css" />
-    <link rel="stylesheet" href="/MainStyle.css">
+    <link rel="stylesheet" href="{{asset ('css/globals.css') }}" />
+    <link rel="stylesheet" href="{{asset ('css/styleguide.css') }}" />
+    <link rel="stylesheet" href="{{asset ('css/Dashboardstyle.css') }}" />
+    <link rel="stylesheet" href="{{asset ('css/MainStyle.css') }}">
   </head>
   <body>
     <div class="dashboard">

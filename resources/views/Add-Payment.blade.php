@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="styleguide.css" />
-    <link rel="stylesheet" href="add_order.css" />
-    <link rel="stylesheet" href="/Dashboard/order-style.css">
+    <link rel="stylesheet" href="{{asset ('css/globals.css') }}" />
+    <link rel="stylesheet" href="{{asset ('css/styleguide.css') }}" />
+    <link rel="stylesheet" href="{{asset ('css/add_order.css') }}" />
+    <link rel="stylesheet" href="{{asset ('css/order-style.css') }}">
   </head>
   <body>
     <div class="dashboard">
@@ -16,7 +16,7 @@
             <div class="rectangle-wrapper"><img class="rectangle" src="img/rectangle-1.png" /></div>
             <img class="img" src="img/chevron-down.svg" />
           </div>
-          <img class="buttons" src="img/buttons.svg" />
+          <img class="buttons" src="/Dashboard/img/buttons.svg" />
           <div class="text-wrapper-2">Customer Orders</div>
         </div>
         <a href="/Dashboard/Order-page.html"><button class="element-button"><div class="text-wrapper-3">Back</div></button></a>
@@ -24,8 +24,8 @@
         <div class="text-wrapper-6">Alex</div>
        
        
-        <div class="search2">
-          <img class="img" src="img/search.svg" /> <input class="label" placeholder="Search Customer" type="text"/>
+        <div class="search">
+          <img class="img" src="/Dashboard/img/search.svg" /> <input class="label" placeholder="Search Customer" type="text"/>
         </div>
         <div class="group">
 
@@ -44,8 +44,8 @@
            <h4>Martin</h4><br>
           </div>
         </div>
-        <div class="search2">
-          <img class="img" src="img/search.svg" /> <input class="label" placeholder="Search Products" type="text"/>
+        <div class="search">
+          <img class="img" src="/Dashboard/img/search.svg" /> <input class="label" placeholder="Search Products" type="text"/>
         </div>
         <div class="group">
           <div class="overlap-group">
