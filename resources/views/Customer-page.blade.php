@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="stylesheet" href="{{asset ('css/globals.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/styleguide.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/customer-style.css') }}" />
@@ -12,10 +12,10 @@
     <div class="dashboard">
       <div class="div">
         <div class="segmented-control">
-          <a href="Customer-page.html"><button class="btn2" >Customers</button></a>
-          <a href="Order-page.html"><button class="btn2" >Orders</button></a>
-          <a href="Payment-page.html"><button class="btn2" >Payments</button></a>
-          <a href="Expanses-page.html"><button class="btn2" >Expanses</button></a>
+          <a href=""><button class="btn2" onclick="window.location='{{ route('order') }}'">Customers</button></a>
+          <a href=""><button class="btn2" onclick="window.location='{{ route('order') }}'" >Orders</button></a>
+          <a href=""><button class="btn2" onclick="window.location='{{ route('payment') }}'">Payments</button></a>
+          <a href=""><button class="btn2" onclick="window.location='{{ route('expances') }}'">Expances</button></a>
         </div>
         <div class="navigation">
           <div class="avatar">
@@ -36,161 +36,21 @@
               <div class="text-wrapper-6">Name</div>
               <div class="text-wrapper-7">Address</div>
               <div class="text-wrapper-8">Contact</div>
-              <div class="text-wrapper-9">Acconut</div>
+              <div class="text-wrapper-9">Balance</div>
             </div>
+{{-- Displaying Record from database --}}
+            @foreach ($customer as $cus)
             <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
+              <div class="text-wrapper-10">{{ $cus->id }}</div>
+              <div class="text-wrapper-11">{{ $cus->Name }}</div>
+              <p class="p">{{ $cus->Address }}</p>
+              <div class="text-wrapper-12">{{ $cus->Phone }}</div>
               <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
+                <div class="tag"><div class="label-2">{{ $cus->Balance }}</div></div>
               </div>
             </div>
-            <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task-2">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
-            <div class="task-3">
-              <div class="text-wrapper-10">1</div>
-              <div class="text-wrapper-11">Ahmad</div>
-              <p class="p">Bronox New York, APt 15Central park</p>
-              <div class="text-wrapper-12">+1-0256-55-596</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-            </div>
+            @endforeach
+
           </div>
         </div>
         
@@ -234,13 +94,11 @@
         $.ajax({
             url: '/customers',
             type: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
             data: {
-                Name: $("#Name").val(),
-                Address: $("#Address").val(),
-                Phone: $("#Phone").val()
+                name: $("#Name").val(),
+                email: $("#Address").val(),
+                phone_number: $("#Phone").val(),
+                _token: '{{ csrf_token() }}'  // Include CSRF token for security
             },
             success: function(response) {
                 alert("Customer created successfully!");
@@ -249,7 +107,6 @@
             },
             error: function(response) {
                 alert("An error occurred while creating the customer.");
-                console.log(response.responseJSON.errors); // Log validation errors
             }
         });
     });

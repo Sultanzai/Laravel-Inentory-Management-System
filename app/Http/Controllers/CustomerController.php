@@ -32,18 +32,18 @@ class CustomerController extends Controller
 
 
 
-    // public function index()
-    // {
-    //     $customer = Customers::all();
-    //     return view('customer.index')->with('customer', $customer);
-    // }
+    public function index()
+    {
+        $customer = Customers::all();
+        return view('customer-page')->with('customer', $customer);
+    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('customer.Create');
+        // return view('customer.Create');
     }
 
     /**
@@ -59,8 +59,8 @@ class CustomerController extends Controller
      */
     public function show(string $id)
     {
-        $customer = Customers::find($id);
-        return view('customer.show')->with('customer', $customer);
+        // $customer = Customers::find($id);
+        // return view('customer.show')->with('customer', $customer);
     }
 
     /**
