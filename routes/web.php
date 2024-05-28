@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,13 @@ use Illuminate\Support\Facades\Route;
 //Cutomers
 Route::get('/customer', [CustomerController::class, 'index']);
 
+Route::get('/order', [OrderController::class, 'index']);
+
+
+
 // Route::get('/customer', [PageController::class, 'customer'])->name('customer');
 
-Route::get('order', [PageController::class, 'order'])->name('order');
+// Route::get('order', [PageController::class, 'order'])->name('order');
 
 Route::get('payment', [PageController::class, 'payment'])->name('payment');
 

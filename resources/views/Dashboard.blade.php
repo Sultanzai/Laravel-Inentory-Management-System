@@ -253,11 +253,10 @@
           <div class="text-wrapper-17">Dashboard</div>
         </div>
         <div class="segmented-control">
-          <a href=""><button class="btn2" >Products</button></a>
-          <a href="Customer-page.html"><button class="btn2" >Customers</button></a>
-          <a href="Order-page.html"><button class="btn2" >Orders</button></a>
-          <a href="Payment-page.html"><button class="btn2" >Payments</button></a>
-          <a href="Expanses-page.html"><button class="btn2" >Expanses</button></a>
+          <a href="{{url('/customer')}}"><button class="btn2" >Customers</button></a>
+          <a href="{{url('/order')}}"><button class="btn2"  >Orders</button></a>
+          <a href="{{url('/payment')}}"><button class="btn2" >Payments</button></a>
+          <a href="{{url('/expances')}}"><button class="btn2" >Expances</button></a>
         </div>
       </div>
     </div>

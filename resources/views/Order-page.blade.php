@@ -11,11 +11,11 @@
     <div class="dashboard">
       <div class="div">
         <div class="segmented-control">
-          <a href="Customer-page.html"><button class="btn2" >Customers</button></a>
-          <a href="Order-page.html"><button class="btn2" >Orders</button></a>
-          <a href="Payment-page.html"><button class="btn2" >Payments</button></a>
-          <a href="Expanses-page.html"><button class="btn2" >Expanses</button></a>
-        </div>
+          <a href="{{url('/customer')}}"><button class="btn2" >Customers</button></a>
+          <a href="{{url('/order')}}"><button class="btn2"  >Orders</button></a>
+          <a href="{{url('/payment')}}"><button class="btn2" >Payments</button></a>
+          <a href="{{url('/expances')}}"><button class="btn2" >Expances</button></a>
+       </div>
         <div class="navigation">
           <div class="avatar">
             <div class="rectangle-wrapper"><img class="rectangle" src="img/rectangle-1.png" /></div>
@@ -36,217 +36,26 @@
               <div class="text-wrapper-7">ORDER</div>
               <div class="text-wrapper-8">DESCRIPTION</div>
               <div class="text-wrapper-9">UNITS</div>
-              <div class="text-wrapper-10">PRICE</div>
+              <div class="text-wrapper-10">Total</div>
               <div class="text-wrapper-11">DATE</div>
             </div>
+            @foreach ($order as $ord)
             <div class="task">
-              <div class="text-wrapper-12">1</div>
+              <div class="text-wrapper-12">{{ $ord->id }}</div>
               <div class="text-wrapper-13">Johhan Marcos</div>
               <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
+              <p class="p">{{ $ord->O_Description}}</p>
               <div class="text-wrapper-15">10</div>
               <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
+                <div class="tag"><div class="label-2">{{ $ord->O_Total}}</div></div>
               </div>
               <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
+                <div class="label-wrapper"><div class="label-2">{{ $ord->O_Date}}</div></div>
               </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Johhan Marcos</div>
-              <div class="text-wrapper-14">Halo Pro 5v+</div>
-              <p class="p">Halo mini- Electirc max bosster</p>
-              <div class="text-wrapper-15">10</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$1000</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">5/20/2024</div></div>
-              </div>
-            </div>
+            </div>     
+            @endforeach
+
+    
           </div>
         </div>
         <a href="Add_order.html"><div class="element-button-2"><button class="mybtn">Add New Order</button></div></a>

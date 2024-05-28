@@ -12,10 +12,10 @@
     <div class="dashboard">
       <div class="div">
         <div class="segmented-control">
-          <a href=""><button class="btn2" onclick="window.location='{{ route('order') }}'">Customers</button></a>
-          <a href=""><button class="btn2" onclick="window.location='{{ route('order') }}'" >Orders</button></a>
-          <a href=""><button class="btn2" onclick="window.location='{{ route('payment') }}'">Payments</button></a>
-          <a href=""><button class="btn2" onclick="window.location='{{ route('expances') }}'">Expances</button></a>
+          <a href="{{url('/customer')}}"><button class="btn2" >Customers</button></a>
+          <a href="{{url('/order')}}"><button class="btn2"  >Orders</button></a>
+          <a href="{{url('/payment')}}"><button class="btn2" >Payments</button></a>
+          <a href="{{url('/expances')}}"><button class="btn2" >Expances</button></a>
         </div>
         <div class="navigation">
           <div class="avatar">
