@@ -16,19 +16,6 @@ class CustomerController extends Controller
      */
 
 
-     public function store(Request $request)
-     {
-         $validatedData = $request->validate([
-             'Name' => 'required|string|max:255',
-             'Address' => 'required|string|max:255',
-             'Phone' => 'required|string|max:20',
-         ]);
- 
-         $customer = Customers::create($validatedData);
- 
-         return response()->json(['message' => 'Customer created successfully', 'customer' => $customer], 201);
-     }
-
 
 
 

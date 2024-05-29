@@ -40,21 +40,21 @@
             </div>
 {{-- Displaying Record from database --}}
             @foreach ($customer as $cus)
-            <div class="task">
-              <div class="text-wrapper-10">{{ $cus->id }}</div>
-              <div class="text-wrapper-11">{{ $cus->Name }}</div>
-              <p class="p">{{ $cus->Address }}</p>
-              <div class="text-wrapper-12">{{ $cus->Phone }}</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">{{ $cus->Balance }}</div></div>
+              <div class="task">
+                <div class="text-wrapper-10">{{ $cus->id }}</div>
+                <div class="text-wrapper-11">{{ $cus->Name }}</div>
+                <p class="p">{{ $cus->Address }}</p>
+                <div class="text-wrapper-12">{{ $cus->Phone }}</div>
+                <div class="pill">
+                  <div class="tag"><div class="label-2">{{ $cus->Balance }}</div></div>
+                </div>
               </div>
-            </div>
             @endforeach
 
           </div>
         </div>
         
-        ,<a href="{{url('/customerform')}}"><div class="element-button-2"><button class="mybtn" >Add New Customer</button></div></a>
+        <a href="{{url('/customerform')}}"><div class="element-button-2"><button class="mybtn" >Add New Customer</button></div></a>
         
 
   </body>

@@ -3,7 +3,9 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ExpancesController;
 use App\Models\Customers;
+use App\Models\Expances;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/customers', function () {
@@ -14,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 
 
-//Cutomers
+//Main Routes
 Route::get('/customer', [CustomerController::class, 'index']);
 
 Route::get('/order', [OrderController::class, 'index']);
+
+Route::get('/expances', [ExpancesController::class, 'index']);
 
 
 
@@ -27,12 +31,14 @@ Route::get('/order', [OrderController::class, 'index']);
 
 Route::get('payment', [PageController::class, 'payment'])->name('payment');
 
-Route::get('expances', [PageController::class, 'expances'])->name('expances');
 //Product
 Route::get('product', [PageController::class, 'product'])->name('product');
 
 //customer form route 
 Route::get('customerform', [PageController::class, 'customerform'])->name('customerform');
+//Expances Form route
+Route::get('expancesform', [PageController::class, 'expancesform'])->name('expancesform');
+
 // Route::post('customerform', [PageController::class,'customerRegister']);
 
 Route::post('/customerform', function () {
@@ -45,4 +51,12 @@ Route::post('/customerform', function () {
     return redirect('/customer');
 });
 
+Route::post('/expancesform', function () {
+    Expances::create([
+        'E_Name' => request('Name'),
+        'E_Descriptio' => request('Description'),
+        'E_Amount' => request('Amount')
+    ]);
+    return redirect('/expances');
+});
 

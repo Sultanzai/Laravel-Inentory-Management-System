@@ -44,218 +44,23 @@
               <div class="text-wrapper-9"></div>
             </div>
 
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
+            @foreach ($expances as $exp)
+              <div class="task">
+                <div class="text-wrapper-12">{{ $exp->id }}</div>
+                <div class="text-wrapper-13">{{ $exp->E_Name }}</div>
+                <div class="text-wrapper-14" style="width: 590px;">{{ $exp->E_Descriptio }}</div>
+                <div class="pill">
+                  <div class="tag"><div class="label-2">{{ $exp->E_Amount }}</div></div>
+                </div>
+                <div class="tag-wrapper">
+                  <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">{{ $exp->E_Date }}</div></div>
+                </div>
               </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-12">1</div>
-              <div class="text-wrapper-13">Break fast</div>
-              <div class="text-wrapper-14" style="width: 590px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus omnis consequuntur dolorem ratione? Dolore unde asperiores, ipsam suscipit libero, error magni incidunt aliquam consequatur ea voluptatibus eius ab sapiente harum?</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$50</div></div>
-              </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">5/20/2024</div></div>
-              </div>
-            </div>
+            @endforeach
+
           </div>
         </div>
-        <div class="element-button-2"><button class="mybtn" onclick="openForm()">Add New Expanses</button></div>
+        <a href="{{url('/expancesform')}}"><div class="element-button-2"><button class="mybtn">Add New Expanses</button></div></a>
       </div>
     </div>
 
