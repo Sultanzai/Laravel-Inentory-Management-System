@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
+use App\Models\Customers;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/customers', function () {
@@ -29,5 +30,19 @@ Route::get('payment', [PageController::class, 'payment'])->name('payment');
 Route::get('expances', [PageController::class, 'expances'])->name('expances');
 //Product
 Route::get('product', [PageController::class, 'product'])->name('product');
+
+//customer form route 
+Route::get('customerform', [PageController::class, 'customerform'])->name('customerform');
+// Route::post('customerform', [PageController::class,'customerRegister']);
+
+Route::post('/customerform', function () {
+    Customers::create([
+        'Name' => request('Name'),
+        'Address' => request('Address'),
+        'Phone' => request('Phone'),
+        'Balance' => request('Balance')
+    ]);
+    return redirect('/customer');
+});
 
 

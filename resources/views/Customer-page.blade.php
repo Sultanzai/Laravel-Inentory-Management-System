@@ -54,65 +54,8 @@
           </div>
         </div>
         
-        <div class="element-button-2"><button class="mybtn" id="openFormBtn">Add New Customer</button></div>
+        ,<a href="{{url('/customerform')}}"><div class="element-button-2"><button class="mybtn" >Add New Customer</button></div></a>
         
-        <!-- Pop Up form -->
-        <div class="popup" id="popupForm">
-          <div class="popup-content">
-              <button class="close-btn">&times;</button>
-              <h2>Add New Customer</h2>
-              
-              <form id="customerForm">
-                @csrf
-                <input type="text" id="Name" name="Name" placeholder="Name" required>
-                <input type="text" id="Phone" name="Phone" placeholder="Phone" required>
-                <input type="text" id="Address" name="Address" placeholder="Address" required>
-                <button type="submit" class="submit-btn">Submit</button>
-              </form>
-              
-          </div>
-      </div>
-      </div>
-    </div>
-    
-<script>
-  $(document).ready(function() {
-    // Open the form
-    $("#openFormBtn").click(function() {
-        $("#popupForm").css("display", "block");
-    });
-
-    // Close the form
-    $(".close-btn").click(function() {
-        $("#popupForm").css("display", "none");
-    });
-
-    // Submit the form via AJAX
-    $("#customerForm").submit(function(e) {
-        e.preventDefault();
-
-        $.ajax({
-            url: '/customers',
-            type: 'POST',
-            data: {
-                name: $("#Name").val(),
-                email: $("#Address").val(),
-                phone_number: $("#Phone").val(),
-                _token: '{{ csrf_token() }}'  // Include CSRF token for security
-            },
-            success: function(response) {
-                alert("Customer created successfully!");
-                $("#popupForm").css("display", "none");
-                $("#customerForm")[0].reset();
-            },
-            error: function(response) {
-                alert("An error occurred while creating the customer.");
-            }
-        });
-    });
-});
-
-</script>
 
   </body>
 </html>

@@ -9,7 +9,7 @@ class Customers extends Model
 {
     protected $table = 'tbl_customer';
     protected $id = 'id';
-    protected $fillables = ['Name', 'Address', 'Balance', 'Phone'];
+    protected $fillable = ['Name', 'Address', 'Phone','Balance'];
     
     use HasFactory;
 }

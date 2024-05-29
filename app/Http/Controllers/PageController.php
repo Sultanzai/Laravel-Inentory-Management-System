@@ -30,4 +30,13 @@ class PageController extends Controller
     {
         return view('Customer-page');
     }
+    //Customer form controller functions
+    public function customerform()
+    {
+        return view('Customer-form');
+    }
+    public function customerRegister(Request $request){
+        echo"<pre>";
+        print_r($request->all());   
+    }
 }

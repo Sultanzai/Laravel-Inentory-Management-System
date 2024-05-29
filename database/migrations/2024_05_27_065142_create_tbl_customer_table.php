@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string("Address");
             $table->float("Balance");
             $table->string("Phone");
-            $table->timestamps();
             
         });
     }
