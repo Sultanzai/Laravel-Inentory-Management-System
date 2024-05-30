@@ -57,7 +57,7 @@
           <a href="{{url('/product')}}"><button class="btn2" >Products</button></a>
         </div>
       </div>
-      <a href="{{url('/expancesform')}}"><div class="element-button-2" style="margin-left: 265px;"><button class="mybtn">Add New Product</button></div></a>
+      <a href="{{url('/productform')}}"><div class="element-button-2" style="margin-left: 10px;"><button class="mybtn">Add New Product</button></div></a>
     </div>
   </body>
 </html>

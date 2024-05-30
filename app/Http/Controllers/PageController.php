@@ -45,9 +45,14 @@ class PageController extends Controller
     {
         return view('Customer-form');
     }
-     //Customer form controller functions
+     //Expances form controller functions
      public function expancesform()
      {
          return view('Expances-form');
+     }
+    //Product form controller functions
+     public function productform()
+     {
+         return view('Add-product');
      }
 }
