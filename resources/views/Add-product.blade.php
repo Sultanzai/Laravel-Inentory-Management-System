@@ -92,7 +92,7 @@
             <textarea name="Description" id="" cols="50" rows="10" ></textarea>
           </div>
           <div class="row">
-            <h3>Order Status</h3>
+            <h3>Product Status</h3>
             <Select name="Status" id="data-select">
               <option value="In Stock">In Stock</option>
               <option value="Out Of stock">Out Of stock</option>
