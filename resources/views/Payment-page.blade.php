@@ -278,7 +278,7 @@
             <img class="img" src="img/chevron-down.svg" />
           </div>
           <img class="buttons" src="img/buttons.svg" />
-          <a href="/Dashboard/Dashboard.html"><div class="text-wrapper-17">Dashboard</div></a>
+          <a href="{{url('/dashboard')}}"><div class="text-wrapper-17">Dashboard</div></a>
         </div>
 
         <div class="segmented-control">
@@ -286,6 +286,7 @@
           <a href="{{url('/order')}}"><button class="btn2"  >Orders</button></a>
           <a href="{{url('/payment')}}"><button class="btn2" >Payments</button></a>
           <a href="{{url('/expances')}}"><button class="btn2" >Expances</button></a>
+          <a href="{{url('/product')}}"><button class="btn2" >Products</button></a>
         </div>
         <a href="/Add-Payment.html"><div class="element-button-2" style="margin-top: -200px; margin-left: -20px;"><button class="mybtn">Add Invoice</button></div></a>
       </div>

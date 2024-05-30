@@ -4,6 +4,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ExpancesController;
+use App\Http\Controllers\ProductController;
 use App\Models\Customers;
 use App\Models\Expances;
 use Illuminate\Support\Facades\Route;
@@ -23,20 +24,26 @@ Route::get('/order', [OrderController::class, 'index']);
 
 Route::get('/expances', [ExpancesController::class, 'index']);
 
+Route::get('/product', [ProductController::class, 'index']);
+
+
 
 
 // Route::get('/customer', [PageController::class, 'customer'])->name('customer');
 
 // Route::get('order', [PageController::class, 'order'])->name('order');
+Route::get('dashboard', [PageController::class, 'dashboard'])->name('dashboard');
+
+
 
 Route::get('payment', [PageController::class, 'payment'])->name('payment');
 
 //Product
-Route::get('product', [PageController::class, 'product'])->name('product');
+// Route::get('product', [PageController::class, 'product'])->name('product');
 
-//customer form route 
+//customerform route 
 Route::get('customerform', [PageController::class, 'customerform'])->name('customerform');
-//Expances Form route
+//ExpancesForm route
 Route::get('expancesform', [PageController::class, 'expancesform'])->name('expancesform');
 
 // Route::post('customerform', [PageController::class,'customerRegister']);

@@ -15,6 +15,7 @@
           <a href="{{url('/order')}}"><button class="btn2"  >Orders</button></a>
           <a href="{{url('/payment')}}"><button class="btn2" >Payments</button></a>
           <a href="{{url('/expances')}}"><button class="btn2" >Expances</button></a>
+          <a href="{{url('/product')}}"><button class="btn2" >Products</button></a>
        </div>
         <div class="navigation">
           <div class="avatar">
@@ -22,7 +23,7 @@
             <img class="img" src="img/chevron-down.svg" />
           </div>
           <img class="buttons" src="img/buttons.svg" />
-          <a href="/Dashboard/Dashboard.html"><div class="text-wrapper-2">Dashboard</div></a>
+          <a href="{{url('/dashboard')}}"><div class="text-wrapper-2">Dashboard</div></a>
         </div>
         <div class="list">
           <div class="text-wrapper-4">Orders</div>

@@ -18,6 +18,7 @@
           <a href="{{url('/order')}}"><button class="btn2"  >Orders</button></a>
           <a href="{{url('/payment')}}"><button class="btn2" >Payments</button></a>
           <a href="{{url('/expances')}}"><button class="btn2" >Expances</button></a>
+          <a href="{{url('/product')}}"><button class="btn2" >Products</button></a>
         </div>
         <div class="navigation">
           <div class="avatar">
@@ -25,7 +26,7 @@
             <img class="img" src="img/chevron-down.svg" />
           </div>
           <img class="buttons" src="img/buttons.svg" />
-          <a href="/Dashboard/Dashboard.html"><div class="text-wrapper-2">Dashboard</div></a>
+          <a href="{{url('/dashboard')}}"><div class="text-wrapper-2">Dashboard</div></a>
         </div>
         <div class="list">
           <div class="text-wrapper-4">Expanses</div>
@@ -63,33 +64,5 @@
         <a href="{{url('/expancesform')}}"><div class="element-button-2"><button class="mybtn">Add New Expanses</button></div></a>
       </div>
     </div>
-
-
-    <!-- Pop Up adding expances -->
-     <!-- Pop Up form -->
-     <div class="popup" id="popupForm">
-      <div class="popup-content">
-          <button class="close-btn" onclick="closeForm()">&times;</button>
-          <h2>Add Expanses</h2>
-          <form>
-              <input type="text" placeholder="Name" required>
-              <input type="text" placeholder="Phone" required>
-              <input type="text" placeholder="Address" required>
-              <button type="submit" class="submit-btn">Submit</button>
-          </form>
-      </div>
-  </div>
-  </div>
-</div>
-
-<script>
-function openForm() {
-  document.getElementById("popupForm").style.display = "flex";
-}
-
-function closeForm() {
-  document.getElementById("popupForm").style.display = "none";
-}
-</script>
   </body>
 </html>

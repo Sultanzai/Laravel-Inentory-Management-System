@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    public function dashboard()
+    {
+        return view('Dashboard');
+    } 
     public function order()
     {
         return view('Order-page');
@@ -21,7 +25,7 @@ class PageController extends Controller
         return view('Expances-page');
     }
     
-    public function products()
+    public function product()
     {
         return view('Product-Page');
     }
