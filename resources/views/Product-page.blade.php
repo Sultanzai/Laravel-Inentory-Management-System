@@ -27,7 +27,7 @@
             </div>
             {{-- Dispaying Product Data form database --}}
             @foreach ($product as $pro)
-            <div class="task">
+            <div class="task clickable-row" data-href="{{ route('product-view', $pro->id) }}">
               <div class="text-wrapper-9">{{ $pro->id }}</div>
               <div class="text-wrapper-10">{{ $pro->P_Name }}</div>
               <div class="text-wrapper-11">{{ $pro->Barcode }}</div>
@@ -59,5 +59,17 @@
       </div>
       <a href="{{url('/productform')}}"><div class="element-button-2" style="margin-left: 10px;"><button class="mybtn">Add New Product</button></div></a>
     </div>
+{{-- Script for displaying data in view --}}
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var rows = document.querySelectorAll('.clickable-row');
+          rows.forEach(function(row) {
+              row.addEventListener('click', function() {
+                  window.location = row.getAttribute('data-href');
+              });
+          });
+      });
+  </script>
+    
   </body>
 </html>

@@ -68,7 +68,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Billing Information</h2>
+        <h2>Information</h2>
         <table>
             <thead>
                 <tr>
@@ -83,13 +83,13 @@
             </thead>
             <tbody>
                 <tr>
-                    <td data-label="No">1</td>
-                    <td data-label="Name">Product A</td>
-                    <td data-label="Barcode">1234567890</td>
-                    <td data-label="Price">$10.00</td>
-                    <td data-label="Available Quantity">100</td>
-                    <td data-label="Status">In Stock</td>
-                    <td data-label="Date">2024-06-01</td>
+                    <td data-label="No">{{ $item->id }}</td>
+                    <td data-label="Name">{{ $item->P_Name }}</td>
+                    <td data-label="Barcode">{{ $item->Barcode }}</td>
+                    <td data-label="Price">{{ $item->P_Price }}0</td>
+                    <td data-label="Available Quantity">{{ $item->P_Units }}</td>
+                    <td data-label="Status">{{ $item->P_Status }}</td>
+                    <td data-label="Date">{{ $item->P_Date }}</td>
                 </tr>
                 <!-- Repeat rows as needed -->
             </tbody>

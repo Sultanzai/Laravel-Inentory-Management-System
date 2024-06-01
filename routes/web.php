@@ -47,6 +47,9 @@ Route::get('expancesform', [PageController::class, 'expancesform'])->name('expan
 Route::get('productform', [PageController::class, 'productform'])->name('productform');
 
 
+//Route for fetiching adn display data 
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product-view');
+
 
 
 // Addomg Customers
