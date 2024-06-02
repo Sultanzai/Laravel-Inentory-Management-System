@@ -11,4 +11,9 @@ class Product extends Model
     protected $id = 'id';
     protected $fillable = ['P_Name', 'P_Description', 'P_Units', 'P_Price', 'P_Status', 'P_Date', 'Barcode'];
     use HasFactory;
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class)->withPivot('price');
+    }
 }

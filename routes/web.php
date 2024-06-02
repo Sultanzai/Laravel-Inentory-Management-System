@@ -27,14 +27,21 @@ Route::get('/expances', [ExpancesController::class, 'index']);
 
 Route::get('/product', [ProductController::class, 'index']);
 
-
-
-
-// Route::get('/customer', [PageController::class, 'customer'])->name('customer');
-
-// Route::get('order', [PageController::class, 'order'])->name('order');
 Route::get('dashboard', [PageController::class, 'dashboard'])->name('dashboard');
 Route::get('payment', [PageController::class, 'payment'])->name('payment');
+
+
+
+
+
+// Searching routes for displaying data in product view.
+// Route::get('/Order-page', [ProductController::class, 'search'])->name('products.search');
+
+// Testing view for order products 
+
+Route::get('Add-Order', [OrderController::class, 'create'])->name('Add-Order');
+Route::post('orderstore', [OrderController::class, 'store'])->name('orderstore');
+
 
 
 
@@ -45,6 +52,8 @@ Route::get('customerform', [PageController::class, 'customerform'])->name('custo
 Route::get('expancesform', [PageController::class, 'expancesform'])->name('expancesform');
 //Productform Route
 Route::get('productform', [PageController::class, 'productform'])->name('productform');
+
+// Route::get('/AddOrder', [PageController::class, 'AddOrder'])->name('AddOrder');
 
 
 //Route for fetiching adn display data 

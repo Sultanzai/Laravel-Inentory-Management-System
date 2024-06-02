@@ -6,6 +6,15 @@
     <link rel="stylesheet" href="{{asset ('css/styleguide.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/add_order.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/order-style.css') }}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+select{
+  width: 400px;
+  height: 50px;
+  color: black;
+}
+</style>
   </head>
   <body>
     <div class="dashboard">
@@ -21,123 +30,62 @@
         </div>
         <a href="/Dashboard/Order-page.html"><button class="element-button"><div class="text-wrapper-3">Back</div></button></a>
         
-        <div class="text-wrapper-6">Alex</div>
-       
-       
-        <div class="search2">
-          <img class="img" src="img/search.svg" /> <input class="label" placeholder="Search Customer" type="text"/>
-        </div>
-        <div class="group">
 
-          <div class="overlap-group">
-           <h4>ALex</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br> 
-           <h4>ALex</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br>
-          </div>
-        </div>
-        <div class="search2">
-          <img class="img" src="img/search.svg" /> <input class="label" placeholder="Search Products" type="text"/>
-        </div>
-        <div class="group">
-          <div class="overlap-group">
-           <h4>ALex</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br> 
-           <h4>ALex</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br>
-           <h4>Martin</h4><br>
-          </div>
-        </div>
 
-        <div class="group-3">
-          <div class="customer-name"><h2>Alex</h2></div>
 
-          <div class="products">
-            <p>1</p>
-            <div class="title"><h2>Halo Vape</h2></div>
-            <div class="units">
-              <input type="text" name="" id="" placeholder="Units">
-            </div>
-            <div class="price">
-              <input type="text" name="" id="" placeholder="Price">
-            </div>
-          </div>
-          <div class="products">
-            <p>2</p>
-            <div class="title"><h2>Halo Vape</h2></div>
-            <div class="units">
-              <input type="text" name="" id="" placeholder="Units">
-            </div>
-            <div class="price">
-              <input type="text" name="" id="" placeholder="Price">
-            </div>
-          </div>
-          <div class="products">
-            <p>3</p>
-            <div class="title"><h2>Halo Vape</h2></div>
-            <div class="units">
-              <input type="text" name="" id="" placeholder="Units">
-            </div>
-            <div class="price">
-              <input type="text" name="" id="" placeholder="Price">
-            </div>
-          </div>
-          <div class="products">
-            <p>4</p>
-            <div class="title"><h2>Halo Vape</h2></div>
-            <div class="units">
-              <input type="text" name="" id="" placeholder="Units">
-            </div>
-            <div class="price">
-              <input type="text" name="" id="" placeholder="Price">
-            </div>
-          </div>
-          <div class="products">
-            <p>5</p>
-            <div class="title"><h2>Halo Vape</h2></div>
-            <div class="units">
-              <input type="text" name="" id="" placeholder="Units">
-            </div>
-            <div class="price">
-              <input type="text" name="" id="" placeholder="Price">
-            </div>
-          </div>
-          <br>
-          <div class="products" style="border-top: solid 0.5px rgb(189, 189, 189);">
-            
-            <div class="title"><h1>Total</h1></div>
-            <div class="units">
-             <h1>15</h1>
-            </div>
-            <div class="price">
-              <h1>$1500</h1>
-            </div>
-          </div>
-        </div>
-        <div class="description">
-          <div class="message">
-            <textarea placeholder="Description...."></textarea>   
-          </div>
-        </div>
-        
-        <button class="button" style="margin-top: 70px; left: 750px;"><div class="text-wrapper-4" style="color: white;">Submit</div></button>
+
+
+        <form action="{{ route('orderstore') }}" method="POST" style="margin-top:200px;">
+          @csrf
+      
+          <!-- Select Customer -->
+          <label for="customer">Customer:</label >
+          <select name="Customer_ID" id="customer" required>
+              @foreach($customers as $cus)
+                  <option value="{{ $cus->id }}">{{ $cus->name }}</option>
+              @endforeach
+          </select>
+      
+          <!-- Select Products -->
+          <label for="products">Products:</label>
+          <select name="products[]" id="products" multiple>
+              @foreach($products as $product)
+                  <option value="{{ $product->id }}">{{ $product->name }}</option>
+              @endforeach
+          </select>
+      
+          <!-- Enter Prices -->
+          <label for="prices">Prices:</label>
+          <div id="priceInputs"></div>
+      
+          <button type="submit">Submit Order</button>
+      </form>
+      
+
+
 
       </div>
     </div>
+
+
+
+  <script>
+    document.getElementById('products').addEventListener('change', function() {
+        let selectedProducts = Array.from(this.selectedOptions).map(option => option.value);
+        let priceInputs = document.getElementById('priceInputs');
+        priceInputs.innerHTML = '';
+
+        selectedProducts.forEach(productId => {
+            let input = document.createElement('input');
+            input.type = 'number';
+            input.name = `prices[${productId}]`;
+            input.placeholder = `Price for Product ID ${productId}`;
+            input.required = true;
+            priceInputs.appendChild(input);
+        });
+    });
+  </script>
+
+
   </body>
 </html>

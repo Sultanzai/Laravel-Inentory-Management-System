@@ -59,7 +59,7 @@
     
           </div>
         </div>
-        <a href="Add_order.html"><div class="element-button-2"><button class="mybtn">Add New Order</button></div></a>
+        <a href="{{url('/AddOrder')}}"><div class="element-button-2"><button class="mybtn">Add New Order</button></div></a>
       </div>
     </div>
   </body>

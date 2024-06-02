@@ -301,6 +301,13 @@
   font-family: var(--presets-body2-font-family);
   color: #828282;
 }
+.dashboard .overlap-group3 {
+  width: 1200px;
+  left: 40px;
+  height: 96px;
+  font-family: var(--presets-body2-font-family);
+  color: #3f3f3f;
+}
 .overlap-group h4{
   margin-top: 10px;
 }
