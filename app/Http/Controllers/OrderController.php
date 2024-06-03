@@ -36,18 +36,21 @@ class OrderController extends Controller
     
     public function store(Request $request)
     {
-        $request->validate([
-            'Customer_ID'=>['required','integer'],
-            'products' => 'required|array',
-            'products.*' => 'exists:products,id',
-            'prices' => 'required|array',
-            'prices.*' => 'numeric|min:0'
+        // $request->validate([
+        //     'Customer_ID'=>['required','integer'],
+        //     'Product_ID' => 'required|array',
+        //     'Product_ID.*' => 'exists:products,id',
+        //     'O_Prices' => 'required|array',
+        //     'O_Prices.*' => 'numeric|min:0'
+        // ]);
+
+        $order  = Order::create([
+            'Customer_ID' => $request->customer_id,
+            'O_Description'=> $request->Description,
         ]);
 
-        $order  = Order::create(['Customer_ID' => $request->customer_id]);
-
         foreach($request->products as $productID){
-            $order->products()->attach($productID, ['Price'=>$request->Price[$productID]]);
+            $order->products()->attach($productID, ['P_Price'=>$request->Price[$productID]]);
         }
         return redirect()->route('Order')->with('success','Order Created Successfully');
     }

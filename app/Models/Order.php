@@ -10,7 +10,7 @@ class Order extends Model
 {
     protected $table = 'tbl_orders';
     protected $id = 'id';
-    protected $fillable = ['O_Description', 'O_TOtal', 'O_Date', 'Customer_ID'] ;
+    protected $fillable = ['O_Description', 'O_Date', 'Customer_ID'] ;
     
     use HasFactory;
 
@@ -21,6 +21,6 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withPivot('price');
+        return $this->belongsToMany(Product::class)->withPivot('P_Price');
     }
 }

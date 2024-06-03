@@ -9,10 +9,19 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-select{
+  form{
+    margin-top: 200px;
+    background-color: red;
+  }
+#customer{
   width: 400px;
   height: 50px;
   color: black;
+}
+#products{
+  margin-top: 20px;
+  width: 400px;
+  height: 200px;
 }
 </style>
   </head>
@@ -35,25 +44,26 @@ select{
 
 
 
-        <form action="{{ route('orderstore') }}" method="POST" style="margin-top:200px;">
+        <form action="{{ route('orderstore') }}" method="POST">
           @csrf
       
           <!-- Select Customer -->
           <label for="customer">Customer:</label >
-          <select name="Customer_ID" id="customer" required>
+          <select name="id" id="customer" required>
               @foreach($customers as $cus)
-                  <option value="{{ $cus->id }}">{{ $cus->name }}</option>
+                  <option value="{{ $cus->id }}">{{ $cus->Name }}</option>
               @endforeach
           </select>
-      
+          <p>Total:</p><input type="text" name="total" id="total">
+      <br>
           <!-- Select Products -->
           <label for="products">Products:</label>
           <select name="products[]" id="products" multiple>
               @foreach($products as $product)
-                  <option value="{{ $product->id }}">{{ $product->name }}</option>
+                  <option value="{{ $product->id }}">{{ $product->P_Name }}</option>
               @endforeach
           </select>
-      
+      <br>
           <!-- Enter Prices -->
           <label for="prices">Prices:</label>
           <div id="priceInputs"></div>
