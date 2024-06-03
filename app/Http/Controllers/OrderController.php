@@ -36,22 +36,28 @@ class OrderController extends Controller
     
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'Customer_ID'=>['required','integer'],
-        //     'Product_ID' => 'required|array',
-        //     'Product_ID.*' => 'exists:products,id',
-        //     'O_Prices' => 'required|array',
-        //     'O_Prices.*' => 'numeric|min:0'
-        // ]);
-
-        $order  = Order::create([
-            'Customer_ID' => $request->customer_id,
-            'O_Description'=> $request->Description,
+        $request->validate([
+            'Customer_ID' => 'required|exists:tbl_customer,id',
+            'products' => 'required|array',
+            'products.*' => 'exists:tbl_product,id',
+            'prices' => 'required|array',
+            'prices.*' => 'numeric|min:0',
+            'units' => 'required|array',
+            'units.*' => 'numeric|min:0'
         ]);
 
-        foreach($request->products as $productID){
-            $order->products()->attach($productID, ['P_Price'=>$request->Price[$productID]]);
+        $order = Order::create([
+            'Customer_ID' => $request->Customer_ID,
+            'description' => $request->description
+        ]);
+
+        foreach ($request->products as $productID) {
+            $order->products()->attach($productID, [
+                'O_Price' => $request->prices[$productID],
+                'O_unit' => $request->units[$productID]
+            ]);
         }
-        return redirect()->route('Order')->with('success','Order Created Successfully');
+
+        // return redirect()->route('Add-order')->with('success', 'Order Created Successfully');
     }
 }

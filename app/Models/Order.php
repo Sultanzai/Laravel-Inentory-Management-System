@@ -13,14 +13,9 @@ class Order extends Model
     protected $fillable = ['O_Description', 'O_Date', 'Customer_ID'] ;
     
     use HasFactory;
-
-    public function customers()
+     public function products()
     {
-        return $this->belongsTo(Customers::class);
-    }
-
-    public function products()
-    {
-        return $this->belongsToMany(Product::class)->withPivot('P_Price');
+        return $this->belongsToMany(Product::class, 'tbl_orderdetail', 'Order_ID', 'Product_ID')
+                    ->withPivot('O_Price', 'O_unit');
     }
 }
