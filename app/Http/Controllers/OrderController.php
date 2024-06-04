@@ -9,6 +9,8 @@ use App\Models\Product;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 
+
+
 class OrderController extends Controller
 {
     // public function store(Request $request){
@@ -25,7 +27,7 @@ class OrderController extends Controller
         return view('Order-page')->with('order',$order);
     }
 
-    
+
     public function create()
     {
         $customers = Customers::all();
@@ -34,6 +36,8 @@ class OrderController extends Controller
         return view('Add-Order', compact('customers','products'));
     }
     
+
+
     public function store(Request $request)
     {
         $request->validate([
@@ -57,7 +61,6 @@ class OrderController extends Controller
                 'O_unit' => $request->units[$productID]
             ]);
         }
-
-        // return redirect()->route('Add-order')->with('success', 'Order Created Successfully');
+        return redirect('/order')->with('success','');
     }
 }

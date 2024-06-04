@@ -46,6 +46,8 @@ Route::post('orderstore', [OrderController::class, 'store'])->name('orderstore')
 
 
 
+
+
 //customerform route 
 Route::get('customerform', [PageController::class, 'customerform'])->name('customerform');
 //ExpancesForm route
@@ -92,5 +94,5 @@ Route::post('/productform', function () {
         'P_Status' => request('Status'),
         'Barcode' => request('Barcode')
     ]);
-    return redirect('/product');
+    return redirect('/order');
 });
