@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 //Display Main Data Routes
 Route::get('/customer', [CustomerController::class, 'index']);
 
-// Route::get('/order', [OrderController::class, 'index']);             Getting join table data in join function
+Route::get('/order', [OrderController::class, 'index']);
 
 Route::get('/expances', [ExpancesController::class, 'index']);
 
@@ -43,7 +43,7 @@ Route::get('Add-Order', [OrderController::class, 'create'])->name('Add-Order');
 Route::post('orderstore', [OrderController::class, 'store'])->name('orderstore');
 
 // Order Page data displaying join tables 
-Route::get('/order', [OrderController::class, 'join']); 
+// Route::get('/order', [OrderController::class, 'join']); 
 
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrderView;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Customers;
@@ -23,8 +24,12 @@ class OrderController extends Controller
         
     // }
     public function index(){
-        $order = Order::all();
-        return view('Order-page')->with('order',$order);
+        // $order = Order::all();
+        // return view('Order-page')->with('order',$order);
+
+        $orders = OrderView::all();
+        return view('Order-page', compact('orders'));
+
     }
 
 
