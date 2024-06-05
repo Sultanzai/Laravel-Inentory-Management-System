@@ -95,5 +95,5 @@ Route::post('/productform', function () {
         'P_Status' => request('Status'),
         'Barcode' => request('Barcode')
     ]);
-    return redirect('/order');
+    return redirect('/product');
 });

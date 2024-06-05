@@ -28,39 +28,61 @@
         <div class="list">
           <div class="text-wrapper-4">Orders</div>
           <div class="search">
-            <img class="img" src="img/search.svg" /> <input class="label" placeholder="Search..." type="text"/>
+              <img class="img" src="img/search.svg" />
+              <input id="searchInput" class="label" placeholder="Search..." type="text" onkeyup="filterOrders()" />
           </div>
           <div class="list-2">
-            <div class="navbar">
-              <div class="text-wrapper-5"> Name</div>
-              <div class="text-wrapper-6">Product Name</div>
-              <div class="text-wrapper-7">Product Barcode</div>
-              <div class="text-wrapper-8">Order Prices</div>
-              <div class="text-wrapper-9">Order Units</div>
-              <div class="text-wrapper-10">Total Order</div>
-              <div class="text-wrapper-11">Date</div>
-            </div>
-            @foreach ($orders as $order)
-            <div class="task">
-              <div class="text-wrapper-12">{{ $order->Customer_Name }}</div>
-              <div class="text-wrapper-13">{{ $order->ProductNames}}</div>
-              <div class="text-wrapper-14">{{ $order->ProductBarcodes }}</div>
-              <p class="p">{{ $order->OrderPrices}}</p>
-              <div class="text-wrapper-15">{{ $order->OrderUnits }}</div>
-              <div class="pill">
-                <div class="tag"><div class="label-2">$ {{ $order->TotalPrice }}</div></div>
+              <div class="navbar">
+                  <div class="text-wrapper-5">Name</div>
+                  <div class="text-wrapper-6">Product Name</div>
+                  <div class="text-wrapper-7">Product Barcode</div>
+                  <div class="text-wrapper-8">Order Prices</div>
+                  <div class="text-wrapper-9">Order Units</div>
+                  <div class="text-wrapper-10">Total Order</div>
+                  <div class="text-wrapper-11">Date</div>
               </div>
-              <div class="tag-wrapper">
-                <div class="label-wrapper"><div class="label-2">{{ $order->O_Date }}</div></div>
+              @foreach ($orders as $order)
+              <div class="task">
+                  <div class="text-wrapper-12">{{ $order->Customer_Name }}</div>
+                  <div class="text-wrapper-13">{{ $order->ProductNames }}</div>
+                  <div class="text-wrapper-14">{{ $order->ProductBarcodes }}</div>
+                  <p class="p">{{ $order->OrderPrices }}</p>
+                  <div class="text-wrapper-15">{{ $order->OrderUnits }}</div>
+                  <div class="pill">
+                      <div class="tag"><div class="label-2">$ {{ $order->TotalPrice }}</div></div>
+                  </div>
+                  <div class="tag-wrapper">
+                      <div class="label-wrapper"><div class="label-2">{{ $order->O_Date }}</div></div>
+                  </div>
               </div>
-            </div>     
-            @endforeach
-
-    
+              @endforeach
           </div>
+      </div>
         </div>
         <a href="{{url('/Add-Order')}}"><div class="element-button-2"><button class="mybtn">Add New Order</button></div></a>
       </div>
     </div>
+
+    <script>
+      function filterOrders() {
+          // Declare variables
+          var input, filter, list, tasks, task, i, txtValue;
+          input = document.getElementById('searchInput');
+          filter = input.value.toUpperCase();
+          list = document.querySelector('.list-2');
+          tasks = list.getElementsByClassName('task');
+  
+          // Loop through all tasks, and hide those who don't match the search query
+          for (i = 0; i < tasks.length; i++) {
+              task = tasks[i];
+              txtValue = task.textContent || task.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  task.style.display = "";
+              } else {
+                  task.style.display = "none";
+              }
+          }
+      }
+  </script>
   </body>
 </html>

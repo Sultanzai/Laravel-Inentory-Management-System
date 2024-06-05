@@ -29,7 +29,8 @@
         <div class="list">
           <div class="text-wrapper-4">Customer</div>
           <div class="search">
-            <img class="img" src="img/search.svg" /> <input class="label" placeholder="Search..." type="text" />
+            <img class="img" src="img/search.svg" />
+            <input id="searchInput" class="label" placeholder="Search..." type="text" onkeyup="filterOrders()" />
           </div>
           <div class="list-2">
             <div class="navbar">
@@ -58,5 +59,31 @@
         <a href="{{url('/customerform')}}"><div class="element-button-2"><button class="mybtn" >Add New Customer</button></div></a>
         
 
+
+
+
+
+        
+        <script>
+          function filterOrders() {
+              // Declare variables
+              var input, filter, list, tasks, task, i, txtValue;
+              input = document.getElementById('searchInput');
+              filter = input.value.toUpperCase();
+              list = document.querySelector('.list-2');
+              tasks = list.getElementsByClassName('task');
+      
+              // Loop through all tasks, and hide those who don't match the search query
+              for (i = 0; i < tasks.length; i++) {
+                  task = tasks[i];
+                  txtValue = task.textContent || task.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                      task.style.display = "";
+                  } else {
+                      task.style.display = "none";
+                  }
+              }
+          }
+      </script>
   </body>
 </html>

@@ -13,7 +13,8 @@
         <div class="list">
           <div class="text-wrapper">Products</div>
           <div class="search">
-            <img class="img" src="img/search.svg" /> <input class="label" placeholder="Search..." type="text" />
+            <img class="img" src="img/search.svg" />
+            <input id="searchInput" class="label" placeholder="Search..." type="text" onkeyup="filterOrders()" />
           </div>
           <div class="list-2">
             <div class="navbar">
@@ -61,14 +62,37 @@
     </div>
 {{-- Script for displaying data in view --}}
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          var rows = document.querySelectorAll('.clickable-row');
-          rows.forEach(function(row) {
-              row.addEventListener('click', function() {
-                  window.location = row.getAttribute('data-href');
+          document.addEventListener('DOMContentLoaded', function() {
+              var rows = document.querySelectorAll('.clickable-row');
+              rows.forEach(function(row) {
+                  row.addEventListener('click', function() {
+                      window.location = row.getAttribute('data-href');
+                  });
               });
           });
-      });
+
+
+
+          function filterOrders() {
+              // Declare variables
+              var input, filter, list, tasks, task, i, txtValue;
+              input = document.getElementById('searchInput');
+              filter = input.value.toUpperCase();
+              list = document.querySelector('.list-2');
+              tasks = list.getElementsByClassName('task');
+      
+              // Loop through all tasks, and hide those who don't match the search query
+              for (i = 0; i < tasks.length; i++) {
+                  task = tasks[i];
+                  txtValue = task.textContent || task.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                      task.style.display = "";
+                  } else {
+                      task.style.display = "none";
+                  }
+              }
+          }
+
   </script>
     
   </body>
