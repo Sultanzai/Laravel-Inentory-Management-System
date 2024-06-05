@@ -14,18 +14,8 @@ use App\Http\Controllers\ProductController;
 
 class OrderController extends Controller
 {
-    // public function store(Request $request){
-    //     $validateData = $request->validate([
-    //         'O_Description'=>'required|string|max:255',
-    //         'O_Total'=>'required',
-    //         'O_Date'=>'required|',
-    //     ]);
-    //     $order = Order::create($validateData);
-        
-    // }
+
     public function index(){
-        // $order = Order::all();
-        // return view('Order-page')->with('order',$order);
 
         $orders = OrderView::all();
         return view('Order-page', compact('orders'));
@@ -39,6 +29,12 @@ class OrderController extends Controller
         $products = Product::all(); 
 
         return view('Add-Order', compact('customers','products'));
+    }
+
+    public function show($id)
+    {
+        $order = OrderView::findOrFail($id);
+        return view('Print-order', compact('order'));
     }
     
 

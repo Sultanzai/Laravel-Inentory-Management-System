@@ -42,7 +42,7 @@
                   <div class="text-wrapper-11">Date</div>
               </div>
               @foreach ($orders as $order)
-              <div class="task">
+              <div class="task" onclick="viewOrder({{ $order->Order_ID }})">
                   <div class="text-wrapper-12">{{ $order->Customer_Name }}</div>
                   <div class="text-wrapper-13">{{ $order->ProductNames }}</div>
                   <div class="text-wrapper-14">{{ $order->ProductBarcodes }}</div>
@@ -65,6 +65,7 @@
 
     <script>
       function filterOrders() {
+        // Array of inputs for products 
           // Declare variables
           var input, filter, list, tasks, task, i, txtValue;
           input = document.getElementById('searchInput');
@@ -83,6 +84,12 @@
               }
           }
       }
+
+      //Redirecting to Print Page 
+        function viewOrder(orderId) {
+            window.location.href = '/order/' + orderId;
+        }
+
   </script>
   </body>
 </html>

@@ -42,8 +42,8 @@ Route::get('payment', [PageController::class, 'payment'])->name('payment');
 Route::get('Add-Order', [OrderController::class, 'create'])->name('Add-Order');
 Route::post('orderstore', [OrderController::class, 'store'])->name('orderstore');
 
-// Order Page data displaying join tables 
-// Route::get('/order', [OrderController::class, 'join']); 
+Route::get('/order/{id}', [OrderController::class, 'show'])->name('Print-order');
+
 
 
 
