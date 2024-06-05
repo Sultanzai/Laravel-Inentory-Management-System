@@ -10,7 +10,7 @@ class OrderView extends Model
     protected $table = 'order_view';
     public $timestamps = false;
     protected $fillable = [
-        'Order_ID', 'Customer_ID', 'O_Date', 'OrderDetail_ID', 'O_price', 'O_unit', 'Customer_Name'
+        'Order_ID', 'Customer_ID', 'O_Date', 'Customer_Name', 'OrderDetail_IDs', 'OrderPrices', 'OrderUnits', 'ProductNames', 'ProductBarcodes', 'TotalPrice'
     ];
     use HasFactory;
 }
