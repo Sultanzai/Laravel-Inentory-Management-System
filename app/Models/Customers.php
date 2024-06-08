@@ -14,7 +14,7 @@ class Customers extends Model
     use HasFactory;
     
     public function order()
-    {
-        return $this->hasMany(Order::class);
-    }
+{
+    return $this->hasMany(Order::class, 'Customer_ID');
+}
 }

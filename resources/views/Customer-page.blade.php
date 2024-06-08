@@ -73,7 +73,7 @@
               list = document.querySelector('.list-2');
               tasks = list.getElementsByClassName('task');
       
-              // Loop through all tasks, and hide those who don't match the search query
+              // Loop through all 
               for (i = 0; i < tasks.length; i++) {
                   task = tasks[i];
                   txtValue = task.textContent || task.innerText;
