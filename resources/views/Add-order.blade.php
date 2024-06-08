@@ -28,6 +28,10 @@
     font-size: 20px;
     font-weight: 200;
   }
+  #totalPrice{
+    font-size: 20px;
+    font-weight: 200;
+  }
   #customer{
     width: 200px;
     height: 30px;
@@ -135,7 +139,14 @@
              <label for="units">Units</label>
              <div id="unitInputs"></div>
           </div>
-            
+
+          <div class="row">
+            <!-- Enter Units -->
+            <label>Total Price</label>
+            <div id="totalPrice"></div>
+            <input type="hidden" name="totalPrice" id="hiddenTotalPrice">
+         </div>
+
           <div class="row">
             <a href="{{url('/order')}}"><button type="submit" class="element-button2"> <div class="text-wrapper-3"> Submit Order</div></button></a>
           </div>
@@ -152,6 +163,69 @@
 
 
   <script>
+      document.getElementById('products').addEventListener('change', function () {
+        var selectedProducts = Array.from(this.selectedOptions).map(option => option.value);
+        var priceInputs = document.getElementById('priceInputs');
+        var unitInputs = document.getElementById('unitInputs');
+        var totalPriceElement = document.getElementById('totalPrice');
+
+        // Clear previous inputs
+        priceInputs.innerHTML = '';
+        unitInputs.innerHTML = '';
+
+        selectedProducts.forEach(productId => {
+            var priceInput = document.createElement('input');
+            priceInput.type = 'number';
+            priceInput.name = 'prices[' + productId + ']';
+            priceInput.placeholder = 'Price for product ' + productId;
+            priceInput.required = true;
+            priceInput.addEventListener('input', calculateTotalPrice);
+            priceInputs.appendChild(priceInput);
+
+            var unitInput = document.createElement('input');
+            unitInput.type = 'number';
+            unitInput.name = 'units[' + productId + ']';
+            unitInput.placeholder = 'Units for product ' + productId;
+            unitInput.required = true;
+            unitInput.addEventListener('input', calculateTotalPrice);
+            unitInputs.appendChild(unitInput);
+        });
+
+        // Calculate the total price initially
+        calculateTotalPrice();
+    });
+
+    function calculateTotalPrice() {
+        var priceInputs = Array.from(document.querySelectorAll('#priceInputs input'));
+        var unitInputs = Array.from(document.querySelectorAll('#unitInputs input'));
+        var totalPrice = 0;
+
+        priceInputs.forEach((priceInput, index) => {
+            var price = parseFloat(priceInput.value) || 0;
+            var units = parseFloat(unitInputs[index].value) || 0;
+            totalPrice += price * units;
+        });
+
+        var totalPriceElement = document.getElementById('totalPrice');
+        totalPriceElement.textContent = 'Total Price: $' + totalPrice.toFixed(2);
+
+        // Update the hidden input field with the total price
+        document.getElementById('hiddenTotalPrice').value = totalPrice.toFixed(2);
+    }
+
+    // Ensure that the total price element is present in the HTML
+    document.addEventListener('DOMContentLoaded', function () {
+        var totalPriceElement = document.createElement('div');
+        totalPriceElement.id = 'totalPrice';
+        totalPriceElement.textContent = 'Total Price: $0.00';
+        document.body.appendChild(totalPriceElement);
+    });
+
+
+  </script>
+      
+
+  {{-- <script>
     document.getElementById('products').addEventListener('change', function () {
         var selectedProducts = Array.from(this.selectedOptions).map(option => option.value);
         var priceInputs = document.getElementById('priceInputs');
@@ -177,7 +251,7 @@
             unitInputs.appendChild(unitInput);
         });
     });
-  </script>
+  </script> --}}
 
 
   </body>

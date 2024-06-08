@@ -62,6 +62,11 @@ class OrderController extends Controller
                 'O_unit' => $request->units[$productID]
             ]);
         }
+
+        $customer = Customers::find($request->Customer_ID);
+        $customer->Balance += $request->totalPrice;
+        $customer->save();
+
         return redirect('/order')->with('success','');
     }
 }
