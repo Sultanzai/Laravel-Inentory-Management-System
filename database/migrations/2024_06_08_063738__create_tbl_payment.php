@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tbl_payment', function (Blueprint $table) {
             $table->id();
             $table->integer("P_Amount");
+            $table->string("P_Type");
             $table->string("P_Status");
             $table->date("P_Date");
             $table->unsignedBigInteger("Order_ID");
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_payment');
+        //
     }
 };

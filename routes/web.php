@@ -4,6 +4,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ExpancesController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Models\Customers;
 use App\Models\Expances;
@@ -43,6 +44,11 @@ Route::get('Add-Order', [OrderController::class, 'create'])->name('Add-Order');
 Route::post('orderstore', [OrderController::class, 'store'])->name('orderstore');
 
 Route::get('/order/{id}', [OrderController::class, 'show'])->name('Print-order');
+
+Route::get('Add-Payment', [PaymentController::class, 'create'])->name('Add-Payment');
+
+
+// Route::post('Paymentstore', [PaymentController::class, 'store'])->name('Paymentstore');
 
 
 

@@ -17,7 +17,7 @@ class OrderController extends Controller
 
     public function index(){
 
-        $orders = OrderView::all();
+        $orders = OrderView::orderBy('O_Date', 'desc')->get();
         return view('Order-page', compact('orders'));
 
     }

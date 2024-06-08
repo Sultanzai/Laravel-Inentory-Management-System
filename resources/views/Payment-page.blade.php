@@ -288,7 +288,7 @@
           <a href="{{url('/expances')}}"><button class="btn2" >Expances</button></a>
           <a href="{{url('/product')}}"><button class="btn2" >Products</button></a>
         </div>
-        <a href="/Add-Payment.html"><div class="element-button-2" style="margin-top: -200px; margin-left: -20px;"><button class="mybtn">Add Invoice</button></div></a>
+        <a href="{{url('/Add-Payment')}}"><div class="element-button-2" style="margin-top: -200px; margin-left: -20px;"><button class="mybtn">Add Invoice</button></div></a>
       </div>
     </div>  
   </body>
