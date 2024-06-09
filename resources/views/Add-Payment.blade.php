@@ -113,40 +113,39 @@
 
       <div class="container">
 
-          <form action="" method="POST">
-            @csrf
+  <form action="/Paymentform" method="POST">
+    @csrf
 
+      <div class="row">
+          <table>
+              <thead>
+                  <tr>
+                      <th>Customer</th>
+                      <th>Product Names</th>
+                      <th>Total Price</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td colspan="4">
+                      
+                          <select name="Order_ID" id="order" required style="width: 100%;">
+                            
+                              @foreach($orderviews as $order)
+                                  <option value="{{ $order->Order_ID }}" data-customer-id="{{ $order->Customer_ID }}">
+                                      {{ $order->Customer_Name }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      {{ $order->ProductNames }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      ${{ $order->TotalPrice }}
+                                  </option>
+                              @endforeach
+                          </select>
+                          <input type="hidden" name="Customer_ID" id="customer_id">
 
-<div class="row">
-        <table>
-            <thead>
-                <tr>
-                    <th>Customer</th>
-                    <th>Product Names</th>
-                    <th>Total Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td colspan="4">
-                        <select name="Order_ID" id="order" required style="width: 100%;">
-                            @foreach($orderviews as $order)
-                                <option value="{{ $order->Order_ID }}">
-                                    {{ $order->Customer_Name }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    {{ $order->ProductNames }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    ${{ $order->TotalPrice }}
-                                </option>
-                                
-                            @endforeach
-                        </select>
-                        <h1>{{ $order->ProductNames }}</h1>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-         
-
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
             <div class="row" style="margin-left: 0;">
               <!-- Enter Prices -->
               <div class="row">
@@ -180,7 +179,7 @@
           <div class="row">
             <a href="{{url('/payment')}}"><button type="submit" class="element-button2"> <div class="text-wrapper-3"> Submit Payment</div></button></a>
           </div>
-        </form>
+  </form>
         
       </div>
       
@@ -192,96 +191,17 @@
 
 
 
-  <script>
-      document.getElementById('products').addEventListener('change', function () {
-        var selectedProducts = Array.from(this.selectedOptions).map(option => option.value);
-        var priceInputs = document.getElementById('priceInputs');
-        var unitInputs = document.getElementById('unitInputs');
-        var totalPriceElement = document.getElementById('totalPrice');
-
-        // Clear previous inputs
-        priceInputs.innerHTML = '';
-        unitInputs.innerHTML = '';
-
-        selectedProducts.forEach(productId => {
-            var priceInput = document.createElement('input');
-            priceInput.type = 'number';
-            priceInput.name = 'prices[' + productId + ']';
-            priceInput.placeholder = 'Price for product ' + productId;
-            priceInput.required = true;
-            priceInput.addEventListener('input', calculateTotalPrice);
-            priceInputs.appendChild(priceInput);
-
-            var unitInput = document.createElement('input');
-            unitInput.type = 'number';
-            unitInput.name = 'units[' + productId + ']';
-            unitInput.placeholder = 'Units for product ' + productId;
-            unitInput.required = true;
-            unitInput.addEventListener('input', calculateTotalPrice);
-            unitInputs.appendChild(unitInput);
+      <script>
+      document.getElementById('order').addEventListener('change', function () {
+            var selectedOption = this.options[this.selectedIndex];
+            var customerId = selectedOption.getAttribute('data-customer-id');
+            console.log('Selected Customer ID:', customerId); // Debugging line
+            document.getElementById('customer_id').value = customerId;
         });
 
-        // Calculate the total price initially
-        calculateTotalPrice();
-    });
-
-    function calculateTotalPrice() {
-        var priceInputs = Array.from(document.querySelectorAll('#priceInputs input'));
-        var unitInputs = Array.from(document.querySelectorAll('#unitInputs input'));
-        var totalPrice = 0;
-
-        priceInputs.forEach((priceInput, index) => {
-            var price = parseFloat(priceInput.value) || 0;
-            var units = parseFloat(unitInputs[index].value) || 0;
-            totalPrice += price * units;
-        });
-
-        var totalPriceElement = document.getElementById('totalPrice');
-        totalPriceElement.textContent = 'Total Price: $' + totalPrice.toFixed(2);
-
-        // Update the hidden input field with the total price
-        document.getElementById('hiddenTotalPrice').value = totalPrice.toFixed(2);
-    }
-
-    // Ensure that the total price element is present in the HTML
-    document.addEventListener('DOMContentLoaded', function () {
-        var totalPriceElement = document.createElement('div');
-        totalPriceElement.id = 'totalPrice';
-        totalPriceElement.textContent = 'Total Price: $0.00';
-        document.body.appendChild(totalPriceElement);
-    });
-
-
-  </script>
-      
-
-  {{-- <script>
-    document.getElementById('products').addEventListener('change', function () {
-        var selectedProducts = Array.from(this.selectedOptions).map(option => option.value);
-        var priceInputs = document.getElementById('priceInputs');
-        var unitInputs = document.getElementById('unitInputs');
-
-        // Clear previous inputs
-        priceInputs.innerHTML = '';
-        unitInputs.innerHTML = '';
-
-        selectedProducts.forEach(productId => {
-            var priceInput = document.createElement('input');
-            priceInput.type = 'number';
-            priceInput.name = 'prices[' + productId + ']';
-            priceInput.placeholder = 'Price for product ' + productId;
-            priceInput.required = true;
-            priceInputs.appendChild(priceInput);
-
-            var unitInput = document.createElement('input');
-            unitInput.type = 'number';
-            unitInput.name = 'units[' + productId + ']';
-            unitInput.placeholder = 'Units for product ' + productId;
-            unitInput.required = true;
-            unitInputs.appendChild(unitInput);
-        });
-    });
-  </script> --}}
+        // Trigger the change event manually on page load to set the initial value
+        document.getElementById('order').dispatchEvent(new Event('change'));
+      </script>
 
 
   </body>

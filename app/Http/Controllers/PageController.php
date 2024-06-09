@@ -55,4 +55,8 @@ class PageController extends Controller
      {
          return view('Add-product');
      }
+     public function Paymentform()
+     {
+         return view('Add-Payment');
+     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Models\Customers;
 use App\Models\Expances;
+use App\Models\Payment;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -62,7 +63,9 @@ Route::get('expancesform', [PageController::class, 'expancesform'])->name('expan
 //Productform Route
 Route::get('productform', [PageController::class, 'productform'])->name('productform');
 
-// Route::get('/AddOrder', [PageController::class, 'AddOrder'])->name('AddOrder');
+//Paymentform Route
+Route::get('Paymentform', [PageController::class, 'Paymentform'])->name('Paymentform');
+
 
 
 //Route for fetiching adn display data 
@@ -102,4 +105,17 @@ Route::post('/productform', function () {
         'Barcode' => request('Barcode')
     ]);
     return redirect('/product');
+});
+
+//Adding Payment
+Route::post('/Paymentform', function () {
+    Payment::create([
+        'P_Amount' => request('PaymentAmount'),
+        'P_Type' => request('Type'),
+        'P_Status' => request('Status'),
+        'Order_ID' => request('Order_ID'),
+        'Customer_ID' => request('Customer_ID'),
+        
+    ]);
+    return redirect('/payment');
 });
