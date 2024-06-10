@@ -141,6 +141,11 @@
                           </select>
                           <input type="hidden" name="Customer_ID" id="customer_id">
 
+
+                          @if(isset($totalPayment))
+                          <p>Remining Amount: {{ $totalPayment }}</p>
+                          @else <p>NOTHING</p>
+                          @endif
                       </td>
                   </tr>
               </tbody>
@@ -192,15 +197,15 @@
 
 
       <script>
-      document.getElementById('order').addEventListener('change', function () {
-            var selectedOption = this.options[this.selectedIndex];
-            var customerId = selectedOption.getAttribute('data-customer-id');
-            console.log('Selected Customer ID:', customerId); // Debugging line
-            document.getElementById('customer_id').value = customerId;
-        });
+        document.getElementById('order').addEventListener('change', function () {
+              var selectedOption = this.options[this.selectedIndex];
+              var customerId = selectedOption.getAttribute('data-customer-id');
+              console.log('Selected Customer ID:', customerId); // Debugging line
+              document.getElementById('customer_id').value = customerId;
+          });
 
-        // Trigger the change event manually on page load to set the initial value
-        document.getElementById('order').dispatchEvent(new Event('change'));
+          // Trigger the change event manually on page load to set the initial value
+          document.getElementById('order').dispatchEvent(new Event('change'));
       </script>
 
 

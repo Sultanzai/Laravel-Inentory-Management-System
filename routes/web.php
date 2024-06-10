@@ -51,7 +51,7 @@ Route::get('Add-Payment', [PaymentController::class, 'create'])->name('Add-Payme
 
 // Route::post('Paymentstore', [PaymentController::class, 'store'])->name('Paymentstore');
 
-
+Route::post('/Paymentform', [PaymentController::class, 'store']);
 
 
 
@@ -108,14 +108,14 @@ Route::post('/productform', function () {
 });
 
 //Adding Payment
-Route::post('/Paymentform', function () {
-    Payment::create([
-        'P_Amount' => request('PaymentAmount'),
-        'P_Type' => request('Type'),
-        'P_Status' => request('Status'),
-        'Order_ID' => request('Order_ID'),
-        'Customer_ID' => request('Customer_ID'),
-        
-    ]);
-    return redirect('/payment');
-});
+// Route::post('/Paymentform', function () {
+
+//     Payment::create([
+//         'P_Amount' => request('PaymentAmount'),
+//         'P_Type' => request('Type'),
+//         'P_Status' => request('Status'),
+//         'Order_ID' => request('Order_ID'),
+//         'Customer_ID' => request('Customer_ID'),   
+//     ]);
+//     return redirect('/payment');
+// });

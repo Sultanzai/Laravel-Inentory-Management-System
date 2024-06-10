@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderView;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Customers;
@@ -62,10 +63,22 @@ class OrderController extends Controller
                 'O_unit' => $request->units[$productID]
             ]);
         }
-
+        // Saving Balance in customer Column
         $customer = Customers::find($request->Customer_ID);
         $customer->Balance += $request->totalPrice;
         $customer->save();
+
+        $orderID = $order->id;
+
+        // Saving Order ID, Custoemr ID, And total Price in Payment Table 
+        Payment::create([
+            'P_Amount' => $request->totalPrice,
+            'Order_ID' => $orderID,
+            'Customer_ID' => $request->Customer_ID,
+            'P_Type' => 'default_type',
+            'P_Status' => 'UnPaid',
+        ]);
+
 
         return redirect('/order')->with('success','');
     }
