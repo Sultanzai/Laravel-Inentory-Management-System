@@ -19,243 +19,26 @@
             <div class="navbar">
               <div class="text-wrapper-2">No</div>
               <div class="text-wrapper-3">Customer</div>
-              <div class="text-wrapper-4">Order Name</div>
-              <div class="text-wrapper-5">Status</div>
-              <div class="text-wrapper-6">Payment Status</div>
+              <div class="text-wrapper-4">Product Name</div>
+              <div class="text-wrapper-5">Type</div>
+              <div class="text-wrapper-6">Status</div>
               <div class="text-wrapper-7">Price</div>
               <div class="text-wrapper-8">Date</div>
             </div>
+            @foreach ($combinedData as $data)
+
             <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Alex</div>
-              <div class="text-wrapper-11">Max Collection, Pro White smoke lorem</div>
+              <div class="text-wrapper-9">{{ $data['PaymentID'] }}</div>
+              <div class="text-wrapper-10">{{ $data['Customer_Name'] }}</div>
+              <div class="text-wrapper-11">{{ $data['ProductNames'] }}</div>
               <div class="pill">
-                <div class="label-2">On board</div>
+                <div class="label-2">{{ $data['P_Type'] }}</div>
               </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
+              <div class="text-wrapper-12">{{ $data['P_Status'] }}</div>
+              <div class="text-wrapper-13">{{ $data['P_Amount'] }}</div>
+              <div class="text-wrapper-14">{{ $data['P_Date'] }}</div>
             </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
-            <div class="task">
-              <div class="text-wrapper-9">1</div>
-              <div class="text-wrapper-10">Marcox</div>
-              <div class="text-wrapper-11">Halo Pro V5</div>
-              <div class="pill">
-                <div class="label-2">Shipped</div>
-              </div>
-              <div class="text-wrapper-12">Paid</div>
-              <div class="text-wrapper-13">$1,500</div>
-              <div class="text-wrapper-14">5/20/2024</div>
-            </div>
+            @endforeach
           </div>
         </div>
         <div class="cards">

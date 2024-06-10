@@ -30,7 +30,7 @@ Route::get('/expances', [ExpancesController::class, 'index']);
 Route::get('/product', [ProductController::class, 'index']);
 
 Route::get('dashboard', [PageController::class, 'dashboard'])->name('dashboard');
-Route::get('payment', [PageController::class, 'payment'])->name('payment');
+// Route::get('payment', [PageController::class, 'payment'])->name('payment');
 
 
 
@@ -46,12 +46,14 @@ Route::post('orderstore', [OrderController::class, 'store'])->name('orderstore')
 
 Route::get('/order/{id}', [OrderController::class, 'show'])->name('Print-order');
 
-Route::get('Add-Payment', [PaymentController::class, 'create'])->name('Add-Payment');
+// Route::get('Add-Payment', [PaymentController::class, 'create'])->name('Add-Payment');
+
+Route::get('payment', [PaymentController::class, 'showCombinedData'])->name('payment');
 
 
 // Route::post('Paymentstore', [PaymentController::class, 'store'])->name('Paymentstore');
 
-Route::post('/Paymentform', [PaymentController::class, 'store']);
+// Route::post('/Paymentform', [PaymentController::class, 'store']);
 
 
 
