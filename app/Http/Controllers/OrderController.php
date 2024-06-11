@@ -82,4 +82,32 @@ class OrderController extends Controller
 
         return redirect('/order')->with('success','');
     }
+
+    
+    public function edit($id)
+    {
+        $orderupdate = Order::findOrFail($id);
+
+        return view('orderupdate', compact('orderupdate'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'Customer_ID' => 'required|exists:tbl_customer,id',
+            'products' => 'required|array',
+            'products.*' => 'exists:tbl_product,id',
+            'prices' => 'required|array',
+            'prices.*' => 'numeric|min:0',
+            'units' => 'required|array',
+            'units.*' => 'numeric|min:0'
+        ]);
+
+        // Find the payment record and update it
+        $updateorder = Order::findOrFail($id);
+        $updateorder->update($validatedData);
+
+        return redirect('/order')->with('success', 'Customer updated successfully');
+    }
 }

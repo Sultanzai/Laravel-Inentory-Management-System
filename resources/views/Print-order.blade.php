@@ -48,11 +48,11 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-6">
-                    <strong>Order ID:</strong> {{ $order->Order_ID }}<br>
+                    <strong>Customer Name:</strong> {{ $order->Customer_Name }}<br>
                     <strong>Order Date:</strong> {{ $order->O_Date }}
                 </div>
                 <div class="col-sm-6 text-right">
-                    <strong>Customer Name:</strong> {{ $order->Customer_Name }}<br>
+                    <strong>Order ID:</strong> {{ $order->Order_ID }}<br>
                 </div>
             </div>
         </div>
@@ -73,14 +73,14 @@
                 <td>{{ $order->ProductNames }}</td>
                 <td>{{ $order->ProductBarcodes }}</td>
                 <td>{{ $order->OrderUnits }}</td>
-                <td>{{ $order->OrderPrices }}</td>
-                <td>{{ $order->TotalPrice }}</td>
+                <td>${{ $order->OrderPrices }}</td>
+                <td>${{ $order->TotalPrice }}</td>
             </tr>
         </tbody>
     </table>
     
     <div class="invoice-footer">
-        <p><strong>Total Amount:</strong> {{ $order->TotalPrice }}</p>
+        <p><strong>Total Amount:</strong> ${{ $order->TotalPrice }}</p>
         <p>Thank you for your choosing US!</p>
     </div>
     

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{asset ('css/styleguide.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/order-style.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/MainStyle.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <div class="dashboard">
@@ -40,9 +41,11 @@
                   <div class="text-wrapper-9">Order Units</div>
                   <div class="text-wrapper-10">Total Order</div>
                   <div class="text-wrapper-11">Date</div>
+                  <div class="text-wrapper-12">Edit</div>
+                  <div class="text-wrapper-12" style="margin-left: -20px;">Print</div>
               </div>
               @foreach ($orders as $order)
-              <div class="task" onclick="viewOrder({{ $order->Order_ID }})">
+              <div class="task">
                   <div class="text-wrapper-12">{{ $order->Customer_Name }}</div>
                   <div class="text-wrapper-13">{{ $order->ProductNames }}</div>
                   <div class="text-wrapper-14">{{ $order->ProductBarcodes }}</div>
@@ -52,13 +55,15 @@
                       <div class="tag"><div class="label-2">$ {{ $order->TotalPrice }}</div></div>
                   </div>
                   <div class="tag-wrapper">
-                      <div class="label-wrapper"><div class="label-2">{{ $order->O_Date }}</div></div>
+                      <div class="label-wrapper" style="margin-left:-80px; width:50px;"><div class="label-2">{{ $order->O_Date }}</div></div>
+                      <div class="text-wrapper" style="margin-left:100px; margin-top:-25px;" onclick="updateview({{ $order->Order_ID }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
+                      <div class="text-wrapper" style="margin-left:165px; margin-top:-25px;" onclick="viewOrder({{ $order->Order_ID }})"><i class="fa fa-print" style="font-size:20px"></i></div>
                   </div>
               </div>
               @endforeach
           </div>
       </div>
-        </div>
+          </div>
         <a href="{{url('/Add-Order')}}"><div class="element-button-2"><button class="mybtn">Add New Order</button></div></a>
       </div>
     </div>
@@ -88,6 +93,11 @@
       //Redirecting to Print Page 
         function viewOrder(orderId) {
             window.location.href = '/order/' + orderId;
+        }
+
+        // Route for updating on click event
+        function updateview(orderid) {
+            window.location.href = '/orderupdate/' + orderid;
         }
 
   </script>

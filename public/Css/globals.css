@@ -17,3 +17,6 @@ button:focus-visible {
 a {
   text-decoration: none;
 }
+i:hover{
+  cursor: pointer;
+}

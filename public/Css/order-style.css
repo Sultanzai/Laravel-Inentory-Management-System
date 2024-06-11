@@ -351,7 +351,7 @@
 }
 
 .dashboard .text-wrapper-10 {
-  width: 200px;
+  width: 150px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -368,7 +368,7 @@
 }
 
 .dashboard .text-wrapper-11 {
-  width: 73px;
+  width: 120px;
   position: relative;
   margin-top: -1px;
   font-family: "Inter", Helvetica;

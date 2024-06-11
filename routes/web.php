@@ -12,25 +12,17 @@ use App\Models\Payment;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/customers', function () {
-//     return view('Customer-Page');
-// });
 
-// Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
-
-
-
-//Display Main Data Routes
+//CUSTOMER ROUTES
 Route::get('/customer', [CustomerController::class, 'index']);
-
 Route::get('/customerupdate/{payment}', [CustomerController::class, 'edit'])->name('customer.edit');
 Route::post('/customerupdate/{payment}', [CustomerController::class, 'update'])->name('customer.update');
 
+Route::get('customerform', [PageController::class, 'customerform'])->name('customerform');
 
 
 
 
-Route::get('/order', [OrderController::class, 'index']);
 
 Route::get('/expances', [ExpancesController::class, 'index']);
 
@@ -42,40 +34,34 @@ Route::get('dashboard', [PageController::class, 'dashboard'])->name('dashboard')
 
 
 
-
-// Searching routes for displaying data in product view.
-// Route::get('/Order-page', [ProductController::class, 'search'])->name('products.search');
-
-// Testing view for order products 
-
+// ORDER ROUTES
+Route::get('/order', [OrderController::class, 'index']);
 Route::get('Add-Order', [OrderController::class, 'create'])->name('Add-Order');
 Route::post('orderstore', [OrderController::class, 'store'])->name('orderstore');
-
 Route::get('/order/{id}', [OrderController::class, 'show'])->name('Print-order');
+// Route for Updating data
+Route::get('/orderupdate/{payment}', [OrderController::class, 'edit'])->name('orderupdate.edit');
+Route::post('/orderupdate/{payment}', [OrderController::class, 'update'])->name('orderupdate.update');
+Route::get('orderupdate/{payment}', [OrderController::class, 'create'])->name('orderupdate.update');
 
 
+
+
+
+//PAYMENT ROUTES
 Route::get('payment', [PaymentController::class, 'showCombinedData'])->name('payment');
-
+// Route for Updating Payment Form
 Route::get('/paymentform/{payment}', [PaymentController::class, 'edit'])->name('payment.edit');
 Route::post('/paymentform/{payment}', [PaymentController::class, 'update'])->name('payment.update');
 
 
-// Route::post('Paymentstore', [PaymentController::class, 'store'])->name('Paymentstore');
-
-// Route::post('/Paymentform', [PaymentController::class, 'store']);
 
 
 
-
-//customerform route 
-Route::get('customerform', [PageController::class, 'customerform'])->name('customerform');
 //ExpancesForm route
 Route::get('expancesform', [PageController::class, 'expancesform'])->name('expancesform');
 //Productform Route
 Route::get('productform', [PageController::class, 'productform'])->name('productform');
-
-//Paymentform Route
-Route::get('Paymentform', [PageController::class, 'Paymentform'])->name('Paymentform');
 
 
 
