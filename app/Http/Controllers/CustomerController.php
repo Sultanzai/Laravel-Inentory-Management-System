@@ -26,33 +26,27 @@ class CustomerController extends Controller
         return view('customer-page')->with('customer', $customer);
     }
 
-
-    public function create()
+    public function edit($id)
     {
-        // return view('customer.Create');
+        $customer = Customers::findOrFail($id);
+
+        return view('Customerupdate', compact('customer'));
     }
 
-
-    public function show(string $id)
+    public function update(Request $request, $id)
     {
-        // $customer = Customers::find($id);
-        // return view('customer.show')->with('customer', $customer);
-    }
+        // Validate the request data
+        $validatedData = $request->validate([
+            'Name' => 'required|string',
+            'Address' => 'required|string',
+            'Phone' => 'required|numeric'
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        // Find the payment record and update it
+        $customer = Customers::findOrFail($id);
+        $customer->update($validatedData);
 
-    /*
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        return redirect('/customer')->with('success', 'Customer updated successfully');
     }
 
     /*

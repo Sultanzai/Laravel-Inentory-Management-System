@@ -23,6 +23,13 @@ use Illuminate\Support\Facades\Route;
 //Display Main Data Routes
 Route::get('/customer', [CustomerController::class, 'index']);
 
+Route::get('/customerupdate/{payment}', [CustomerController::class, 'edit'])->name('customer.edit');
+Route::post('/customerupdate/{payment}', [CustomerController::class, 'update'])->name('customer.update');
+
+
+
+
+
 Route::get('/order', [OrderController::class, 'index']);
 
 Route::get('/expances', [ExpancesController::class, 'index']);

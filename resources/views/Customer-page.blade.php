@@ -34,11 +34,12 @@
           </div>
           <div class="list-2">
             <div class="navbar">
-              <div class="text-wrapper-5">Number</div>
+              <div class="text-wrapper-5">ID</div>
               <div class="text-wrapper-6">Name</div>
               <div class="text-wrapper-7">Address</div>
               <div class="text-wrapper-8">Contact</div>
               <div class="text-wrapper-9">Balance</div>
+              <div class="text-wrapper-9" style="margin-left: 55px;">Edit</div>
             </div>
 {{-- Displaying Record from database --}}
             @foreach ($customer as $cus)
@@ -48,7 +49,9 @@
                 <p class="p">{{ $cus->Address }}</p>
                 <div class="text-wrapper-12">{{ $cus->Phone }}</div>
                 <div class="pill">
-                  <div class="tag"><div class="label-2">{{ $cus->Balance }}</div></div>
+                  <div class="tag"><div class="label-2">${{ $cus->Balance }}</div></div>
+                  <div class="text-wrapper-14" style="margin-left:150px; margin-top:-20px; color:black;" onclick="viewPayment({{ $cus->id  }})">Edit</div>
+
                 </div>
               </div>
             @endforeach
@@ -65,6 +68,7 @@
 
         
         <script>
+          // Searching function
           function filterOrders() {
               // Declare variables
               var input, filter, list, tasks, task, i, txtValue;
@@ -84,6 +88,11 @@
                   }
               }
           }
+
+          // Route for updating on click event
+          function viewPayment(customerid) {
+            window.location.href = '/customerupdate/' + customerid;
+        }
       </script>
   </body>
 </html>
