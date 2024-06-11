@@ -1,213 +1,117 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="{{asset ('css/globals.css') }}" />
-    <link rel="stylesheet" href="{{asset ('css/styleguide.css') }}" />
-    <link rel="stylesheet" href="{{asset ('css/add_order.css') }}" />
-    <link rel="stylesheet" href="{{asset ('css/order-style.css') }}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-    <link rel="stylesheet" href="{{asset ('css/MainStyle.css') }}"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<style>
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-  .container{
-    margin-top: 200px;
-    background-color: #f7f7f7;
-    font-family: 'Inter';
-    padding: 50px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(160, 160, 160, 0.5);
+        .form-group {
+            margin-bottom: 15px;
+        }
 
-  }
-  .row{
-    padding-top: 10px;
-  }
-  label{
-    font-size: 20px;
-    font-weight: 200;
-  }
-  #totalPrice{
-    font-size: 20px;
-    font-weight: 200;
-  }
- #order{
-    width: 700px;
-    height: 30px;
-    font-size: 18px;
-    border-radius: 3px;
-  }
-  textarea{
-    width: 520px;
-    height: 250px;
-    font-size: 18px;
-    border-radius: 3px;
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
 
-  }
-  #products{
-    width: 350px;
-    height: 250px;
-    font-size: 18px;
-    border-radius: 3px;
-  }
-  #products option{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border-bottom: solid 0.5px #505050;
-    transition: ease-in;
-  }
-  #products option:hover{
-    box-shadow: 2px 2px 5px rgba(127, 127, 127, 0.5);
-    border-bottom: solid 0.5px #000000;
-  }
-  .element-button2{
-    background-color: #000000;
-    padding: 8px;
-    border-radius: 5px;
-  }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
 
-  select{
-    height: 24px;
-    width: 130px;
-  }
+        .form-group input[type="date"] {
+            padding: 7px;
+        }
 
-  table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-    th {
-        background-color: #f2f2f2;
-        text-align: left;
-    }
-    tr:hover {
-        background-color: #f5f5f5;
-    }
-   
+        .form-group input:focus, .form-group select:focus {
+            border-color: #373737;
+        }
 
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #000000;
+            border: none;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-
-</style>
-  </head>
-  <body>
-    <div class="dashboard">
-      <div class="div">
-      
-        <div class="navigation">
-          <div class="avatar">
-            <div class="rectangle-wrapper"><img class="rectangle" src="img/rectangle-1.png" /></div>
-            <img class="img" src="img/chevron-down.svg" />
-          </div>
-          <img class="buttons" src="img/buttons.svg" />
-          <div class="text-wrapper-2">Payment Order</div>
-        </div>
-        <a href="{{url('/Payment')}}"><button class="element-button"><div class="text-wrapper-3">Back</div></button></a>
-        
-
-
-
-
-      <div class="container">
-
-  <form action="/Paymentform" method="POST">
-    @csrf
-
-      <div class="row">
-          <table>
-              <thead>
-                  <tr>
-                      <th>Customer</th>
-                      <th>Product Names</th>
-                      <th>Total Price</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td colspan="4">
-                      
-                          <select name="Order_ID" id="order" required style="width: 100%;">
-                            
-                              @foreach($orderviews as $order)
-                                  <option value="{{ $order->Order_ID }}" data-customer-id="{{ $order->Customer_ID }}">
-                                      {{ $order->Customer_Name }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      {{ $order->ProductNames }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      ${{ $order->TotalPrice }}
-                                  </option>
-                              @endforeach
-                          </select>
-                          <input type="hidden" name="Customer_ID" id="customer_id">
-
-
-                          @if(isset($totalPayment))
-                          <p>Remining Amount: {{ $totalPayment }}</p>
-                          @else <p>NOTHING</p>
-                          @endif
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-            <div class="row" style="margin-left: 0;">
-              <!-- Enter Prices -->
-              <div class="row">
-                <label for="prices">Payment Amount</label>
-              </div>
-              <div class="row">
-                <input type="text" name="PaymentAmount" id="">
-              </div>
+        .form-group button:hover {
+            background-color: #141414;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Update Payment</h2>
+        <form action="{{ route('payment.update', $payment->id) }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="P_Amount">Payment Amount:</label>
+                <input type="text" id="P_Amount" name="P_Amount" value="{{ old('P_Amount', $payment->P_Amount) }}" required>
             </div>
-            
-            <div class="row">
-              <!-- Enter Units -->
-              <label for="units">Payment Type</label>&nbsp;&nbsp;&nbsp;
-              <select name="Type" id="P_Type">
-               <option value="Cash">Cash</option>
-               <option value="Credit">Credit</option>
-               <option value="Bank Check">Bank Check</option>
-              </select>
-           </div>
-
-          <div class="row">
-             <!-- Enter Units -->
-             <label for="units">Payment Status</label>&nbsp;&nbsp;&nbsp;
-             <select name="Status" id="P_status">
-              <option value="Paid">Paid</option>
-              <option value="Unpaid">Unpaid</option>
-              <option value="Under Process">Under Process</option>
-             </select>
-          </div>
-
-          <div class="row">
-            <a href="{{url('/payment')}}"><button type="submit" class="element-button2"> <div class="text-wrapper-3"> Submit Payment</div></button></a>
-          </div>
-  </form>
-        
-      </div>
-      
-
-
-
-      </div>
+            <div class="form-group">
+                <label for="P_Type">Payment Type:</label>
+                <select id="P_Type" name="P_Type" required>
+                    <option value="Credit Card" {{ old('P_Type', $payment->P_Type) == 'Credit Card' ? 'selected' : '' }}>Credit Card</option>
+                    <option value="Debit Card" {{ old('P_Type', $payment->P_Type) == 'Debit Card' ? 'selected' : '' }}>Debit Card</option>
+                    <option value="PayPal" {{ old('P_Type', $payment->P_Type) == 'PayPal' ? 'selected' : '' }}>PayPal</option>
+                    <option value="Bank Transfer" {{ old('P_Type', $payment->P_Type) == 'Bank Transfer' ? 'selected' : '' }}>Bank Transfer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="P_Status">Payment Status:</label>
+                <select id="P_Status" name="P_Status" required>
+                    <option value="Pending" {{ old('P_Status', $payment->P_Status) == 'Pending' ? 'selected' : '' }}>Pending</option>
+                    <option value="Completed" {{ old('P_Status', $payment->P_Status) == 'Completed' ? 'selected' : '' }}>Completed</option>
+                    <option value="Failed" {{ old('P_Status', $payment->P_Status) == 'Failed' ? 'selected' : '' }}>Failed</option>
+                    <option value="Refunded" {{ old('P_Status', $payment->P_Status) == 'Refunded' ? 'selected' : '' }}>Refunded</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Order_ID">Order ID:</label>
+                <input type="text" id="Order_ID" name="Order_ID" value="{{ old('Order_ID', $payment->Order_ID) }}" required>
+            </div>
+            <div class="form-group">
+                <label for="Customer_ID">Customer ID:</label>
+                <input type="text" id="Customer_ID" name="Customer_ID" value="{{ old('Customer_ID', $payment->Customer_ID) }}" required>
+            </div>
+            <div class="form-group">
+                <label for="P_Date">Payment Date:</label>
+                <input type="date" id="P_Date" name="P_Date" value="{{ old('P_Date', $payment->P_Date) }}" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Update Payment</button>
+            </div>
+        </form>
     </div>
-
-
-
-      <script>
-        document.getElementById('order').addEventListener('change', function () {
-              var selectedOption = this.options[this.selectedIndex];
-              var customerId = selectedOption.getAttribute('data-customer-id');
-              console.log('Selected Customer ID:', customerId); // Debugging line
-              document.getElementById('customer_id').value = customerId;
-          });
-
-          // Trigger the change event manually on page load to set the initial value
-          document.getElementById('order').dispatchEvent(new Event('change'));
-      </script>
-
-
-  </body>
+</body>
 </html>

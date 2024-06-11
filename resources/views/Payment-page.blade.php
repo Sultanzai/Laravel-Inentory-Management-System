@@ -13,7 +13,8 @@
         <div class="list">
           <div class="text-wrapper">Payments</div>
           <div class="search">
-            <img class="img" src="img/search.svg" /> <input class="label" placeholder="Search..." type="text" />
+            <img class="img" src="img/search.svg" /> 
+            <input id="searchInput" class="label" placeholder="Search..." type="text" onkeyup="filterOrders()" />
           </div>
           <div class="list-2">
             <div class="navbar">
@@ -24,10 +25,11 @@
               <div class="text-wrapper-6">Status</div>
               <div class="text-wrapper-7">Price</div>
               <div class="text-wrapper-8">Date</div>
+              <div class="text-wrapper-8" style="margin-left: 55px;">Edit</div>
             </div>
             @foreach ($combinedData as $data)
 
-            <div class="task">
+            <div class="task" >
               <div class="text-wrapper-9">{{ $data['PaymentID'] }}</div>
               <div class="text-wrapper-10">{{ $data['Customer_Name'] }}</div>
               <div class="text-wrapper-11">{{ $data['ProductNames'] }}</div>
@@ -35,8 +37,9 @@
                 <div class="label-2">{{ $data['P_Type'] }}</div>
               </div>
               <div class="text-wrapper-12">{{ $data['P_Status'] }}</div>
-              <div class="text-wrapper-13">{{ $data['P_Amount'] }}</div>
+              <div class="text-wrapper-13">${{ $data['P_Amount'] }}</div>
               <div class="text-wrapper-14">{{ $data['P_Date'] }}</div>
+              <div class="text-wrapper-14" onclick="viewPayment({{ $data['PaymentID'] }})">Edit</div>
             </div>
             @endforeach
           </div>
@@ -74,5 +77,32 @@
         <a href="{{url('/Add-Payment')}}"><div class="element-button-2" style="margin-top: -200px; margin-left: -20px;"><button class="mybtn">Add Invoice</button></div></a>
       </div>
     </div>  
+
+    <script>
+       function filterOrders() {
+        // Array of inputs for products 
+          // Declare variables
+          var input, filter, list, tasks, task, i, txtValue;
+          input = document.getElementById('searchInput');
+          filter = input.value.toUpperCase();
+          list = document.querySelector('.list-2');
+          tasks = list.getElementsByClassName('task');
+  
+          // Loop through all tasks, and hide those who don't match the search query
+          for (i = 0; i < tasks.length; i++) {
+              task = tasks[i];
+              txtValue = task.textContent || task.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  task.style.display = "";
+              } else {
+                  task.style.display = "none";
+              }
+          }
+      }
+      // Funtion for redirecting to Update Page
+      function viewPayment(paymentId) {
+            window.location.href = '/paymentform/' + paymentId;
+        }
+    </script>
   </body>
 </html>

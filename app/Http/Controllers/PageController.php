@@ -9,37 +9,7 @@ class PageController extends Controller
     public function dashboard()
     {
         return view('Dashboard');
-    } 
-    public function order()
-    {
-        return view('Order-page');
     }
-    
-    public function payment()
-    {
-        return view('Payment-page');
-    }
-    
-    public function expances()
-    {
-        return view('Expances-page');
-    }
-    
-    public function product()
-    {
-        return view('Product-Page');
-    }
-    
-    public function customer()
-    {
-        return view('Customer-page');
-    }
-    public function AddOrder()
-    {
-        return view('Add-order');
-    }
-
-
     //Customer form controller functions
     public function customerform()
     {

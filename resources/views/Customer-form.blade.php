@@ -92,10 +92,6 @@
                 <input type="tel" id="phone" name="Phone" required>
             </div>
             <div class="form-group">
-                <label for="balance">Balance</label>
-                <input type="number" id="balance" name="Balance" required>
-            </div>
-            <div class="form-group">
                 <button type="submit" class="btn">Submit</button>
             </div>
         </form>

@@ -11,14 +11,7 @@ use Illuminate\Support\Facades\DB;
 class PaymentController extends Controller
 {
 
-    // public function create()
-    // {
-    //     $customers = Customers::all();
-    //     $orderviews = OrderView::orderBy('O_Date', 'desc')->get();
-
-    //     return view('Add-Payment', compact('customers','orderviews'));
-    // }
-
+    // Displaying combined Data 
     public function showCombinedData()
     {
         // Fetch payments
@@ -45,6 +38,33 @@ class PaymentController extends Controller
         });
 
         return view('Payment-Page', compact('combinedData'));
+    }
+
+    // Updating Payment Tables 
+    public function edit($id)
+    {
+        $payment = Payment::findOrFail($id);
+
+        return view('Add-Payment', compact('payment'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'P_Amount' => 'required|numeric',
+            'P_Type' => 'required|string',
+            'P_Status' => 'required|string',
+            'Order_ID' => 'required|integer',
+            'Customer_ID' => 'required|integer',
+            'P_Date' => 'required|date'
+        ]);
+
+        // Find the payment record and update it
+        $payment = Payment::findOrFail($id);
+        $payment->update($validatedData);
+
+        return redirect('/payment')->with('success', 'Payment updated successfully');
     }
 
 

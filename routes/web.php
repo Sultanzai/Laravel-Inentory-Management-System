@@ -46,9 +46,11 @@ Route::post('orderstore', [OrderController::class, 'store'])->name('orderstore')
 
 Route::get('/order/{id}', [OrderController::class, 'show'])->name('Print-order');
 
-// Route::get('Add-Payment', [PaymentController::class, 'create'])->name('Add-Payment');
 
 Route::get('payment', [PaymentController::class, 'showCombinedData'])->name('payment');
+
+Route::get('/paymentform/{payment}', [PaymentController::class, 'edit'])->name('payment.edit');
+Route::post('/paymentform/{payment}', [PaymentController::class, 'update'])->name('payment.update');
 
 
 // Route::post('Paymentstore', [PaymentController::class, 'store'])->name('Paymentstore');
@@ -80,9 +82,8 @@ Route::post('/customerform', function () {
     Customers::create([
         'Name' => request('Name'),
         'Address' => request('Address'),
-        'Phone' => request('Phone'),
-        'Balance' => request('Balance')
-    ]);
+        'Phone' => request('Phone')
+        ]);
     return redirect('/customer');
 });
 
