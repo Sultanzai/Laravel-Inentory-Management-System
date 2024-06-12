@@ -88,7 +88,7 @@
                 <input type="text" id="Phone" name="Phone" value="{{ old('Phone', $customer->Phone) }}" required>
             </div>
             <div class="form-group">
-                <button type="submit">Update Payment</button>
+                <button type="submit">Submit</button>
             </div>
         </form>
     </div>

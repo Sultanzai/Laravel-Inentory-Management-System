@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OrderView;
 use App\Models\Payment;
+use App\Models\ProductOrderDetailView;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Customers;
@@ -27,7 +28,7 @@ class OrderController extends Controller
     public function create()
     {
         $customers = Customers::all();
-        $products = Product::all(); 
+        $products = ProductOrderDetailView::all(); 
 
         return view('Add-Order', compact('customers','products'));
     }

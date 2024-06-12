@@ -112,13 +112,16 @@
                   </div>
                 </div>
                 <!-- Select Products -->
-                <div class="col-md-6">
+                <div class="col-md-6" style="margin-top: -30px;">
                   <div class="row">            
                     <label for="products">Products</label></div>
+                    <div class="row"> ID  &nbsp;&nbsp;&nbsp;&nbsp; Name  &nbsp;&nbsp;&nbsp;&nbsp; Available Units</div>
                   <div class="row">
                     <select name="products[]" id="products" multiple required>
                         @foreach($products as $product)
-                            <option value="{{ $product->id }}">{{ $product->id }} &nbsp;&nbsp;&nbsp; {{ $product->P_Name }}</option>
+                          @if($product->Available_Units > 0)
+                              <option value="{{ $product->ID }}">{{ $product->ID }} &nbsp;&nbsp;&nbsp; {{ $product->P_Name }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $product->Available_Units }}</option>
+                          @endif
                         @endforeach
                     </select>
                   </div>

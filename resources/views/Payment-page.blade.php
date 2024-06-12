@@ -5,7 +5,9 @@
     <link rel="stylesheet" href="{{asset ('css/globals.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/styleguide.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/Dashboardstyle.css') }}" />
-    <link rel="stylesheet" href="{{asset ('css/MainStyle.css') }}">
+    <link rel="stylesheet" href="{{asset ('css/MainStyle.css') }}">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   </head>
   <body>
     <div class="dashboard">
@@ -39,7 +41,7 @@
               <div class="text-wrapper-12">{{ $data['P_Status'] }}</div>
               <div class="text-wrapper-13">${{ $data['P_Amount'] }}</div>
               <div class="text-wrapper-14">{{ $data['P_Date'] }}</div>
-              <div class="text-wrapper-14" onclick="viewPayment({{ $data['PaymentID'] }})">Edit</div>
+              <div class="text-wrapper-14" onclick="viewPayment({{ $data['PaymentID'] }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
             </div>
             @endforeach
           </div>

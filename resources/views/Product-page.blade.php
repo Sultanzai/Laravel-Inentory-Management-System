@@ -21,23 +21,29 @@
               <div class="text-wrapper-2">No</div>
               <div class="text-wrapper-3">Name</div>
               <div class="text-wrapper-4">Barcode</div>
-              <div class="text-wrapper-5">Price</div>
-              <div class="text-wrapper-6">Available Quantity</div>
-              <div class="text-wrapper-7">Status</div>
-              <div class="text-wrapper-8">Date</div>
+              <div class="text-wrapper-5" style="margin-left:-150px;">Price</div>
+              <div class="text-wrapper-6">All Time Units</div>
+              <div class="text-wrapper-6" style="margin-left:-45px;">Available Units</div>
+              <div class="text-wrapper-7" style="margin-left:-30px;">Status</div>
+              <div class="text-wrapper-8" style="margin-left:-20px;">Date</div>
+              <div class="text-wrapper-8" style="margin-left:40px;">Edit</div>
+              <div class="text-wrapper-8">Delete</div>
             </div>
             {{-- Dispaying Product Data form database --}}
             @foreach ($product as $pro)
-            <div class="task clickable-row" data-href="{{ route('product-view', $pro->id) }}">
-              <div class="text-wrapper-9">{{ $pro->id }}</div>
+            <div class="task clickable-row" data-href="{{ route('product-view', $pro->ID) }}">
+              <div class="text-wrapper-9">{{ $pro->ID }}</div>
               <div class="text-wrapper-10">{{ $pro->P_Name }}</div>
-              <div class="text-wrapper-11">{{ $pro->Barcode }}</div>
+              <div class="text-wrapper-11" style="width: 230px;">{{ $pro->Barcode }}</div>
               <div class="pill">
-                <div class="tag"><div class="label-2">{{ $pro->P_Price }}</div></div>
+                <div class="tag"  style="margin-left:-90px;"><div class="label-2">{{ $pro->P_Price }}</div></div>
               </div>
-              <div class="text-wrapper-12">{{ $pro->P_Units }}</div>
-              <div class="text-wrapper-13">{{ $pro->P_Status }}</div>
-              <div class="text-wrapper-14">{{ $pro->P_Date }}</div>
+              <div class="text-wrapper-12" style="margin-left:-40px;">{{ $pro->P_Units }}</div>
+              <div class="text-wrapper-12" style="margin-left:-40px;">{{ $pro->Available_Units }}</div>
+              <div class="text-wrapper-13" style="margin-left:-60px;">{{ $pro->P_Status }}</div>
+              <div class="text-wrapper-14" style="margin-left:-20px;">{{ $pro->P_Date }}</div>
+              <div class="text-wrapper-14" style="width:20px;">E</div>
+              <div class="text-wrapper-14" style="width:20px; margin-left:40px;">X</div>
             </div>
             @endforeach
           </div>

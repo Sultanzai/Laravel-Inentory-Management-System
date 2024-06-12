@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{asset ('css/styleguide.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/customer-style.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/MainStyle.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
@@ -50,7 +51,7 @@
                 <div class="text-wrapper-12">{{ $cus->Phone }}</div>
                 <div class="pill">
                   <div class="tag"><div class="label-2">${{ $cus->Balance }}</div></div>
-                  <div class="text-wrapper-14" style="margin-left:150px; margin-top:-20px; color:black;" onclick="viewPayment({{ $cus->id  }})">Edit</div>
+                  <div class="text-wrapper-14" style="margin-left:150px; margin-top:-20px; color:black;" onclick="viewPayment({{ $cus->id  }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
 
                 </div>
               </div>
