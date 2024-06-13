@@ -111,4 +111,13 @@ class OrderController extends Controller
 
         return redirect('/order')->with('success', 'Customer updated successfully');
     }
+    
+    public function destroy($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->delete();
+
+        return redirect('/order')->with('success', 'Order Deleted successfully');
+    }
+
 }

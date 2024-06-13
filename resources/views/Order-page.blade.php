@@ -39,10 +39,11 @@
                   <div class="text-wrapper-7">Product Barcode</div>
                   <div class="text-wrapper-8">Order Prices</div>
                   <div class="text-wrapper-9">Order Units</div>
-                  <div class="text-wrapper-10">Total Order</div>
-                  <div class="text-wrapper-11">Date</div>
-                  <div class="text-wrapper-12">Edit</div>
+                  <div class="text-wrapper-10" style="margin-left:-40px;">Total Order</div>
+                  <div class="text-wrapper-11" style="margin-left:-20px;">Date</div>
+                  <div class="text-wrapper-12" style="margin-left: -10px;">Edit</div>
                   <div class="text-wrapper-12" style="margin-left: -20px;">Print</div>
+                  <div class="text-wrapper-12" style="margin-left: -20px;">Delete</div>
               </div>
               @foreach ($orders as $order)
               <div class="task">
@@ -51,13 +52,18 @@
                   <div class="text-wrapper-14">{{ $order->ProductBarcodes }}</div>
                   <p class="p">{{ $order->OrderPrices }}</p>
                   <div class="text-wrapper-15">{{ $order->OrderUnits }}</div>
-                  <div class="pill">
+                  <div class="pill" style="margin-left:-50px;">
                       <div class="tag"><div class="label-2">$ {{ $order->TotalPrice }}</div></div>
                   </div>
                   <div class="tag-wrapper">
                       <div class="label-wrapper" style="margin-left:-80px; width:50px;"><div class="label-2">{{ $order->O_Date }}</div></div>
-                      <div class="text-wrapper" style="margin-left:100px; margin-top:-25px;" onclick="updateview({{ $order->Order_ID }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
-                      <div class="text-wrapper" style="margin-left:165px; margin-top:-25px;" onclick="viewOrder({{ $order->Order_ID }})"><i class="fa fa-print" style="font-size:20px"></i></div>
+                      <div class="text-wrapper" style="margin-left:80px; margin-top:-25px;" onclick="updateview({{ $order->Order_ID }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
+                      <div class="text-wrapper" style="margin-left:145px; margin-top:-25px;" onclick="viewOrder({{ $order->Order_ID }})"><i class="fa fa-print" style="font-size:20px"></i></div>
+                      <form id="delete-form-{{ $order->Order_ID }}" action="{{ route('order.destroy', $order->Order_ID) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <div class="text-wrapper-15" style="margin-left:200px; margin-top:-20px; color:black;" onclick="confirmDelete({{ $order->Order_ID }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
+                      </form>
                   </div>
               </div>
               @endforeach
@@ -99,6 +105,12 @@
         function updateview(orderid) {
             window.location.href = '/orderupdate/' + orderid;
         }
+        // Delete funtion for order
+        function confirmDelete(customerId) {
+            if (confirm('Are you sure you want to delete this Order with all the record?')) {
+                document.getElementById('delete-form-' + customerId).submit();
+            }
+          }
 
   </script>
   </body>

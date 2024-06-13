@@ -54,6 +54,9 @@ Route::get('/order/{id}', [OrderController::class, 'show'])->name('Print-order')
 Route::get('/orderupdate/{payment}', [OrderController::class, 'edit'])->name('orderupdate.edit');
 Route::post('/orderupdate/{payment}', [OrderController::class, 'update'])->name('orderupdate.update');
 Route::get('orderupdate/{payment}', [OrderController::class, 'create'])->name('orderupdate.update');
+// Delete Order
+Route::delete('/order/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
+
 
 
 

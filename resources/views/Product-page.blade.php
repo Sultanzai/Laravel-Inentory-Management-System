@@ -60,7 +60,8 @@
             <img class="img" src="img/chevron-down.svg" />
           </div>
           <img class="buttons" src="img/buttons.svg" />
-          <div class="text-wrapper-17">Dashboard</div>
+
+          <a href="{{url('/dashboard')}}"><div class="text-wrapper-17">Dashboard</div></a>
         </div>
         <div class="segmented-control">
           <a href="{{url('/customer')}}"><button class="btn2" >Customers</button></a>
