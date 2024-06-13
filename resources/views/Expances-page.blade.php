@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{asset ('css/styleguide.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/MainStyle.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/order-style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   </head>
   <body>
     <div class="dashboard">
@@ -38,25 +40,32 @@
             <div class="navbar">
               <div class="text-wrapper-5">No</div>
               <div class="text-wrapper-6">NAME</div>
-              <div class="text-wrapper-7">DESCRIPTION </div>
-              <div class="text-wrapper-8"></div>
-              <div class="text-wrapper-9"></div>
-              <div class="text-wrapper-9">Amount</div>
+              <div class="text-wrapper-7" style="width: 490px;">DESCRIPTION </div>
+              <div class="text-wrapper-8">Amount</div>
               <div class="text-wrapper-9">Date</div>
-              <div class="text-wrapper-9"></div>
+              <div class="text-wrapper-10">Edit</div>
+              <div class="text-wrapper-11" style="margin-left: -60px;">Delete</div>
             </div>
 
             @foreach ($expances as $exp)
               <div class="task">
                 <div class="text-wrapper-12">{{ $exp->id }}</div>
                 <div class="text-wrapper-13">{{ $exp->E_Name }}</div>
-                <div class="text-wrapper-14" style="width: 590px;">{{ $exp->E_Descriptio }}</div>
+                <div class="text-wrapper-14" style="width: 490px;">{{ $exp->E_Descriptio }}</div>
                 <div class="pill">
-                  <div class="tag"><div class="label-2">{{ $exp->E_Amount }}</div></div>
+                  <div class="tag"><div class="label-2">${{ $exp->E_Amount }}</div></div>
                 </div>
                 <div class="tag-wrapper">
-                  <div class="label-wrapper"><div class="label-2" style="margin-left: -45px;">{{ $exp->E_Date }}</div></div>
+                  <div class="label-wrapper"><div class="label-2" style="margin-left: -90px;">{{ $exp->E_Date }}</div></div>
                 </div>
+                <div class="text-wrapper-15" style="margin-left:-30px;" onclick="viewPayment({{ $exp->id  }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
+                
+                <form id="delete-form-{{ $exp->id }}" action="{{ route('expances.destroy', $exp->id) }}" method="POST" style="display:inline;">
+                  @csrf
+                  @method('DELETE')
+                  <div class="text-wrapper-15" style="width:20px; margin-left:-50px;" onclick="confirmDelete({{ $exp->id }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
+                </form>
+
               </div>
             @endforeach
 
@@ -94,6 +103,17 @@
               }
           }
       }
+
+                // Route for updating on click event
+                function viewPayment(customerid) {
+                window.location.href = '/expancesupdate/' + customerid;
+        }
+
+        function confirmDelete(customerId) {
+            if (confirm('Are you sure you want to delete this Expances?')) {
+                document.getElementById('delete-form-' + customerId).submit();
+            }
+          }
   </script>
 
 

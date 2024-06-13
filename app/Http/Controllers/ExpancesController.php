@@ -13,5 +13,35 @@ class ExpancesController extends Controller
         $expances = Expances::all();
         return view('Expances-page')->with('expances', $expances);
     }
+    public function edit($id)
+    {
+        $expances = Expances::findOrFail($id);
+
+        return view('expancesupdate', compact('expances'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'E_Name' => 'required|string',
+            'E_Descriptio' => 'required|string',
+            'E_Amount' => 'required|numeric'
+        ]);
+
+        // Find the Customer record and update it
+        $expances = Expances::findOrFail($id);
+        $expances->update($validatedData);
+
+        return redirect('/expances')->with('success', 'Expanses updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        $customer = Expances::findOrFail($id);
+        $customer->delete();
+
+        return redirect('/expances')->with('success', 'Expanses Delete successfully');
+    }
 
 }

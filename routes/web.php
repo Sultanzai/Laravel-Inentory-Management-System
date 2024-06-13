@@ -26,8 +26,16 @@ Route::delete('/customer/{customer}', [CustomerController::class, 'destroy'])->n
 
 
 
-
+// EXPANSES ROUTES
 Route::get('/expances', [ExpancesController::class, 'index']);
+// Update
+Route::get('/expancesupdate/{expances}', [ExpancesController::class, 'edit'])->name('expances.edit');
+Route::post('/expancesupdate/{expances}', [ExpancesController::class, 'update'])->name('expances.update');
+// Delete customer
+Route::delete('/expances/{expances}', [ExpancesController::class, 'destroy'])->name('expances.destroy');
+
+
+
 
 Route::get('/product', [ProductController::class, 'index']);
 
