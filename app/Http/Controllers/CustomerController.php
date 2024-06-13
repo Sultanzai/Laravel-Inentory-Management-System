@@ -49,12 +49,12 @@ class CustomerController extends Controller
         return redirect('/customer')->with('success', 'Customer updated successfully');
     }
 
-    /*
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function destroy($id)
+{
+    $customer = Customers::findOrFail($id);
+    $customer->delete();
+
+    return redirect('/customer')->with('success', 'Customer updated successfully');
+}
 
 }

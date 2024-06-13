@@ -40,7 +40,8 @@
               <div class="text-wrapper-7">Address</div>
               <div class="text-wrapper-8">Contact</div>
               <div class="text-wrapper-9">Balance</div>
-              <div class="text-wrapper-9" style="margin-left: 55px;">Edit</div>
+              <div class="text-wrapper-9" style="margin-left: 50px;">Edit</div>
+              <div class="text-wrapper-9">Delete</div>
             </div>
 {{-- Displaying Record from database --}}
             @foreach ($customer as $cus)
@@ -52,6 +53,12 @@
                 <div class="pill">
                   <div class="tag"><div class="label-2">${{ $cus->Balance }}</div></div>
                   <div class="text-wrapper-14" style="margin-left:150px; margin-top:-20px; color:black;" onclick="viewPayment({{ $cus->id  }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
+                  @method('DELETE')
+                  <form id="delete-form-{{ $cus->id }}" action="{{ route('customers.destroy', $cus->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <div class="text-wrapper-15" style="margin-left:250px; margin-top:-20px; color:black;" onclick="confirmDelete({{ $cus->id }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
+                  </form>
 
                 </div>
               </div>
@@ -94,6 +101,12 @@
           function viewPayment(customerid) {
             window.location.href = '/customerupdate/' + customerid;
         }
+
+        function confirmDelete(customerId) {
+            if (confirm('Are you sure you want to delete this customer with all the record?')) {
+                document.getElementById('delete-form-' + customerId).submit();
+            }
+          }
       </script>
   </body>
 </html>

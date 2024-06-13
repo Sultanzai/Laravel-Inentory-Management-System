@@ -15,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 //CUSTOMER ROUTES
 Route::get('/customer', [CustomerController::class, 'index']);
+// Insert Record 
+Route::get('customerform', [PageController::class, 'customerform'])->name('customerform');
+//Update Customer
 Route::get('/customerupdate/{payment}', [CustomerController::class, 'edit'])->name('customer.edit');
 Route::post('/customerupdate/{payment}', [CustomerController::class, 'update'])->name('customer.update');
-
-Route::get('customerform', [PageController::class, 'customerform'])->name('customerform');
+// Delete customer
+Route::delete('/customer/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 
 
 
