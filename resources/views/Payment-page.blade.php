@@ -25,9 +25,10 @@
               <div class="text-wrapper-4">Product Name</div>
               <div class="text-wrapper-5">Type</div>
               <div class="text-wrapper-6">Status</div>
-              <div class="text-wrapper-7">Price</div>
+              <div class="text-wrapper-7" style="margin-left:-50px;">Order Amount</div>
+              <div class="text-wrapper-7">Paid Amount</div>
               <div class="text-wrapper-8">Date</div>
-              <div class="text-wrapper-8" style="margin-left: 55px;">Edit</div>
+              <div class="text-wrapper-8" style="margin-left: 75px; margin-right:20px;">Edit</div>
             </div>
             @foreach ($sortedData as $data)
 
@@ -39,6 +40,7 @@
                 <div class="label-2">{{ $data['P_Type'] }}</div>
               </div>
               <div class="text-wrapper-12">{{ $data['P_Status'] }}</div>
+              <div class="text-wrapper-13" style="margin-left:-30px;">${{ $data['TotalPrice'] }}</div>
               <div class="text-wrapper-13">${{ $data['P_Amount'] }}</div>
               <div class="text-wrapper-14">{{ $data['P_Date'] }}</div>
               <div class="text-wrapper-14" onclick="viewPayment({{ $data['PaymentID'] }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
@@ -105,6 +107,16 @@
       function viewPayment(paymentId) {
             window.location.href = '/paymentform/' + paymentId;
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var errorElements = document.querySelectorAll('.error-message');
+            errorElements.forEach(function(element) {
+                if (element.dataset.showError === 'true') {
+                    alert('Invalid Price Input');
+                }
+            });
+        });
+
     </script>
   </body>
 </html>
