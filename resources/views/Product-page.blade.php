@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="{{asset ('css/styleguide.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/Dashboardstyle.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/MainStyle.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   </head>
   <body>
     <div class="dashboard">
@@ -31,7 +33,7 @@
             </div>
             {{-- Dispaying Product Data form database --}}
             @foreach ($product as $pro)
-            <div class="task clickable-row" data-href="{{ route('product-view', $pro->ID) }}">
+            <div class="task"  data-href="{{ route('product-view', $pro->ID) }}">
               <div class="text-wrapper-9">{{ $pro->ID }}</div>
               <div class="text-wrapper-10">{{ $pro->P_Name }}</div>
               <div class="text-wrapper-11" style="width: 230px;">{{ $pro->Barcode }}</div>
@@ -42,7 +44,7 @@
               <div class="text-wrapper-12" style="margin-left:-40px;">{{ $pro->Available_Units }}</div>
               <div class="text-wrapper-13" style="margin-left:-60px;">{{ $pro->P_Status }}</div>
               <div class="text-wrapper-14" style="margin-left:-20px;">{{ $pro->P_Date }}</div>
-              <div class="text-wrapper-14" style="width:20px;">E</div>
+              <div class="text-wrapper-14" style="width:20px;" onclick="viewPayment({{ $pro->ID  }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
               <div class="text-wrapper-14" style="width:20px; margin-left:40px;">X</div>
             </div>
             @endforeach
@@ -98,6 +100,11 @@
                   }
               }
           }
+
+          // Route for updating on click event
+          function viewPayment(productid) {
+            window.location.href = '/productupdate/' + productid;
+        }
 
   </script>
     

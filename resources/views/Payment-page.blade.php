@@ -29,7 +29,7 @@
               <div class="text-wrapper-8">Date</div>
               <div class="text-wrapper-8" style="margin-left: 55px;">Edit</div>
             </div>
-            @foreach ($combinedData as $data)
+            @foreach ($sortedData as $data)
 
             <div class="task" >
               <div class="text-wrapper-9">{{ $data['PaymentID'] }}</div>

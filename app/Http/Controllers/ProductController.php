@@ -14,24 +14,35 @@ class ProductController extends Controller
         return view('product-page')->with('product', $product);
     }
 
-    // public function search(Request $request)
-    // {
-    //     $query = $request->input('query');
-    //     $products = Product::where('P_Name', 'LIKE', "%$query%")
-    //                         ->orWhere('Barcode', 'LIKE', "%$query%")
-    //                         ->get();
-
-    //     return response()->json($products);
-    // }
-
-    // public function view($id){
+    
+    // public function show($id){
     //     $item = Product::findOrFail($id); //fetch item by id
     //     return view('product-view', compact('item'));
     // }
-    
-    public function show($id){
-        $item = Product::findOrFail($id); //fetch item by id
-        return view('product-view', compact('item'));
+
+    public function edit($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return view('productupdate', compact('product'));
+    }
+    public function update(Request $request, $id)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'P_Name' => 'required|string',
+            'P_Description' => 'string',
+            'P_Units' => 'required|numeric',
+            'P_Price' => 'required|numeric',
+            'P_Status' => 'required',
+            'Barcode' => 'required|numeric'
+        ]);
+
+        // Find the Product record and update it
+        $product = Product::findOrFail($id);
+        $product->update($validatedData);
+
+        return redirect('/product')->with('success', 'Product updated successfully');
     }
     
 }

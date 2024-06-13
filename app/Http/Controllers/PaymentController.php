@@ -16,11 +16,11 @@ class PaymentController extends Controller
     {
         // Fetch payments
         $payments = Payment::all();
-
+    
         // Fetch order view data
         $orderViews = OrderView::all();
-
-        // Combine the data (example approach, adjust based on your needs)
+    
+        // Combine the data
         $combinedData = $payments->map(function ($payment) use ($orderViews) {
             $orderView = $orderViews->firstWhere('Order_ID', $payment->Order_ID);
             return [
@@ -36,8 +36,11 @@ class PaymentController extends Controller
                 'TotalPrice' => $orderView ? $orderView->TotalPrice : null,
             ];
         });
-
-        return view('Payment-Page', compact('combinedData'));
+    
+        // Sort by P_Date in descending order
+        $sortedData = $combinedData->sortByDesc('P_Date');
+    
+        return view('Payment-Page', compact('sortedData'));
     }
 
     // Updating Payment Tables 
@@ -68,32 +71,4 @@ class PaymentController extends Controller
     }
 
 
-
-
-
-
-    // public function store(Request $request)
-    // {
-      
-    //     // Validate the request data
-    //     $validatedData = $request->validate([
-    //         'PaymentAmount' => 'required|numeric',
-    //         'Type' => 'required|string',
-    //         'Status' => 'required|string',
-    //         'Order_ID' => 'required|integer',
-    //         'Customer_ID' => 'required|integer',
-    //     ]);
-
-    //     // Create a new payment record
-    //     Payment::create([
-    //         'P_Amount' => $validatedData['PaymentAmount'],
-    //         'P_Type' => $validatedData['Type'],
-    //         'P_Status' => $validatedData['Status'],
-    //         'Order_ID' => $validatedData['Order_ID'],
-    //         'Customer_ID' => $validatedData['Customer_ID'],
-    //     ]);
-
-    //     // Redirect to the payment page
-    //     return redirect('/payment');
-    // }
 }

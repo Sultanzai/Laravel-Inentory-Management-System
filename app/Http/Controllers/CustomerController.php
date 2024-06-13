@@ -42,7 +42,7 @@ class CustomerController extends Controller
             'Phone' => 'required|numeric'
         ]);
 
-        // Find the payment record and update it
+        // Find the Customer record and update it
         $customer = Customers::findOrFail($id);
         $customer->update($validatedData);
 

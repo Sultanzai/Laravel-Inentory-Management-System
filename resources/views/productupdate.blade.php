@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Customer</title>
+    <title>Update Payment</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,7 +20,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 400px;
         }
 
         .form-container h2 {
@@ -67,28 +67,46 @@
         .form-group button:hover {
             background-color: #141414;
         }
+        textarea{
+            width: 400px;
+        }
     </style>
 </head>
-
 <body>
     <div class="form-container">
-        <h2>Update Customer</h2>
-        <form action="{{ route('customer.update', $customer->id) }}" method="POST">
+        <h2>Update Product</h2>
+        <form action="{{ route('product.update', $product->id) }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="P_Amount">Customer Name</label>
-                <input type="text" id="Customer Name" name="Name" value="{{ old('Name', $customer->Name) }}" required>
+                <label for="P_Name">Product Name:</label>
+                <input type="text" id="Name" name="P_Name" value="{{ old('P_Name', $product->P_Name) }}" required>
             </div>
             <div class="form-group">
-                <label for="Order_ID">Customer Address</label>
-                <input type="text" id="Address" name="Address" value="{{ old('Address', $customer->Address) }}" required>
+                <label for="P_Description">Product Description Type:</label>
+                <input name="Description" id="P_Description" cols="30" rows="10" Value="{{ old('P_Description', $product->P_Description) }}"></input>
             </div>
             <div class="form-group">
-                <label for="Customer_ID">Customer Phone</label>
-                <input type="text" id="Phone" name="Phone" value="{{ old('Phone', $customer->Phone) }}" required>
+                <label for="P_Units">Product Units:</label>
+                <input type="number" id="Units" name="P_Units" value="{{ old('P_Units', $product->P_Units) }}" required>
             </div>
             <div class="form-group">
-                <button type="submit">Submit</button>
+                <label for="P_Price">Order ID:</label>
+                <input type="text" id="Price" name="P_Price" value="{{ old('P_Price', $product->P_Price) }}" required>
+            </div>
+            <div class="form-group">
+                <label for="P_Status">Product Status</label>
+                <select id="P_Status" name="P_Status" required>
+                    <option value="In Stock" {{ old('P_Status', $product->P_Status) == 'In Stock' ? 'selected' : '' }}>In Stock</option>
+                    <option value="Out Of stock" {{ old('P_Status', $product->P_Status) == 'Out Of stock' ? 'selected' : '' }}>Out Of stock</option>
+                    <option value="Shipped" {{ old('P_Status', $product->P_Status) == 'Shipped' ? 'selected' : '' }}>Shipped</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Barcode">Product Barcode</label>
+                <input type="number" id="code" name="Barcode" value="{{ old('Barcode', $product->Barcode) }}" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Update Product</button>
             </div>
         </form>
     </div>

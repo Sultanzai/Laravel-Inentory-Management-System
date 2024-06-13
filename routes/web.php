@@ -60,14 +60,14 @@ Route::post('/paymentform/{payment}', [PaymentController::class, 'update'])->nam
 
 //ExpancesForm route
 Route::get('expancesform', [PageController::class, 'expancesform'])->name('expancesform');
+
 //Productform Route
 Route::get('productform', [PageController::class, 'productform'])->name('productform');
 
-
-
-//Route for fetiching adn display data 
+//Route for fetiching and display data 
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product-view');
-
+Route::get('/productupdate/{product}', [ProductController::class, 'edit'])->name('product.edit');
+Route::post('/productupdate/{product}', [ProductController::class, 'update'])->name('product.update');
 
 
 // Addomg Customers
@@ -102,16 +102,3 @@ Route::post('/productform', function () {
     ]);
     return redirect('/product');
 });
-
-//Adding Payment
-// Route::post('/Paymentform', function () {
-
-//     Payment::create([
-//         'P_Amount' => request('PaymentAmount'),
-//         'P_Type' => request('Type'),
-//         'P_Status' => request('Status'),
-//         'Order_ID' => request('Order_ID'),
-//         'Customer_ID' => request('Customer_ID'),   
-//     ]);
-//     return redirect('/payment');
-// });

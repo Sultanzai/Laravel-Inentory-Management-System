@@ -76,7 +76,7 @@ class OrderController extends Controller
             'P_Amount' => $request->totalPrice,
             'Order_ID' => $orderID,
             'Customer_ID' => $request->Customer_ID,
-            'P_Type' => 'default_type',
+            'P_Type' => 'N/A',
             'P_Status' => 'UnPaid',
         ]);
 

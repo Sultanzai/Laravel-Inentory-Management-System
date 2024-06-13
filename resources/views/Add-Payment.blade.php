@@ -20,7 +20,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 400px;
         }
 
         .form-container h2 {
@@ -90,6 +90,7 @@
             <div class="form-group">
                 <label for="P_Status">Payment Status:</label>
                 <select id="P_Status" name="P_Status" required>
+                    <option value="Unpaid" {{ old('P_Status', $payment->P_Status) == 'Unpaid' ? 'selected' : '' }}>Unpaid</option>
                     <option value="Pending" {{ old('P_Status', $payment->P_Status) == 'Pending' ? 'selected' : '' }}>Pending</option>
                     <option value="Completed" {{ old('P_Status', $payment->P_Status) == 'Completed' ? 'selected' : '' }}>Completed</option>
                     <option value="Failed" {{ old('P_Status', $payment->P_Status) == 'Failed' ? 'selected' : '' }}>Failed</option>
