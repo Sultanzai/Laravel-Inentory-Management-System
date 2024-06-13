@@ -71,6 +71,9 @@ Route::get('productform', [PageController::class, 'productform'])->name('product
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product-view');
 Route::get('/productupdate/{product}', [ProductController::class, 'edit'])->name('product.edit');
 Route::post('/productupdate/{product}', [ProductController::class, 'update'])->name('product.update');
+// Deleting product 
+Route::delete('/Product/{product}', [ProductController::class, 'destroy'])->name('Product.destroy');
+
 
 
 // Addomg Customers

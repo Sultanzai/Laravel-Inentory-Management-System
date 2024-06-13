@@ -45,7 +45,11 @@
               <div class="text-wrapper-13" style="margin-left:-60px;">{{ $pro->P_Status }}</div>
               <div class="text-wrapper-14" style="margin-left:-20px;">{{ $pro->P_Date }}</div>
               <div class="text-wrapper-14" style="width:20px;" onclick="viewPayment({{ $pro->ID  }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
-              <div class="text-wrapper-14" style="width:20px; margin-left:40px;">X</div>
+              <form id="delete-form-{{ $pro->ID }}" action="{{ route('Product.destroy', $pro->ID) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <div class="text-wrapper-14" style="width:20px; margin-left:40px;" onclick="confirmDelete({{ $pro->ID }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
+              </form>
             </div>
             @endforeach
           </div>
@@ -106,6 +110,12 @@
             window.location.href = '/productupdate/' + productid;
         }
 
+        // Deleting product
+        function confirmDelete(productid) {
+            if (confirm('Are you sure you want to delete this Product with all the record?')) {
+                document.getElementById('delete-form-' + productid).submit();
+            }
+          }
   </script>
     
   </body>

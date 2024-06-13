@@ -10,8 +10,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $product = ProductOrderDetailView::all();
-        return view('product-page')->with('product', $product);
+        $products = ProductOrderDetailView::all()->sortByDesc('P_Date');
+        return view('product-page')->with('product', $products);
     }
 
     
@@ -42,6 +42,13 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->update($validatedData);
 
+        return redirect('/product')->with('success', 'Product updated successfully');
+    }
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+    
         return redirect('/product')->with('success', 'Product updated successfully');
     }
     
