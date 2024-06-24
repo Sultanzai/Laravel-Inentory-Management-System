@@ -73,7 +73,7 @@ class OrderController extends Controller
 
         // Saving Order ID, Custoemr ID, And total Price in Payment Table 
         Payment::create([
-            'P_Amount' => $request->totalPrice,
+            'P_Amount' => 0,
             'Order_ID' => $orderID,
             'Customer_ID' => $request->Customer_ID,
             'P_Type' => 'N/A',
