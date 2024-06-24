@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="{{asset ('css/styleguide.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/Dashboardstyle.css') }}" />
     <link rel="stylesheet" href="{{asset ('css/MainStyle.css') }}">
+
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+  
   </head>
   <body>
     <div class="dashboard">
@@ -54,10 +57,27 @@
         </div>
         <div class="navigation">
           <div class="avatar">
-            <div class="rectangle-wrapper"><img class="rectangle" src="img/rectangle-1.png" /></div>
-            <img class="img" src="img/chevron-down.svg" />
+            <a style="font-size:18px; margin-top:5px; font-family:inter; font-weight:500;" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+              {{ Auth::user()->name }}
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
           </div>
-          <img class="buttons" src="img/buttons.svg" />
+          {{-- Register User --}}
+          <div class="buttons" style="margin-left: -10px; font-size:18px; margin-top:5px; font-family:inter; font-weight:500;">
+            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+          </div>
+
           <div class="text-wrapper-17">Dashboard</div>
         </div>
         <div class="segmented-control">
