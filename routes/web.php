@@ -100,8 +100,9 @@ Route::middleware(['auth'])->group(function () {
     // Route for Updating Payment Form
     Route::get('/paymentform/{payment}', [PaymentController::class, 'edit'])->name('payment.edit');
     Route::post('/paymentform/{payment}', [PaymentController::class, 'update'])->name('payment.update');
-    Route::get('Paymentform', [PageController::class, 'Paymentform'])->name('Paymentform');
     Route::get('Paymentform', [PaymentController::class, 'create'])->name('Paymentform');
+    Route::post('/Paymentform', [PaymentController::class, 'store'])->name('Paymentform');
+
 
 
     // PRODUCT ROUTES
@@ -114,7 +115,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/productupdate/{product}', [ProductController::class, 'update'])->name('product.update');
     // Deleting product 
     Route::delete('/Product/{product}', [ProductController::class, 'destroy'])->name('Product.destroy');
-    // Adding products
+    
     Route::post('/productform', function () {
         Product::create([
             'P_Name' => request('Name'),

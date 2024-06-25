@@ -43,13 +43,6 @@ class OrderController extends Controller
         return view('Add-Order', compact('customers','products'));
     }
 
-    public function show($id)
-    {
-        $order = OrderView::findOrFail($id);
-        return view('Print-order', compact('order'));
-    }
-    
-
 
     public function store(Request $request)
     {
@@ -67,6 +60,7 @@ class OrderController extends Controller
             'Customer_ID' => $request->Customer_ID,
             'O_Description' => $request->description
         ]);
+
 
         foreach ($request->products as $productID) {
             // Round prices and units to 2 decimal places
@@ -86,6 +80,24 @@ class OrderController extends Controller
         $customer = Customers::find($request->Customer_ID);
         $customer->Balance += $request->totalPrice;
         $customer->save();
+        
+        if (!$order) {
+            throw new \Exception('Order creation failed');
+        }
+
+        $payment = Payment::create([
+            'Order_ID' => $order->id,
+            'P_Remining' => $request->totalPrice,
+            'P_Amount' => 0,
+            'P_Type' => 'N/A',
+            'P_Status' => 'Unpaid',
+            'Customer_ID' => $request->Customer_ID,
+        ]);
+        
+        if (!$payment) {
+            throw new \Exception('Payment creation failed');
+        }
+
 
         return redirect('/order')->with('success','');
     }

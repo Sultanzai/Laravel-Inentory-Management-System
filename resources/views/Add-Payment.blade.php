@@ -70,20 +70,28 @@
     </style>
 </head>
 <body>
+
+    <script>
+        @if($errors->has('error'))
+            alert('{{ $errors->first('error') }}');
+        @endif
+    </script>
+
     <div class="form-container">
         <h2>Add Payment</h2>
         <div class="row">
             <label for="customer">Select Invoice</label>
           </div>
-        <form action="/Paymentform" method="POST">
-        @csrf
+          <form action="{{ route('Paymentform') }}" method="POST">
+            @csrf
             <div class="row">
-                <select name="OrderID" id="OrderID" required>
+                <select name="OrderID" id="OrderID" required style="width: 100px;">
                     @foreach($order as $ord)
-                        <option value="{{ $ord->id }}">{{ $ord->id }}</option>
+                        <option  value="{{ $ord->Order_ID }}" data-totalprice="{{ $ord->TotalPrice }}">{{ $ord->Order_ID }} </option>
                     @endforeach
                 </select>
-            </div> 
+                <input type="hidden" id="TotalPrice" name="TotalPrice" value="">
+            </div>
             <div class="form-group">
                 <label for="P_Amount">Payment Amount:</label>
                 <input type="text" id="P_Amount" name="P_Amount" required>
@@ -92,19 +100,16 @@
                 <label for="P_Type">Payment Type:</label>
                 <select id="P_Type" name="P_Type" required>
                     <option value="Cash">Cash</option>
-                    <option value="Check" >Check</option>
-                    <option value="EZZT" >EZZT</option>
-                    <option value="Bank Transfer" >Bank Transfer</option>
+                    <option value="Check">Check</option>
+                    <option value="ZELLE">ZELLE</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="P_Status">Payment Status:</label>
                 <select id="P_Status" name="P_Status" required>
-                    <option value="Unpaid" >Unpaid</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Process">Pending</option>
-                    <option value="Completed" >Completed</option>
-                    <option value="Refunded" >Refunded</option>
+                    <option value="Under Process">Under Process</option>
+                    <option value="Completed">Completed</option>
                 </select>
             </div>
             <div class="form-group">
@@ -112,9 +117,42 @@
                 <input type="date" id="P_Date" name="P_Date" required>
             </div>
             <div class="form-group">
-                <button type="submit">Update Payment</button>
+                <button type="submit">Submit</button>
             </div>
         </form>
-    </div>
+    
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const orderSelect = document.getElementById('OrderID');
+                const totalPriceInput = document.getElementById('TotalPrice');
+                const paymentForm = document.getElementById('paymentForm');
+    
+                orderSelect.addEventListener('change', function () {
+                    const selectedOption = orderSelect.options[orderSelect.selectedIndex];
+                    const totalPrice = selectedOption.getAttribute('data-totalprice');
+                    totalPriceInput.value = totalPrice;
+                });
+    
+                // Trigger change event to set initial value
+                orderSelect.dispatchEvent(new Event('change'));
+    
+                // Add event listener for form submission
+                paymentForm.addEventListener('submit', function (event) {
+                    const totalPrice = parseFloat(totalPriceInput.value);
+                    const paymentAmount = parseFloat(document.getElementById('P_Amount').value);
+    
+                    // Calculate remaining amount
+                    const remaining = totalPrice - paymentAmount;
+    
+                    // Check if remaining amount is less than or equal to zero
+                    if (remaining < 0) {
+                        // Show popup message
+                        alert('Operation failed: Remaining amount is less than or equal to zero.');
+                        // Prevent form submission
+                        event.preventDefault();
+                    }
+                });
+            });
+        </script>
 </body>
 </html>

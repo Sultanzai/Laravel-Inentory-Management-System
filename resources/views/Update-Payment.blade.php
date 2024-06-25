@@ -81,29 +81,22 @@
             <div class="form-group">
                 <label for="P_Type">Payment Type:</label>
                 <select id="P_Type" name="P_Type" required>
-                    <option value="Credit Card" {{ old('P_Type', $payment->P_Type) == 'Credit Card' ? 'selected' : '' }}>Credit Card</option>
-                    <option value="Debit Card" {{ old('P_Type', $payment->P_Type) == 'Debit Card' ? 'selected' : '' }}>Debit Card</option>
-                    <option value="PayPal" {{ old('P_Type', $payment->P_Type) == 'PayPal' ? 'selected' : '' }}>PayPal</option>
+                    <option value="Cash" {{ old('P_Type', $payment->P_Type) == 'Cash' ? 'selected' : '' }}>Cash</option>
+                    <option value="Check" {{ old('P_Type', $payment->P_Type) == 'Check' ? 'selected' : '' }}>Check</option>
+                    <option value="ZELLE" {{ old('P_Type', $payment->P_Type) == 'ZELLE' ? 'selected' : '' }}>ZELLE</option>
                     <option value="Bank Transfer" {{ old('P_Type', $payment->P_Type) == 'Bank Transfer' ? 'selected' : '' }}>Bank Transfer</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="P_Status">Payment Status:</label>
                 <select id="P_Status" name="P_Status" required>
-                    <option value="Unpaid" {{ old('P_Status', $payment->P_Status) == 'Unpaid' ? 'selected' : '' }}>Unpaid</option>
-                    <option value="Pending" {{ old('P_Status', $payment->P_Status) == 'Pending' ? 'selected' : '' }}>Pending</option>
+                    <option value="Under Process" {{ old('P_Status', $payment->P_Status) == 'Under Process' ? 'selected' : '' }}>Under Process</option>
                     <option value="Completed" {{ old('P_Status', $payment->P_Status) == 'Completed' ? 'selected' : '' }}>Completed</option>
-                    <option value="Failed" {{ old('P_Status', $payment->P_Status) == 'Failed' ? 'selected' : '' }}>Failed</option>
-                    <option value="Refunded" {{ old('P_Status', $payment->P_Status) == 'Refunded' ? 'selected' : '' }}>Refunded</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="Order_ID">Order ID:</label>
                 <input type="text" id="Order_ID" name="Order_ID" value="{{ old('Order_ID', $payment->Order_ID) }}" required>
-            </div>
-            <div class="form-group">
-                <label for="Customer_ID">Customer ID:</label>
-                <input type="text" id="Customer_ID" name="Customer_ID" value="{{ old('Customer_ID', $payment->Customer_ID) }}" required>
             </div>
             <div class="form-group">
                 <label for="P_Date">Payment Date:</label>
