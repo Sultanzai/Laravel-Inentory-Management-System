@@ -37,49 +37,67 @@
 <div class="container mt-5">
     <div class="invoice-header text-center">
         <h1>Billing Invoice</h1>
-        <p>ABC</p>
-        <p>Address1</p>
-        <p>Address2</p>
-        <p>Phone:</p>
-        <p>Email:</p>
+        <br>
+        <p>345 W MAIN LOS ANGELES, CA 14151</p>
+        <p>Phone: 915-555-0195</p>
+        <p>Fax: 915-555-0195</p>
+        <p>Email: ELEGANTEMBARACE@GMAIL.COM</p>
     </div>
     
     <div class="card mb-4">
         <div class="card-body">
-            <div class="row">
+            <div class="row" style="font-size: 20px;">
                 <div class="col-sm-6">
-                    <strong>Customer Name:</strong> {{ $order->Customer_Name }}<br>
-                    <strong>Order Date:</strong> {{ $order->O_Date }}
+                    <strong>Name</strong> {{ $order->Customer_Name }}<br><br>
+                    <strong>Address</strong> {{ $order->Address  }}
                 </div>
                 <div class="col-sm-6 text-right">
-                    <strong>Order ID:</strong> {{ $order->Order_ID }}<br>
+                    <strong>Invoice No.</strong> {{ $order->Order_ID }}<br>
+                    <strong>Date </strong> {{ $order->O_Date }}
                 </div>
             </div>
         </div>
     </div>
     
-    <table class="table table-bordered invoice-table">
-        <thead>
-            <tr>
-                <th>Product Names</th>
-                <th>Product Barcodes</th>
-                <th>Order Units</th>
-                <th>Order Prices</th>
-                <th>Total Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ $order->ProductNames }}</td>
-                <td>{{ $order->ProductBarcodes }}</td>
-                <td>{{ $order->OrderUnits }}</td>
-                <td>${{ $order->OrderPrices }}</td>
-                <td>${{ $order->TotalPrice }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <table class="table table-bordered invoice-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Barcode</th>
+                        <th>Unit</th>
+                        <th>Prices</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                        $productNames = explode(',', $order->ProductNames);
+                        $productBarcodes = explode(',', $order->ProductBarcodes);
+                        $orderUnits = explode(',', $order->OrderUnits);
+                        $orderPrices = explode(',', $order->OrderPrices);
+                        $totalPrices = explode(',', $order->TotalPrice);
+                        $maxRows = max(count($productNames), count($productBarcodes), count($orderUnits), count($orderPrices), count($totalPrices));
+                    @endphp
+        
+                    @for($i = 0; $i < $maxRows; $i++)
+                        <tr>
+                            <td>{{ $productNames[$i] ?? '' }}</td>
+                            <td>{{ $productBarcodes[$i] ?? '' }}</td>
+                            <td>{{ $orderUnits[$i] ?? '' }}</td>
+                            <td>${{ $orderPrices[$i] ?? '' }}</td>
+                            <td>${{ $orderUnits[$i]*$orderPrices[$i] ?? '' }}</td>
+                        </tr>
+                    @endfor
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col">
+                    <strong>Description </strong> {{ $order->O_Description }}
+                </div>
+            </div>
+
     
-    <div class="invoice-footer">
+    <div class="invoice-footer" style="font-weight: 400; font-size:20px;">
         <p><strong>Total Amount:</strong> ${{ $order->TotalPrice }}</p>
         <p>Thank you for your choosing US!</p>
     </div>

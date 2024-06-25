@@ -19,11 +19,21 @@ class OrderController extends Controller
 
     public function index(){
 
-        $orders = OrderView::orderBy('O_Date', 'desc')->get();
+        $orders = OrderView::orderBy('Order_ID', 'desc')->get();
         return view('Order-page', compact('orders'));
 
     }
+    // Funtion to pass print data 
+    public function printOrder($id)
+    {
+        $order = OrderView::find($id);
 
+        if (!$order) {
+            return redirect()->back()->with('error', 'Order not found');
+        }
+
+        return view('Print-order', compact('order'));
+    }
 
     public function create()
     {
@@ -55,7 +65,7 @@ class OrderController extends Controller
 
         $order = Order::create([
             'Customer_ID' => $request->Customer_ID,
-            'description' => $request->description
+            'O_Description' => $request->description
         ]);
 
         foreach ($request->products as $productID) {
@@ -100,7 +110,7 @@ class OrderController extends Controller
             'products' => 'required|array',
             'products.*' => 'exists:tbl_product,id',
             'prices' => 'required|array',
-            'prices.*' => 'numeric|min:0',
+            'prices.*' => 'float|min:0',
             'units' => 'required|array',
             'units.*' => 'numeric|min:0'
         ]);

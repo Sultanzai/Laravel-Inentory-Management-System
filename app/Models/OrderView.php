@@ -11,7 +11,7 @@ class OrderView extends Model
     protected $primaryKey = 'Order_ID';
     public $timestamps = false;
     protected $fillable = [
-        'Order_ID', 'Customer_ID', 'O_Date', 'Customer_Name', 'OrderDetail_IDs', 'OrderPrices', 'OrderUnits', 'ProductNames', 'ProductBarcodes', 'TotalPrice'
+        'Order_ID', 'Customer_ID', 'O_Date', 'Customer_Name', 'OrderDetail_IDs', 'OrderPrices', 'OrderUnits', 'ProductNames', 'ProductBarcodes', 'TotalPrice', 'O_Description'
     ];
     use HasFactory;
 }

@@ -76,7 +76,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/order', [OrderController::class, 'index']);
     Route::get('Add-Order', [OrderController::class, 'create'])->name('Add-Order');
     Route::post('orderstore', [OrderController::class, 'store'])->name('orderstore');
-    Route::get('/order/{id}', [OrderController::class, 'show'])->name('Print-order');
+    // Route for passing data in print page 
+    Route::get('/order/{id}', [OrderController::class, 'printOrder'])->name('print-order');
+    // Route::get('/order/{id}', [OrderController::class, 'show'])->name('Print-order');
     // Route for Updating data
     Route::get('/orderupdate/{order}', [OrderController::class, 'edit'])->name('orderupdate.edit');
     Route::post('/orderupdate/{order}', [OrderController::class, 'update'])->name('orderupdate.update');

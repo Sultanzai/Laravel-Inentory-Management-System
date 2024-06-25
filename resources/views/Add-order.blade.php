@@ -172,6 +172,7 @@
         selectedProducts.forEach(productId => {
             var priceInput = document.createElement('input');
             priceInput.type = 'number';
+            priceInput.step = '0.01';
             priceInput.name = 'prices[' + productId + ']';
             priceInput.placeholder = 'Price for product ' + productId;
             priceInput.required = true;
