@@ -87,18 +87,6 @@ class OrderController extends Controller
         $customer->Balance += $request->totalPrice;
         $customer->save();
 
-        $orderID = $order->id;
-
-        // Saving Order ID, Custoemr ID, And total Price in Payment Table 
-        Payment::create([
-            'P_Amount' => 0,
-            'Order_ID' => $orderID,
-            'Customer_ID' => $request->Customer_ID,
-            'P_Type' => 'N/A',
-            'P_Status' => 'UnPaid',
-        ]);
-
-
         return redirect('/order')->with('success','');
     }
 

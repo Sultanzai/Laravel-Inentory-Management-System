@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\DB;
 class PaymentController extends Controller
 {
 
+    public function create()
+    {
+        $order = Order::all();
+        $order = $order->sortByDesc('id');
+        return view('Add-Payment', compact('order'));
+    }
     // Displaying combined Data 
     public function showCombinedData()
     {
@@ -48,7 +54,7 @@ class PaymentController extends Controller
     {
         $payment = Payment::findOrFail($id);
 
-        return view('Add-Payment', compact('payment'));
+        return view('Update-Payment', compact('payment'));
     }
 
     public function update(Request $request, $id)
@@ -69,6 +75,8 @@ class PaymentController extends Controller
 
         return redirect('/payment')->with('success', 'Payment updated successfully');
     }
+
+
 
 
 }

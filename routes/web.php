@@ -33,8 +33,12 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+
+
     // Dashboard
     Route::get('dashboard', [PageController::class, 'dashboard'])->name('dashboard');
+
+
 
     // CUSTOMER ROUTES
     Route::get('/customer', [CustomerController::class, 'index']);
@@ -52,6 +56,8 @@ Route::middleware(['auth'])->group(function () {
         ]);
         return redirect('/customer');
     });
+
+
 
     // EXPANSES ROUTES
     Route::get('/expances', [ExpancesController::class, 'index']);
@@ -72,6 +78,8 @@ Route::middleware(['auth'])->group(function () {
         return redirect('/expances');
     });
 
+
+
     // ORDER ROUTES
     Route::get('/order', [OrderController::class, 'index']);
     Route::get('Add-Order', [OrderController::class, 'create'])->name('Add-Order');
@@ -85,11 +93,16 @@ Route::middleware(['auth'])->group(function () {
     // Delete Order
     Route::delete('/order/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
 
+
+
     // PAYMENT ROUTES
     Route::get('payment', [PaymentController::class, 'showCombinedData'])->name('payment');
     // Route for Updating Payment Form
     Route::get('/paymentform/{payment}', [PaymentController::class, 'edit'])->name('payment.edit');
     Route::post('/paymentform/{payment}', [PaymentController::class, 'update'])->name('payment.update');
+    Route::get('Paymentform', [PageController::class, 'Paymentform'])->name('Paymentform');
+    Route::get('Paymentform', [PaymentController::class, 'create'])->name('Paymentform');
+
 
     // PRODUCT ROUTES
     Route::get('/product', [ProductController::class, 'index']);
