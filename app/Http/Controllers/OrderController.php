@@ -69,9 +69,17 @@ class OrderController extends Controller
         ]);
 
         foreach ($request->products as $productID) {
+            // Round prices and units to 2 decimal places
+            $roundedPrice = round($request->prices[$productID], 2);
+            $roundedUnit = round($request->units[$productID], 2);
+        
+            // Format prices and units to 2 decimal places
+            $formattedPrice = number_format($roundedPrice, 2, '.', '');
+            $formattedUnit = number_format($roundedUnit, 2, '.', '');
+        
             $order->products()->attach($productID, [
-                'O_Price' => $request->prices[$productID],
-                'O_unit' => $request->units[$productID]
+                'O_Price' => $formattedPrice,
+                'O_unit' => $formattedUnit
             ]);
         }
         // Saving Balance in customer Column

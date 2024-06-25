@@ -108,7 +108,7 @@
                     <label>Description</label> 
                   </div>
                   <div class="row">
-                    <textarea type="text" name="description" id="description"></textarea>
+                    <textarea type="text" name="description" id="description">.</textarea>
                   </div>
                 </div>
                 <!-- Select Products -->
