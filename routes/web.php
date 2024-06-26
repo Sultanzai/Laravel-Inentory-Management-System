@@ -72,7 +72,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/expancesform', function () {
         Expances::create([
             'E_Name' => request('Name'),
-            'E_Description' => request('Description'),
+            'E_Descriptio' => request('Description'),
             'E_Amount' => request('Amount'),
         ]);
         return redirect('/expances');
