@@ -25,8 +25,8 @@ class PageController extends Controller
      {
          return view('Add-product');
      }
-     public function Paymentform()
+     public function addstock()
      {
-         return view('Add-Payment');
+         return view('Add-stock');
      }
 }

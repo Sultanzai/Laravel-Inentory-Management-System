@@ -10,8 +10,16 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = ProductOrderDetailView::all()->sortByDesc('P_Date');
+        $products = ProductOrderDetailView::all();
+        $products = $products->sortByDesc('ID');
         return view('product-page')->with('product', $products);
+    }
+
+    public function create()
+    {
+        $products = Product::all();
+        $products = $products->sortByDesc('id');
+        return view('Add-stock')->with('product', $products);
     }
 
     
@@ -50,6 +58,37 @@ class ProductController extends Controller
         $product->delete();
     
         return redirect('/product')->with('success', 'Product updated successfully');
+    }
+
+
+
+    public function addStock(Request $request)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'id' => 'required|exists:tbl_product,id',
+            'P_Price' => 'required|numeric',
+            'P_Units' => 'required|integer',
+            'P_Status' => 'required|in:In Stock,Out Of stock,Shipped',
+        ]);
+
+        // Find the product by ID
+        $product = Product::find($request->input('id'));
+
+        // Check if the product exists
+        if (!$product) {
+            return redirect('/product')->with('error', 'Product not found');
+        }
+
+        // Update the product details
+        $product->P_Price = $request->input('P_Price');
+        $product->P_Units += $request->input('P_Units');  // Sum the existing Units with the new input
+        $product->P_Status = $request->input('P_Status');
+        $product->save();
+
+        // Redirect back with success message
+        return redirect('/product')->with('success', 'Product updated successfully');
+
     }
     
 }

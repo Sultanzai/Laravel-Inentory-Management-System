@@ -115,7 +115,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/productupdate/{product}', [ProductController::class, 'update'])->name('product.update');
     // Deleting product 
     Route::delete('/Product/{product}', [ProductController::class, 'destroy'])->name('Product.destroy');
-    
+    Route::get('addstock', [ProductController::class, 'create'])->name('addstock');
+    Route::post('/addStock', [ProductController::class, 'addStock'])->name('addStock');
+
     Route::post('/productform', function () {
         Product::create([
             'P_Name' => request('Name'),
