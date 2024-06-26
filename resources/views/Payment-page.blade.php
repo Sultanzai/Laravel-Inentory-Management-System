@@ -51,20 +51,6 @@
             @endforeach
           </div>
         </div>
-        <div class="cards">
-          <div class="card">
-            <div class="text-wrapper-15">Daily </div>
-            <div class="text-wrapper-16">$2,500</div>
-          </div>
-          <div class="card-2">
-            <div class="text-wrapper-15">Last 7 Days </div>
-            <div class="text-wrapper-16">$50,000</div>
-          </div>
-          <div class="card-3">
-            <div class="text-wrapper-15">Last 29 Days </div>
-            <div class="text-wrapper-16">$800,000</div>
-          </div>
-        </div>
         <div class="navigation">
           <div class="avatar">
             <a style="font-size:18px; margin-top:5px; font-family:inter; font-weight:500;" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

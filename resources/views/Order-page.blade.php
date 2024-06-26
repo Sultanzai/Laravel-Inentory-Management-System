@@ -55,7 +55,7 @@
                   <div class="text-wrapper-9">Order Units</div>
                   <div class="text-wrapper-10" style="margin-left:-40px;">Total Order</div>
                   <div class="text-wrapper-11" style="margin-left:-20px;">Date</div>
-                  <div class="text-wrapper-12" style="margin-left: -10px;">Edit</div>
+                  <div class="text-wrapper-12" style="margin-left: -10px;"></div>
                   <div class="text-wrapper-12" style="margin-left: -20px;">Print</div>
                   <div class="text-wrapper-12" style="margin-left: -20px;">Delete</div>
               </div>
@@ -71,7 +71,7 @@
                   </div>
                   <div class="tag-wrapper">
                       <div class="label-wrapper" style="margin-left:-80px; width:50px;"><div class="label-2">{{ $order->O_Date }}</div></div>
-                      <div class="text-wrapper" style="margin-left:80px; margin-top:-25px;" onclick="updateview({{ $order->Order_ID }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
+                      {{-- <div class="text-wrapper" style="margin-left:80px; margin-top:-25px;" onclick="updateview({{ $order->Order_ID }})"><i class="fa fa-edit" style="font-size:20px"></i></div> --}}
                       <div class="text-wrapper" style="margin-left:145px; margin-top:-25px;" onclick="viewOrder({{ $order->Order_ID }})"><i class="fa fa-print" style="font-size:20px"></i></div>
                       <form id="delete-form-{{ $order->Order_ID }}" action="{{ route('order.destroy', $order->Order_ID) }}" method="POST" style="display:inline;">
                         @csrf

@@ -36,7 +36,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     // Dashboard
-    Route::get('dashboard', [PageController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 
 
