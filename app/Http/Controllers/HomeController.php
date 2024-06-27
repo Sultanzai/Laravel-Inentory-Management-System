@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use App\Models\OrderView;
+use App\Models\Expances;
 use App\Models\ProductOrderDetailView;
 
 
@@ -53,6 +54,28 @@ class HomeController extends Controller
         $totalSales = DB::table('Order_View')
             ->sum('TotalPrice');
 
+
+        // Expances Count
+        $dailyexpances = DB::table('tbl_expances')
+        ->whereDate('E_Date', today())
+        ->sum('E_Amount');
+
+        // Calculate weekly Expances
+        $weeklyexpances = DB::table('tbl_expances')
+            ->whereBetween('E_Date', [now()->startOfWeek(), now()->endOfWeek()])
+            ->sum('E_Amount');
+
+        // Calculate monthly Expances
+        $monthlyexpances = DB::table('tbl_expances')
+            ->whereMonth('E_Date', now()->month)
+            ->sum('E_Amount');
+
+        // Calculate total Expnaces
+        $totalexpances = DB::table('tbl_expances')
+            ->sum('E_Amount');
+
+
+
         // Payment Count 
         $completedPayments = DB::table('tbl_payment')
             ->where('P_status', 'Completed')
@@ -67,7 +90,7 @@ class HomeController extends Controller
 
 
         // Revenue 
-        $Revenue = $totalSales + $totalAvailiableValue;
+        $Revenue = $totalSales + $totalAvailiableValue - $totalexpances;
 
 
         // Pass the data to the view
@@ -76,7 +99,8 @@ class HomeController extends Controller
             'dailyOrders', 'weeklyOrders', 'monthlyOrders','totalOrders',
             'totalproducts', 'totalavailableproducts', 'totalValue', 'totalAvailiableValue',
             'dailySales','weeklySales','monthlySales','totalSales',
-            'completedPayments','Underprocess','Unpaid','Revenue'
+            'completedPayments','Underprocess','Unpaid','Revenue',
+            'dailyexpances','weeklyexpances','monthlyexpances','totalexpances'
 
         ));
     }
