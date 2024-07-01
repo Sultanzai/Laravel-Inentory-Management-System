@@ -77,19 +77,19 @@
         {{-- Expances Report --}}
         <div class="cards" style="margin-top:400px;">
           <div class="card">
-            <div class="text-wrapper-15">Daily Expances</div>
+            <div class="text-wrapper-15">Daily Expense</div>
             <div class="text-wrapper-16">${{ $dailyexpances }}</div>
           </div>
           <div class="card-2">
-            <div class="text-wrapper-15">Weekly Expances</div>
+            <div class="text-wrapper-15">Weekly Expense</div>
             <div class="text-wrapper-16">${{ $weeklyexpances }}</div>
           </div>
           <div class="card-3">
-            <div class="text-wrapper-15">Monthly Expances</div>
+            <div class="text-wrapper-15">Monthly Expense</div>
             <div class="text-wrapper-16">${{ $monthlyexpances }}</div>
           </div>
           <div class="card-3">
-            <div class="text-wrapper-15">Total Expances</div>
+            <div class="text-wrapper-15">Total Expense</div>
             <div class="text-wrapper-16">${{ $totalexpances }}</div>
           </div>
         </div>
@@ -102,11 +102,11 @@
           </div>
           <div class="card-2">
             <div class="text-wrapper-15">Check Remaining</div>
-            <div class="text-wrapper-16">${{ $Underprocess }}</div>
+            <div class="text-wrapper-16"  style="color: red">${{ $Underprocess }}</div>
           </div>
           <div class="card-3">
             <div class="text-wrapper-15">Pending Payments</div>
-            <div class="text-wrapper-16">${{ $Unpaid }}</div>
+            <div class="text-wrapper-16" style="color: red">${{ $Unpaid }}</div>
           </div>
           <div class="card-3">
             <div class="text-wrapper-15">Total Revenue</div>

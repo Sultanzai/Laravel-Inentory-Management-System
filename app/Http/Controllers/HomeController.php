@@ -90,7 +90,7 @@ class HomeController extends Controller
 
 
         // Revenue 
-        $Revenue = $totalSales + $totalAvailiableValue - $totalValue  - $totalexpances + $totalAvailiableValue;
+        $Revenue = $totalSales + $totalAvailiableValue - $totalexpances;
 
 
         // Pass the data to the view

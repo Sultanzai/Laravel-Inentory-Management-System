@@ -34,21 +34,30 @@
               <div class="text-wrapper-8" style="margin-left: 75px; margin-right:20px;">Edit</div>
             </div>
             @foreach ($sortedData as $data)
-
-            <div class="task" >
-              <div class="text-wrapper-9">{{ $data['Order_ID'] }}</div>
-              <div class="text-wrapper-10">{{ $data['Customer_Name'] }}</div>
-              <div class="pill">
-                <div class="label-2" style="margin-top: 7px;">{{ $data['P_Type'] }}</div>
-              </div>
-              <div class="text-wrapper-12">{{ $data['P_Status'] }}</div>
-              <div class="text-wrapper-13" style="margin-left: -30px;">${{ $data['TotalPrice'] }}</div>
-              <div class="text-wrapper-13">${{ $data['P_Amount'] }}</div>
-              <div class="text-wrapper-13" style="margin-left: 30px;">${{ $data['P_Remining'] }}</div>
-              <div class="text-wrapper-14" style="margin-left: 20px;">{{ $data['P_Date'] }}</div>
-              <div class="text-wrapper-14" onclick="viewPayment({{ $data['PaymentID'] }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
+            @php
+                $statusColor = '';
+                if ($data['P_Status'] == 'Under Process' || $data['P_Status'] == 'Unpaid') {
+                    $statusColor = 'color: red;';
+                } elseif ($data['P_Status'] == 'Completed') {
+                    $statusColor = 'color: green;';
+                }
+            @endphp
+        
+            <div class="task">
+                <div class="text-wrapper-9">{{ $data['Order_ID'] }}</div>
+                <div class="text-wrapper-10">{{ $data['Customer_Name'] }}</div>
+                <div class="pill">
+                    <div class="label-2" style="margin-top: 7px;">{{ $data['P_Type'] }}</div>
+                </div>
+                <div class="text-wrapper-12" style="{{ $statusColor }}">{{ $data['P_Status'] }}</div>
+                <div class="text-wrapper-13" style="margin-left: -30px;">${{ $data['TotalPrice'] }}</div>
+                <div class="text-wrapper-13">${{ $data['P_Amount'] }}</div>
+                <div class="text-wrapper-13" style="margin-left: 30px;">${{ $data['P_Remining'] }}</div>
+                <div class="text-wrapper-14" style="margin-left: 20px;">{{ $data['P_Date'] }}</div>
+                <div class="text-wrapper-14" onclick="viewPayment({{ $data['PaymentID'] }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
             </div>
-            @endforeach
+        @endforeach
+        
           </div>
         </div>
         <div class="navigation">
