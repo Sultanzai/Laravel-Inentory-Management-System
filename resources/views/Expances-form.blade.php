@@ -75,7 +75,7 @@
     
     <div class="form-container">
         <div class="form-header">
-            <h2>Add Expanses</h2>
+            <h2>Add Expenses</h2>
         </div>
         <form action="/expancesform" method="POST">
             @csrf
