@@ -51,7 +51,12 @@ class OrderController extends Controller
             'products' => 'required|array',
             'products.*' => 'exists:tbl_product,id',
             'prices' => 'required|array',
-            'prices.*' => 'numeric|min:0',
+            'prices.*' => [
+                'required',
+                'numeric',
+                'regex:/^\d+(\.\d{1,4})?$/',
+                'min:0'
+            ],
             'units' => 'required|array',
             'units.*' => 'numeric|min:0'
         ]);

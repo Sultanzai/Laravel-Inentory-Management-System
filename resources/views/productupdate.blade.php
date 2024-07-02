@@ -90,7 +90,7 @@
                 <input type="number" id="Units" name="P_Units" value="{{ old('P_Units', $product->P_Units) }}" required>
             </div>
             <div class="form-group">
-                <label for="P_Price">Order ID:</label>
+                <label for="P_Price">Price:</label>
                 <input type="text" id="Price" name="P_Price" value="{{ old('P_Price', $product->P_Price) }}" required>
             </div>
             <div class="form-group">
@@ -103,7 +103,7 @@
             </div>
             <div class="form-group">
                 <label for="Barcode">Product Barcode</label>
-                <input type="number" id="code" name="Barcode" value="{{ old('Barcode', $product->Barcode) }}" required>
+                <input type="number" id="code" name="Barcode" value="{{ old('Barcode', $product->Barcode) }}">
             </div>
             <div class="form-group">
                 <button type="submit">Update Product</button>

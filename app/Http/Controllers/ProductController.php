@@ -41,7 +41,11 @@ class ProductController extends Controller
             'P_Name' => 'required|string',
             'P_Description' => 'string',
             'P_Units' => 'required|numeric',
-            'P_Price' => 'required|numeric',
+            'P_Price' => [
+                'required',
+                'numeric',
+                'regex:/^\d+(\.\d{1,3})?$/'
+            ],
             'P_Status' => 'required',
             'Barcode' => 'required|numeric'
         ]);

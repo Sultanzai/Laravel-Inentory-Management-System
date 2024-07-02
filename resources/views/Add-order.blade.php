@@ -103,123 +103,132 @@
               </select>
             </div> 
             <div class="row">
-                <div class="col-md-6">
+              <div class="col-md-6">
                   <div class="row">
-                    <label>Description</label> 
+                      <label>Description</label>
                   </div>
                   <div class="row">
-                    <textarea type="text" name="description" id="description">.</textarea>
+                      <textarea type="text" name="description" id="description">.</textarea>
                   </div>
-                </div>
-                <!-- Select Products -->
-                <div class="col-md-6" style="margin-top: -30px;">
-                  <div class="row">            
-                    <label for="products">Products</label></div>
-                    <div class="row"> ID  &nbsp;&nbsp;&nbsp;&nbsp; Name  &nbsp;&nbsp;&nbsp;&nbsp; Available Units</div>
+              </div>
+              <!-- Select Products -->
+              <div class="col-md-6" style="margin-top: -30px;">
                   <div class="row">
-                    <select name="products[]" id="products" multiple required>
-                        @foreach($products as $product)
-                          @if($product->Available_Units > 0)
-                              <option value="{{ $product->ID }}">{{ $product->ID }} &nbsp;&nbsp;&nbsp; {{ $product->P_Name }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $product->Available_Units }}</option>
-                          @endif
-                        @endforeach
-                    </select>
+                      <label for="products">Products</label>
                   </div>
-                </div>
-                
-            </div>
-            <div class="row">
+                  <div class="row"> ID &nbsp;&nbsp;&nbsp;&nbsp; Name &nbsp;&nbsp;&nbsp;&nbsp; Available Units</div>
+                  <div class="row">
+                      <select name="products[]" id="products" multiple required>
+                          @foreach($products as $product)
+                              @if($product->Available_Units > 0)
+                                  <option value="{{ $product->ID }}" data-available-units="{{ $product->Available_Units }}">
+                                      {{ $product->ID }} &nbsp;&nbsp;&nbsp; {{ $product->P_Name }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $product->Available_Units }}
+                                  </option>
+                              @endif
+                          @endforeach
+                      </select>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
               <!-- Enter Prices -->
               <label for="prices">Prices</label>
               <div id="priceInputs"></div>
-            </div>
-            
-            <div class="row">
+          </div>
+          <div class="row">
               <!-- Enter Units -->
               <label for="units">Units</label>
               <div id="unitInputs"></div>
-            </div>
-
-            <div class="row">
+          </div>
+          <div class="row">
               <!-- Enter Units -->
               <label>Total Price</label>
               <div id="totalPrice"></div>
               <input type="hidden" name="totalPrice" id="hiddenTotalPrice">
           </div>
-
           <div class="row">
-            <a href="{{url('/order')}}"><button type="submit" class="element-button2"> <div class="text-wrapper-3"> Submit Order</div></button></a>
+              <a href="{{url('/order')}}">
+                  <button type="submit" class="element-button2">
+                      <div class="text-wrapper-3"> Submit Order</div>
+                  </button>
+              </a>
+          </div>
+          </form>
+          </div>
+          </div>
           </div>
           
-        </form>
-      </div>
-      </div>
-    </div>
-
-
-
-  <script>
-      document.getElementById('products').addEventListener('change', function () {
-        var selectedProducts = Array.from(this.selectedOptions).map(option => option.value);
-        var priceInputs = document.getElementById('priceInputs');
-        var unitInputs = document.getElementById('unitInputs');
-        var totalPriceElement = document.getElementById('totalPrice');
-
-        // Clear previous inputs
-        priceInputs.innerHTML = '';
-        unitInputs.innerHTML = '';
-
-        selectedProducts.forEach(productId => {
-            var priceInput = document.createElement('input');
-            priceInput.type = 'number';
-            priceInput.step = '0.01';
-            priceInput.name = 'prices[' + productId + ']';
-            priceInput.placeholder = 'Price for product ' + productId;
-            priceInput.required = true;
-            priceInput.addEventListener('input', calculateTotalPrice);
-            priceInputs.appendChild(priceInput);
-
-            var unitInput = document.createElement('input');
-            unitInput.type = 'number';
-            unitInput.name = 'units[' + productId + ']';
-            unitInput.placeholder = 'Units for product ' + productId;
-            unitInput.required = true;
-            unitInput.addEventListener('input', calculateTotalPrice);
-            unitInputs.appendChild(unitInput);
-        });
-
-        // Calculate the total price initially
-        calculateTotalPrice();
-    });
-
-    function calculateTotalPrice() {
-        var priceInputs = Array.from(document.querySelectorAll('#priceInputs input'));
-        var unitInputs = Array.from(document.querySelectorAll('#unitInputs input'));
-        var totalPrice = 0;
-
-        priceInputs.forEach((priceInput, index) => {
-            var price = parseFloat(priceInput.value) || 0;
-            var units = parseFloat(unitInputs[index].value) || 0;
-            totalPrice += price * units;
-        });
-
-        var totalPriceElement = document.getElementById('totalPrice');
-        totalPriceElement.textContent = 'Total Price: $' + totalPrice.toFixed(2);
-
-        // Update the hidden input field with the total price
-        document.getElementById('hiddenTotalPrice').value = totalPrice.toFixed(2);
-    }
-
-    // Ensure that the total price element is present in the HTML
-    document.addEventListener('DOMContentLoaded', function () {
-        var totalPriceElement = document.createElement('div');
-        totalPriceElement.id = 'totalPrice';
-        totalPriceElement.textContent = 'Total Price: $0.00';
-        document.body.appendChild(totalPriceElement);
-    });
-
-
-  </script>
+          <script>
+              document.getElementById('products').addEventListener('change', function () {
+                  var selectedProducts = Array.from(this.selectedOptions).map(option => ({
+                      id: option.value,
+                      availableUnits: option.getAttribute('data-available-units')
+                  }));
+                  var priceInputs = document.getElementById('priceInputs');
+                  var unitInputs = document.getElementById('unitInputs');
+                  var totalPriceElement = document.getElementById('totalPrice');
+          
+                  // Clear previous inputs
+                  priceInputs.innerHTML = '';
+                  unitInputs.innerHTML = '';
+          
+                  selectedProducts.forEach(product => {
+                      var priceInput = document.createElement('input');
+                      priceInput.type = 'number';
+                      priceInput.step = '0.01';
+                      priceInput.name = 'prices[' + product.id + ']';
+                      priceInput.placeholder = 'Price for product ' + product.id;
+                      priceInput.required = true;
+                      priceInput.addEventListener('input', calculateTotalPrice);
+                      priceInputs.appendChild(priceInput);
+          
+                      var unitInput = document.createElement('input');
+                      unitInput.type = 'number';
+                      unitInput.name = 'units[' + product.id + ']';
+                      unitInput.placeholder = 'Units for product ' + product.id;
+                      unitInput.required = true;
+                      unitInput.setAttribute('data-available-units', product.availableUnits);
+                      unitInput.addEventListener('input', function() {
+                          if (parseFloat(this.value) > parseFloat(product.availableUnits)) {
+                              alert('Units entered exceed available units for product ' + product.id);
+                              this.value = '';
+                          }
+                          calculateTotalPrice();
+                      });
+                      unitInputs.appendChild(unitInput);
+                  });
+          
+                  // Calculate the total price initially
+                  calculateTotalPrice();
+              });
+          
+              function calculateTotalPrice() {
+                  var priceInputs = Array.from(document.querySelectorAll('#priceInputs input'));
+                  var unitInputs = Array.from(document.querySelectorAll('#unitInputs input'));
+                  var totalPrice = 0;
+          
+                  priceInputs.forEach((priceInput, index) => {
+                      var price = parseFloat(priceInput.value) || 0;
+                      var units = parseFloat(unitInputs[index].value) || 0;
+                      totalPrice += price * units;
+                  });
+          
+                  var totalPriceElement = document.getElementById('totalPrice');
+                  totalPriceElement.textContent = 'Total Price: $' + totalPrice.toFixed(2);
+          
+                  // Update the hidden input field with the total price
+                  document.getElementById('hiddenTotalPrice').value = totalPrice.toFixed(2);
+              }
+          
+              // Ensure that the total price element is present in the HTML
+              document.addEventListener('DOMContentLoaded', function () {
+                  var totalPriceElement = document.createElement('div');
+                  totalPriceElement.id = 'totalPrice';
+                  totalPriceElement.textContent = 'Total Price: $0.00';
+                  document.body.appendChild(totalPriceElement);
+              });
+          </script>
+          
       
 
   {{-- <script>

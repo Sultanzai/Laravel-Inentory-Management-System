@@ -85,7 +85,7 @@
           </div>
           <div class="row">
             <h3>Barcode</h3>
-          <input type="text" name="Barcode" id="barcode-input" placeholder="55555" required>
+          <input type="text" name="Barcode" id="barcode-input">
           </div>
           <div class="row">
             <h3>Description</h3>

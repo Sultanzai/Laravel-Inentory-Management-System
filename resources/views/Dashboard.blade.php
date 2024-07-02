@@ -143,7 +143,7 @@
           <a href="{{url('/customer')}}"><button class="btn2" >Customers</button></a>
           <a href="{{url('/order')}}"><button class="btn2"  >Orders</button></a>
           <a href="{{url('/payment')}}"><button class="btn2" >Payments</button></a>
-          <a href="{{url('/expances')}}"><button class="btn2" >Expances</button></a>
+          <a href="{{url('/expances')}}"><button class="btn2" >Expenses</button></a>
           <a href="{{url('/product')}}"><button class="btn2" >Products</button></a>
         </div>
       </div>
