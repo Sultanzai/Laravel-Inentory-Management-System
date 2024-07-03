@@ -75,7 +75,7 @@
         </div>
 
         {{-- Expances Report --}}
-        <div class="cards" style="margin-top:400px;">
+        <div class="cards" style="margin-top:600px;">
           <div class="card">
             <div class="text-wrapper-15">Daily Expenses</div>
             <div class="text-wrapper-16">${{ $dailyexpances }}</div>
@@ -95,7 +95,7 @@
         </div>
 
         {{-- Payment Report --}}
-        <div class="cards" style="margin-top:600px;">
+        <div class="cards" style="margin-top:800px;">
           <div class="card">
             <div class="text-wrapper-15">Payment Completed</div>
             <div class="text-wrapper-16">${{ $completedPayments }}</div>

@@ -31,10 +31,18 @@
           background-color: #000000;
           color: white;
         }
+        img{
+            width: 200px;
+            height: 200px;
+            margin-left: 41%;
+        }
     </style>
 </head>
 <body>
 <div class="container mt-5">
+    <div class="image">
+        <img src="{{ asset('img/logo.png') }}">
+    </div>
     <div class="invoice-header text-center">
         <h1>Billing Invoice</h1>
         <br>
@@ -52,7 +60,7 @@
                     <strong>Address</strong> {{ $order->Address  }}
                 </div>
                 <div class="col-sm-6 text-right">
-                    <strong>Invoice No.</strong> {{ $order->Order_ID }}<br>
+                    <strong>Invoice No.</strong> {{ $order->Order_ID }}<br><br>
                     <strong>Date </strong> {{ $order->O_Date }}
                 </div>
             </div>
@@ -82,7 +90,7 @@
                     @for($i = 0; $i < $maxRows; $i++)
                         <tr>
                             <td>{{ $productNames[$i] ?? '' }}</td>
-                            <td>{{ $productBarcodes[$i] ?? '' }}</td>
+                            <td>{{ $order->O_Description }}</td>
                             <td>{{ $orderUnits[$i] ?? '' }}</td>
                             <td>${{ $orderPrices[$i] ?? '' }}</td>
                             <td>${{ $orderUnits[$i]*$orderPrices[$i] ?? '' }}</td>
@@ -90,11 +98,11 @@
                     @endfor
                 </tbody>
             </table>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col">
                     <strong>Description </strong> {{ $order->O_Description }}
                 </div>
-            </div>
+            </div> --}}
 
     
     <div class="invoice-footer" style="font-weight: 400; font-size:20px;">

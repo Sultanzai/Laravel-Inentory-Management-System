@@ -88,8 +88,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/order/{id}', [OrderController::class, 'printOrder'])->name('print-order');
     // Route::get('/order/{id}', [OrderController::class, 'show'])->name('Print-order');
     // Route for Updating data
-    Route::get('/orderupdate/{order}', [OrderController::class, 'edit'])->name('orderupdate.edit');
-    Route::post('/orderupdate/{order}', [OrderController::class, 'update'])->name('orderupdate.update');
+    Route::get('/orderupdate/{id}', [OrderController::class, 'edit'])->name('order.edit');
+    Route::put('/orderupdate/{id}', [OrderController::class, 'update'])->name('order.update');
     // Delete Order
     Route::delete('/order/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
 

@@ -108,31 +108,55 @@ class OrderController extends Controller
     }
 
     
-    public function edit($id)
+    public function edit($orderId)
     {
-        $orderupdate = Order::findOrFail($id);
-
-        return view('orderupdate', compact('orderupdate'));
+        $order = OrderView::findOrFail($orderId);
+        $customers = Customers::all();
+        $products = Product::all();
+    
+        // Decode JSON fields safely
+        $orderPrices = json_decode($order->OrderPrices, true);
+        $orderUnits = json_decode($order->OrderUnits, true);
+    
+        // Provide fallback if JSON decoding fails
+        if (is_null($orderPrices)) {
+            $orderPrices = [];
+        }
+        if (is_null($orderUnits)) {
+            $orderUnits = [];
+        }
+    
+        // Get product IDs from decoded prices
+        $order->ProductIDs = array_keys($orderPrices);
+    
+        return view('orderupdate', compact('order', 'customers', 'products', 'orderPrices', 'orderUnits'));
     }
 
-    public function update(Request $request, $id)
+    // Method to update the order
+    public function update(Request $request, $orderId)
     {
-        // Validate the request data
-        $validatedData = $request->validate([
-            'Customer_ID' => 'required|exists:tbl_customer,id',
-            'products' => 'required|array',
-            'products.*' => 'exists:tbl_product,id',
-            'prices' => 'required|array',
-            'prices.*' => 'float|min:0',
-            'units' => 'required|array',
-            'units.*' => 'numeric|min:0'
-        ]);
+        $order = Order::findOrFail($orderId);
 
-        // Find the payment record and update it
-        $updateorder = Order::findOrFail($id);
-        $updateorder->update($validatedData);
+        $order->Customer_ID = $request->Customer_ID;
+        $order->description = $request->description;
 
-        return redirect('/order')->with('success', 'Customer updated successfully');
+        // Update product details
+        $prices = $request->prices;
+        $units = $request->units;
+        $totalPrice = 0;
+
+        foreach ($prices as $productId => $price) {
+            $unit = $units[$productId];
+            $totalPrice += $price * $unit;
+        }
+
+        $order->OrderPrices = json_encode($prices);
+        $order->OrderUnits = json_encode($units);
+        $order->TotalPrice = $totalPrice;
+
+        $order->save();
+
+        return redirect()->route('orders.index')->with('success', 'Order updated successfully.');
     }
     
     public function destroy($id)

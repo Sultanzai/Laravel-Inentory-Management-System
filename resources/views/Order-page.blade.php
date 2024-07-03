@@ -50,12 +50,12 @@
               <div class="navbar">
                   <div class="text-wrapper-5">Name</div>
                   <div class="text-wrapper-6">Invoice No</div>
-                  <div class="text-wrapper-7">Product Name</div>
-                  <div class="text-wrapper-8">Order Prices</div>
-                  <div class="text-wrapper-9">Order Units</div>
-                  <div class="text-wrapper-10" style="margin-left:-40px;">Total Order</div>
+                  <div class="text-wrapper-7" style="width: 500px;">Product Name</div>
+                  {{-- <div class="text-wrapper-8">Order Prices</div>
+                  <div class="text-wrapper-9">Order Units</div> --}}
+                  <div class="text-wrapper-10" style="margin-left:0px;">Total Order</div>
                   <div class="text-wrapper-11" style="margin-left:-20px;">Date</div>
-                  <div class="text-wrapper-12" style="margin-left: -10px;"></div>
+                  <div class="text-wrapper-12" style="margin-left: -10px;">Edit</div>
                   <div class="text-wrapper-12" style="margin-left: -20px;">Print</div>
                   <div class="text-wrapper-12" style="margin-left: -20px;">Delete</div>
               </div>
@@ -63,15 +63,15 @@
               <div class="task">
                   <div class="text-wrapper-12">{{ $order->Customer_Name }}</div>
                   <div class="text-wrapper-13">{{ $order->Order_ID }}</div>
-                  <div class="text-wrapper-14" style="overflow: hidden;">{{ $order->ProductNames }}</div>
-                  <p class="p">{{ $order->OrderPrices }}</p>
-                  <div class="text-wrapper-15">{{ $order->OrderUnits }}</div>
-                  <div class="pill" style="margin-left:-50px;">
+                  <div class="text-wrapper-14" style="overflow: hidden; width: 500px;">{{ $order->ProductNames }}</div>
+                  {{-- <p class="p">{{ $order->OrderPrices }}</p>
+                  <div class="text-wrapper-15">{{ $order->OrderUnits }}</div> --}}
+                  <div class="pill" style="margin-left:0px;">
                       <div class="tag"><div class="label-2">$ {{ $order->TotalPrice }}</div></div>
                   </div>
                   <div class="tag-wrapper">
                       <div class="label-wrapper" style="margin-left:-80px; width:50px;"><div class="label-2">{{ $order->O_Date }}</div></div>
-                      {{-- <div class="text-wrapper" style="margin-left:80px; margin-top:-25px;" onclick="updateview({{ $order->Order_ID }})"><i class="fa fa-edit" style="font-size:20px"></i></div> --}}
+                      <div class="text-wrapper" style="margin-left:80px; margin-top:-25px;" onclick="updateview({{ $order->Order_ID }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
                       <div class="text-wrapper" style="margin-left:145px; margin-top:-25px;" onclick="viewOrder({{ $order->Order_ID }})"><i class="fa fa-print" style="font-size:20px"></i></div>
                       <form id="delete-form-{{ $order->Order_ID }}" action="{{ route('order.destroy', $order->Order_ID) }}" method="POST" style="display:inline;">
                         @csrf
