@@ -94,7 +94,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/order/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
 
 
-
     // PAYMENT ROUTES
     Route::get('payment', [PaymentController::class, 'showCombinedData'])->name('payment');
     // Route for Updating Payment Form
@@ -117,6 +116,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/Product/{product}', [ProductController::class, 'destroy'])->name('Product.destroy');
     Route::get('addstock', [ProductController::class, 'create'])->name('addstock');
     Route::post('/addStock', [ProductController::class, 'addStock'])->name('addStock');
+    Route::get('/print-products', [ProductController::class, 'print']);
+
 
     Route::post('/productform', function () {
         Product::create([
@@ -129,4 +130,13 @@ Route::middleware(['auth'])->group(function () {
         ]);
         return redirect('/product');
     });
+
+
+
+    // Reports 
+    Route::get('/SalesReport', function () { return view('SalesReport'); })->name('SalesReport');
+
+
+
+
 });

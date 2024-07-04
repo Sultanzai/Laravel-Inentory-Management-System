@@ -101,7 +101,7 @@
             <div class="text-wrapper-16">${{ $completedPayments }}</div>
           </div>
           <div class="card-2">
-            <div class="text-wrapper-15">Check Remaining</div>
+            <div class="text-wrapper-15">Cheque Remaining</div>
             <div class="text-wrapper-16"  style="color: red">${{ $Underprocess }}</div>
           </div>
           <div class="card-3">

@@ -15,6 +15,13 @@ class ProductController extends Controller
         return view('product-page')->with('product', $products);
     }
 
+    public function print()
+    {
+        $products = ProductOrderDetailView::all();
+        $products = $products->sortByDesc('ID');
+        return view('Print-products')->with('product', $products);
+    }
+
     public function create()
     {
         $products = Product::all();

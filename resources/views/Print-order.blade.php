@@ -71,7 +71,7 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Barcode</th>
+                        <th>Description</th>
                         <th>Unit</th>
                         <th>Prices</th>
                         <th>Total Price</th>

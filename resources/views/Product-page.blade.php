@@ -87,6 +87,7 @@
       </div>
       <a href="{{url('/productform')}}"><div class="element-button-2" style="margin-top: -60px; margin-left:-35px;"><button class="mybtn">Add New Product</button></div></a>
       <a href="{{url('/addstock')}}"><div class="element-button-2" style="margin-left:-35px;"><button class="mybtn">Insert Stock</button></div></a>
+      <a href="{{url('/print-products')}}"><div class="element-button-2" style="margin-left:-35px; margin-top: -200px;"><button class="mybtn">Report</button></div></a>
     </div>
 {{-- Script for displaying data in view --}}
     <script>
