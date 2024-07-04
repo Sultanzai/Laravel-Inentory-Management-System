@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Details</title>
+    <title>Payment Details</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -12,7 +12,7 @@
                 display: none;
             }
         }
-        input{
+        input {
             padding: 20px;
         }
         .table td {
@@ -21,7 +21,7 @@
             white-space: normal;
             overflow: hidden;
             text-overflow: ellipsis;
-            width: 10px; /* Adjust the max-width as needed */
+            max-width: 150px; /* Adjust the max-width as needed */
         }
         .invoice-header {
             margin-bottom: 20px;
@@ -39,8 +39,8 @@
             margin-top: 20px;
         }
         .btn {
-          background-color: #000000;
-          color: white;
+            background-color: #000000;
+            color: white;
         }
         img {
             width: 200px;
@@ -56,7 +56,7 @@
 <body>
 <div class="container mt-5">
     <div class="row" style="font-size: 20px;">  
-        <h3>Sales Report</h3>
+        <h3>Payment Report</h3>
     </div>
     <div>
         <div class="card-body">
@@ -71,37 +71,49 @@
                     <button class="btn btn-primary" onclick="filterReports()">Filter</button>
                 </div>
             </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <input id="searchInput" class="form-control" placeholder="Search..." type="text" onkeyup="filterOrders()" />
+                </div>
+            </div>
         </div>
     </div>
     
     <table class="table table-bordered invoice-table">
         <thead>
-            <tr>
-                <th>Invoice</th>
+            <tr class="list-2">
+                <th>PaymentID</th>
                 <th>Name</th>
-                <th>Product</th>
-                <th>Total Price</th>
+                <th>Invoice</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Order Amount</th>
+                <th>Remaining</th>
                 <th>Date</th>
             </tr>
         </thead>
         <tbody id="reportTableBody">
-            @foreach ($orders as $ord)
-            <tr>
-                <td>{{ $ord->Order_ID }}</td>
-                <td>{{ $ord->Customer_Name }}</td>
-                <td style="width: 200px;">{{ $ord->ProductNames }}</td>
-                <td class="totalPrice">{{ $ord->TotalPrice }}</td>
-                <td class="orderDate">{{ $ord->O_Date }}</td>
+            @foreach ($sortedData as $sort)
+            @php
+                $statusColor = '';
+                if ($sort['P_Status'] == 'Under Process' || $sort['P_Status'] == 'Unpaid') {
+                    $statusColor = 'color: red;';
+                } elseif ($sort['P_Status'] == 'Completed') {
+                    $statusColor = 'color: green;';
+                }
+            @endphp
+            <tr class="task">
+                <td>{{ $sort['PaymentID'] }}</td>
+                <td>{{ $sort['Customer_Name'] }}</td>
+                <td>{{ $sort['Order_ID'] }}</td>
+                <td>{{ $sort['P_Type'] }}</td>
+                <td style="{{ $statusColor }}">{{ $sort['P_Status'] }}</td>
+                <td class="totalPrice">{{ $sort['TotalPrice'] }}</td>
+                <td>{{ $sort['P_Remining'] }}</td>
+                <td class="orderDate">{{ $sort['P_Date'] }}</td>
             </tr>
             @endforeach
         </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3"><strong>Total Amount/ Total Order</strong></td>
-                <td id="totalAmount"></td>
-                <td id="totalOrders"></td>
-            </tr>
-        </tfoot>
     </table>
 
     <div class="mt-4 no-print" style="padding-bottom:100px;">
@@ -124,8 +136,6 @@
     function filterReports() {
         const startDate = new Date($('#startDate').val());
         const endDate = new Date($('#endDate').val());
-        let totalAmount = 0;
-        let totalOrders = 0;
 
         $('#reportTableBody tr').each(function() {
             const orderDate = new Date($(this).find('.orderDate').text());
@@ -133,15 +143,27 @@
 
             if (orderDate >= startDate && orderDate <= endDate) {
                 $(this).show();
-                totalAmount += totalPrice;
-                totalOrders += 1;
             } else {
                 $(this).hide();
             }
         });
+    }
 
-        $('#totalAmount').text(totalAmount.toFixed(2));
-        $('#totalOrders').text(totalOrders);
+    function filterOrders() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toUpperCase();
+        const tasks = document.getElementsByClassName('task');
+
+        for (let i = 0; i < tasks.length; i++) {
+            const task = tasks[i];
+            const txtValue = task.textContent || task.innerText;
+
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                task.style.display = "";
+            } else {
+                task.style.display = "none";
+            }
+        }
     }
 </script>
 </body>

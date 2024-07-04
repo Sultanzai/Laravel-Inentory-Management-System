@@ -50,6 +50,37 @@ class PaymentController extends Controller
         return view('Payment-Page', compact('sortedData'));
     }
 
+    public function Report()
+    {
+        // Fetch payments
+        $payments = Payment::all();
+    
+        // Fetch order view data
+        $orderViews = OrderView::all();
+    
+        // Combine the data
+        $combinedData = $payments->map(function ($payment) use ($orderViews) {
+            $orderView = $orderViews->firstWhere('Order_ID', $payment->Order_ID);
+            return [
+                'PaymentID' => $payment->id,
+                'P_Amount' => $payment->P_Amount,
+                'P_Remining' => $payment->P_Remining,
+                'P_Type' => $payment->P_Type,
+                'P_Status' => $payment->P_Status,
+                'P_Date' => $payment->P_Date,
+                'Order_ID' => $payment->Order_ID,
+                'Customer_Name' => $orderView ? $orderView->Customer_Name : null,
+                'ProductNames' => $orderView ? $orderView->ProductNames : null,
+                'TotalPrice' => $orderView ? $orderView->TotalPrice : null,
+            ];
+        });
+    
+        // Sort by P_Date in descending order
+        $sortedData = $combinedData->sortByDesc('PaymentID');
+    
+        return view('PaymentReport', compact('sortedData'));
+    }
+
     // Updating Payment Tables 
     public function edit($id)
     {

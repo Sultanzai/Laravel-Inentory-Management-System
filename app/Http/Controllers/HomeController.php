@@ -30,9 +30,9 @@ class HomeController extends Controller
             ->value('total_Available_Units');    
 
         // Order Count
-        $dailyOrders = Order::whereDate('created_at', today())->count();
-        $weeklyOrders = Order::whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])->count();
-        $monthlyOrders = Order::whereMonth('created_at', now()->month)->count();
+        $dailyOrders = Order::whereDate('O_Date', today())->count();
+        $weeklyOrders = Order::whereBetween('O_Date', [now()->startOfWeek(), now()->endOfWeek()])->count();
+        $monthlyOrders = Order::whereMonth('O_Date', now()->month)->count();
         $totalOrders = Order::count();
        
         // Sales Count

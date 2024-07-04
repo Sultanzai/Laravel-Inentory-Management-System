@@ -134,8 +134,8 @@ Route::middleware(['auth'])->group(function () {
 
 
     // Reports 
-    Route::get('/SalesReport', function () { return view('SalesReport'); })->name('SalesReport');
-
+    Route::get('/SalesReport', [OrderController::class, 'report']);
+    Route::get('/PaymentReport', [PaymentController::class, 'report']);
 
 
 
