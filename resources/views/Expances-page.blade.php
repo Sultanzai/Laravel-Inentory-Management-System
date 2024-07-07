@@ -85,7 +85,8 @@
 
           </div>
         </div>
-        <a href="{{url('/expancesform')}}"><div class="element-button-2"><button class="mybtn">Add New Expenses</button></div></a>
+        <a href="{{url('/expancesform')}}"><div class="element-button-2" style="margin-top: 210px; margin-left:-60px;"><button class="mybtn">Add New Expenses</button></div></a>
+        <a href="{{url('/ExpensesReport')}}"><div class="element-button-2" style="margin-top: 20px; margin-left:-60px; color:white;><button class="mybtn">Report</button></div></a>
       </div>
     </div>
 

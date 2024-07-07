@@ -23,6 +23,12 @@ class OrderController extends Controller
         return view('Order-page', compact('orders'));
 
     }
+    public function Report(){
+
+        $orders = OrderView::orderBy('Order_ID', 'desc')->get();
+        return view('SalesReport', compact('orders'));
+
+    }
     // Funtion to pass print data 
     public function printOrder($id)
     {

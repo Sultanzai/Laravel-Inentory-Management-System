@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Details</title>
+    <title>Expenses Report</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -21,7 +21,7 @@
             white-space: normal;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 50px; /* Adjust the max-width as needed */
+            max-width: 150px; /* Adjust the max-width as needed */
         }
         .invoice-header {
             margin-bottom: 20px;
@@ -56,7 +56,7 @@
 <body>
 <div class="container mt-5">
     <div class="row" style="font-size: 20px;">  
-        <h3>Sales Report</h3>
+        <h3>Expenses Report</h3>
     </div>
     <div>
         <div class="card-body">
@@ -82,35 +82,29 @@
     <table class="table table-bordered invoice-table">
         <thead>
             <tr class="list-2">
-                <th>Invoice</th>
+                <th>ID</th>
                 <th>Name</th>
-                <th style="width: 450px;">Product</th>
-                <th>Total Price</th>
+                <th>Description</th>
+                <th>Amount</th>
                 <th>Date</th>
             </tr>
         </thead>
         <tbody id="reportTableBody">
-            @foreach ($orders as $ord)
+            @foreach ($expances as $exp)
             <tr class="task">
-                <td>{{ $ord->Order_ID }}</td>
-                <td>{{ $ord->Customer_Name }}</td>
-                <td style="width: 450px;">{{ $ord->ProductNames }}</td>
-                <td class="totalPrice">{{ $ord->TotalPrice }}</td>
-                <td class="orderDate">{{ $ord->O_Date }}</td>
+                <td>{{ $exp->id }}</td>
+                <td>{{ $exp->E_Name }}</td>
+                <td>{{ $exp->E_Descriptio }}</td>
+                <td>{{ $exp->E_Amount }}</td>
+                <td>{{ $exp->E_Date }}</td>
+                
             </tr>
             @endforeach
         </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3"><strong>Total Amount/ Total Order</strong></td>
-                <td id="totalAmount"></td>
-                <td id="totalOrders"></td>
-            </tr>
-        </tfoot>
     </table>
 
     <div class="mt-4 no-print" style="padding-bottom:100px;">
-        <a href="{{ url('/order') }}" class="btn">Back</a>
+        <a href="{{ url('/product') }}" class="btn">Back</a>
         <button onclick="window.print()" class="btn">Print</button>
     </div>
 </div>

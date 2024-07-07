@@ -14,6 +14,13 @@ class ExpancesController extends Controller
         $expances = $expances->sortByDesc('id');
         return view('Expances-page')->with('expances', $expances);
     }
+ 
+    public function report()
+    {
+        $expances = Expances::all();
+        $expances = $expances->sortByDesc('id');
+        return view('ExpensesReport')->with('expances', $expances);
+    }
     public function edit($id)
     {
         $expances = Expances::findOrFail($id);
