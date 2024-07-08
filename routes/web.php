@@ -8,11 +8,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ExpancesController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Models\Customers;
 use App\Models\Expances;
 use App\Models\Payment;
+use App\Models\Company;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -131,7 +133,22 @@ Route::middleware(['auth'])->group(function () {
         return redirect('/product');
     });
 
+    // Comapny Pages
+    Route::get('AddCompany', [PageController::class, 'AddCompany'])->name('AddCompany');
 
+    Route::get('/Company-page', [CompanyController::class, 'index']);
+    // Add payment
+    Route::post('/AddCompany', function () {
+        Company::create([
+            'C_Name' => request('companyname'),
+            'C_Phone' => request('phone'),
+            'C_Description' => request('description'),
+            'C_Status' => request('status'),
+            'C_Type' => request('Type'),
+            'C_Amount' => request('amount'),
+        ]);
+        return redirect('/Company-page');
+    });
 
     // Reports 
     Route::get('/SalesReport', [OrderController::class, 'report']);
