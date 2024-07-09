@@ -78,11 +78,12 @@
           <a href="{{url('/dashboard')}}"><div class="text-wrapper-17">Dashboard </div></a>
         </div>
         <div class="segmented-control">
-          <a href="{{url('/customer')}}"><button class="btn2" >Customers</button></a>
-          <a href="{{url('/order')}}"><button class="btn2"  >Orders</button></a>
+          <a href="{{url('/customer')}}"><button class="btn2">Customers</button></a>
+          <a href="{{url('/order')}}"><button class="btn2">Orders</button></a>
           <a href="{{url('/payment')}}"><button class="btn2" >Payments</button></a>
           <a href="{{url('/expances')}}"><button class="btn2" >Expenses</button></a>
           <a href="{{url('/product')}}"><button class="btn2" >Products</button></a>
+          <a href="{{url('/Company-page')}}"><button class="btn2" >Company</button></a>
         </div>
       </div>
       <a href="{{url('/productform')}}"><div class="element-button-2" style="margin-top: -60px; margin-left:-35px;"><button class="mybtn">Add New Product</button></div></a>

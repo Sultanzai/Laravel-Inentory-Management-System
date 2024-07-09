@@ -8,11 +8,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ExpancesController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Models\Customers;
 use App\Models\Expances;
 use App\Models\Payment;
+use App\Models\Company;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -132,11 +134,33 @@ Route::middleware(['auth'])->group(function () {
     });
 
 
+    // Comapny Pages
+    Route::get('AddCompany', [PageController::class, 'AddCompany'])->name('AddCompany');
+    // Delete company bill 
+    Route::delete('/Company-page/{company}', [CompanyController::class, 'destroy'])->name('Company-page.destroy');
+    // Update Company bill
+    Route::get('/updatecompany/{bill}', [CompanyController::class, 'edit'])->name('company.edit');
+    Route::post('/updatecompany/{bill}', [CompanyController::class, 'update'])->name('company.update');
+
+    Route::get('/Company-page', [CompanyController::class, 'index']);
+    // Add payment
+    Route::post('/AddCompany', function () {
+        Company::create([
+            'C_Name' => request('companyname'),
+            'C_Phone' => request('phone'),
+            'C_Description' => request('description'),
+            'C_Status' => request('status'),
+            'C_Type' => request('Type'),
+            'C_Amount' => request('amount'),
+        ]);
+        return redirect('/Company-page');
+    });
 
     // Reports 
     Route::get('/SalesReport', [OrderController::class, 'report']);
     Route::get('/PaymentReport', [PaymentController::class, 'report']);
     Route::get('/ExpensesReport', [ExpancesController::class, 'report']);
+    Route::get('/CompanyReport', [CompanyController::class, 'report']);
 
 
 

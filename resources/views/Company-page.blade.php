@@ -43,7 +43,7 @@
           <a href="{{url('/dashboard')}}"><div class="text-wrapper-2">Dashboard </div></a>
         </div>
         <div class="list">
-          <div class="text-wrapper-4">Customer</div>
+          <div class="text-wrapper-4">Company</div>
           <div class="search">
             <img class="img" src="img/search.svg" />
             <input id="searchInput" class="label" placeholder="Search..." type="text" onkeyup="filterOrders()" />
@@ -52,27 +52,31 @@
             <div class="navbar">
               <div class="text-wrapper-5">ID</div>
               <div class="text-wrapper-6">Name</div>
-              <div class="text-wrapper-7">Address</div>
-              <div class="text-wrapper-8">Contact</div>
-              <div class="text-wrapper-9">Balance</div>
-              <div class="text-wrapper-9" style="margin-left: 50px;">Edit</div>
+              <div class="text-wrapper-7">Phone</div>
+              <div class="text-wrapper-8" style="margin-left:-80px;">Status</div>
+              <div class="text-wrapper-9" style="margin-left:-100px;">Type</div>
+              <div class="text-wrapper-9" style="margin-left:50px;">Amount</div>
+              <div class="text-wrapper-9" style="margin-left: 80px;">Edit</div>
               <div class="text-wrapper-9">Delete</div>
             </div>
 {{-- Displaying Record from database --}}
-            @foreach ($customer as $cus)
+            @foreach ($company as $comp)
               <div class="task">
-                <div class="text-wrapper-10">{{ $cus->id }}</div>
-                <div class="text-wrapper-11">{{ $cus->Name }}</div>
-                <p class="p">{{ $cus->Address }}</p>
-                <div class="text-wrapper-12">{{ $cus->Phone }}</div>
+                <div class="text-wrapper-10">{{ $comp->id }}</div>
+                <div class="text-wrapper-11">{{ $comp->C_Name }}</div>
+                <p class="p">{{ $comp->C_Phone }}</p>
+                <div class="text-wrapper-12" style="margin-left:-80px;">{{ $comp->C_Status }}</div>
+                <div class="text-wrapper-13" style="margin-left:-100px; width: 50px; color:#909090; font-size:14px;">{{ $comp->C_Type }}</div>
                 <div class="pill">
-                  <div class="tag"><div class="label-2">${{ $cus->Balance }}</div></div>
-                  <div class="text-wrapper-14" style="margin-left:150px; margin-top:-20px; color:black;" onclick="viewPayment({{ $cus->id  }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
+                  <div class="tag"  style="margin-left:85px; width:80px; text-align: left;">
+                    <div class="label-2">${{ $comp->C_Amount }}</div>
+                  </div>
+                  <div class="text-wrapper-14" style="margin-left:270px; margin-top:-20px; color:black;" onclick="viewcompany({{ $comp->id  }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
                   @method('DELETE')
-                  <form id="delete-form-{{ $cus->id }}" action="{{ route('customers.destroy', $cus->id) }}" method="POST" style="display:inline;">
+                  <form id="delete-form-{{ $comp->id }}" action="{{ route('Company-page.destroy', $comp->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
-                    <div class="text-wrapper-15" style="margin-left:250px; margin-top:-20px; color:black;" onclick="confirmDelete({{ $cus->id }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
+                    <div class="text-wrapper-15" style="margin-left:370px; margin-top:-20px; color:black;" onclick="confirmDelete({{ $comp->id }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
                   </form>
 
                 </div>
@@ -81,8 +85,9 @@
 
           </div>
         </div>
-        
-        <a href="{{url('/customerform')}}"><div class="element-button-2"><button class="mybtn" >Add New Customer</button></div></a>
+        A
+        <a href="{{url('/AddCompany')}}"><div class="element-button-2"><button class="mybtn" >Add Invoice</button></div></a>
+        <a href="{{url('/CompanyReport')}}"><div class="element-button-2" style="margin-top:-215px;"><button class="mybtn" >Report</button></div></a>
         
 
 
@@ -113,8 +118,8 @@
           }
 
           // Route for updating on click event
-          function viewPayment(customerid) {
-            window.location.href = '/customerupdate/' + customerid;
+            function viewcompany(Billid) {
+            window.location.href = '/updatecompany/' + Billid;
         }
 
         function confirmDelete(customerId) {

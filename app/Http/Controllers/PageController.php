@@ -6,10 +6,6 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function dashboard()
-    {
-        return view('Dashboard');
-    }
     //Customer form controller functions
     public function customerform()
     {
@@ -25,8 +21,8 @@ class PageController extends Controller
      {
          return view('Add-product');
      }
-     public function addstock()
+     public function AddCompany()
      {
-         return view('Add-stock');
+         return view('Add-Comapny');
      }
 }

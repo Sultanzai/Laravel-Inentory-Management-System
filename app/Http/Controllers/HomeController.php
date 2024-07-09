@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
+use App\Models\Company;
 use App\Models\OrderView;
 use App\Models\Expances;
 use App\Models\ProductOrderDetailView;
@@ -34,7 +35,7 @@ class HomeController extends Controller
         $weeklyOrders = Order::whereBetween('O_Date', [now()->startOfWeek(), now()->endOfWeek()])->count();
         $monthlyOrders = Order::whereMonth('O_Date', now()->month)->count();
         $totalOrders = Order::count();
-       
+
         // Sales Count
         $dailySales = DB::table('Order_View')
         ->whereDate('O_Date', today())
@@ -53,6 +54,25 @@ class HomeController extends Controller
         // Calculate total sales
         $totalSales = DB::table('Order_View')
             ->sum('TotalPrice');
+
+        // Company Bills 
+        $dailybill = DB::table('tbl_company')
+        ->whereDate('created_at', today())
+        ->sum('C_Amount');
+
+        // Calculate weekly sales
+        $weeklybill = DB::table('tbl_company')
+            ->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])
+            ->sum('C_Amount');
+
+        // Calculate monthly sales
+        $monthlybill = DB::table('tbl_company')
+            ->whereMonth('created_at', now()->month)
+            ->sum('C_Amount');
+
+        // Calculate total sales
+        $totalbill = DB::table('tbl_company')
+            ->sum('C_Amount');
 
 
         // Expances Count
@@ -90,7 +110,9 @@ class HomeController extends Controller
 
 
         // Revenue 
-        $Revenue = $totalSales + $totalAvailiableValue - $totalexpances;
+        $Revenue = $totalSales + $totalAvailiableValue - $totalexpances - $totalbill;
+        $TotalRevenue = $totalSales + $totalAvailiableValue - $totalexpances;
+
 
 
         // Pass the data to the view
@@ -99,8 +121,9 @@ class HomeController extends Controller
             'dailyOrders', 'weeklyOrders', 'monthlyOrders','totalOrders',
             'totalproducts', 'totalavailableproducts', 'totalValue', 'totalAvailiableValue',
             'dailySales','weeklySales','monthlySales','totalSales',
-            'completedPayments','Underprocess','Unpaid','Revenue',
-            'dailyexpances','weeklyexpances','monthlyexpances','totalexpances'
+            'completedPayments','Underprocess','Unpaid','Revenue','TotalRevenue',
+            'dailyexpances','weeklyexpances','monthlyexpances','totalexpances',
+            'dailybill','weeklybill','monthlybill','totalbill'
 
         ));
     }
