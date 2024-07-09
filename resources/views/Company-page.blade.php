@@ -21,7 +21,7 @@
           <a href="{{url('/payment')}}"><button class="btn2" >Payments</button></a>
           <a href="{{url('/expances')}}"><button class="btn2" >Expenses</button></a>
           <a href="{{url('/product')}}"><button class="btn2" >Products</button></a>
-          <a href="{{url('/product')}}"><button class="btn2" >Company</button></a>
+          <a href="{{url('/Company-page')}}"><button class="btn2" >Company</button></a>
         </div>
         <div class="navigation">
           <div class="avatar">
@@ -66,17 +66,17 @@
                 <div class="text-wrapper-11">{{ $comp->C_Name }}</div>
                 <p class="p">{{ $comp->C_Phone }}</p>
                 <div class="text-wrapper-12" style="margin-left:-80px;">{{ $comp->C_Status }}</div>
-                <div class="text-wrapper-13" style="margin-left:-100px; color:#909090; font-size:14px;">{{ $comp->C_Type }}</div>
+                <div class="text-wrapper-13" style="margin-left:-100px; width: 50px; color:#909090; font-size:14px;">{{ $comp->C_Type }}</div>
                 <div class="pill">
-                  <div class="tag"  style="margin-left:105px; text-align: left;">
+                  <div class="tag"  style="margin-left:85px; width:80px; text-align: left;">
                     <div class="label-2">${{ $comp->C_Amount }}</div>
                   </div>
-                  <div class="text-wrapper-14" style="margin-left:290px; margin-top:-20px; color:black;" onclick="viewPayment({{ $comp->id  }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
+                  <div class="text-wrapper-14" style="margin-left:270px; margin-top:-20px; color:black;" onclick="viewcompany({{ $comp->id  }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
                   @method('DELETE')
-                  <form id="delete-form-{{ $comp->id }}" action="" method="POST" style="display:inline;">
+                  <form id="delete-form-{{ $comp->id }}" action="{{ route('Company-page.destroy', $comp->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
-                    <div class="text-wrapper-15" style="margin-left:390px; margin-top:-20px; color:black;" onclick="confirmDelete({{ $comp->id }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
+                    <div class="text-wrapper-15" style="margin-left:370px; margin-top:-20px; color:black;" onclick="confirmDelete({{ $comp->id }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
                   </form>
 
                 </div>
@@ -117,8 +117,8 @@
           }
 
           // Route for updating on click event
-          function viewPayment(customerid) {
-            window.location.href = '/customerupdate/' + customerid;
+            function viewcompany(Billid) {
+            window.location.href = '/updatecompany/' + Billid;
         }
 
         function confirmDelete(customerId) {

@@ -81,11 +81,12 @@
         </div>
 
         <div class="segmented-control">
-          <a href="{{url('/customer')}}"><button class="btn2" >Customers</button></a>
-          <a href="{{url('/order')}}"><button class="btn2"  >Orders</button></a>
+          <a href="{{url('/customer')}}"><button class="btn2">Customers</button></a>
+          <a href="{{url('/order')}}"><button class="btn2">Orders</button></a>
           <a href="{{url('/payment')}}"><button class="btn2" >Payments</button></a>
           <a href="{{url('/expances')}}"><button class="btn2" >Expenses</button></a>
           <a href="{{url('/product')}}"><button class="btn2" >Products</button></a>
+          <a href="{{url('/Company-page')}}"><button class="btn2" >Company</button></a>
         </div>
         <a href="{{url('/PaymentReport')}}"><div class="element-button-2" style="margin-top: -200px; margin-left: -20px;"><button class="mybtn">Report</button></div></a>
         <a href="{{url('/Paymentform')}}"><div class="element-button-2" style="margin-top: 0px; margin-left: -20px;"><button class="mybtn">Add Invoice</button></div></a>

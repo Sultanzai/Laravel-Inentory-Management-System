@@ -133,8 +133,14 @@ Route::middleware(['auth'])->group(function () {
         return redirect('/product');
     });
 
+
     // Comapny Pages
     Route::get('AddCompany', [PageController::class, 'AddCompany'])->name('AddCompany');
+    // Delete company bill 
+    Route::delete('/Company-page/{company}', [CompanyController::class, 'destroy'])->name('Company-page.destroy');
+    // Update Company bill
+    Route::get('/updatecompany/{bill}', [CompanyController::class, 'edit'])->name('company.edit');
+    Route::post('/updatecompany/{bill}', [CompanyController::class, 'update'])->name('company.update');
 
     Route::get('/Company-page', [CompanyController::class, 'index']);
     // Add payment
