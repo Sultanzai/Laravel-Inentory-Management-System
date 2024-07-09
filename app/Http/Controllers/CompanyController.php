@@ -12,16 +12,15 @@ class CompanyController extends Controller
         $company = Company::all();
         return view('Company-page')->with('company',$company);
     }
-<<<<<<< HEAD
+
     
     public function Report()
     {
         $company = Company::all();
         return view('CompanyReport')->with('company',$company);
     }
-    
-=======
->>>>>>> 5f6be0a9118c740d2be776789a2d39bc2c44e702
+
+
     public function destroy($id)
     {
         $company = Company::findOrFail($id);
