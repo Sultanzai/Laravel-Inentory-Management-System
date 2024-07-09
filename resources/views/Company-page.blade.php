@@ -85,9 +85,14 @@
 
           </div>
         </div>
+<<<<<<< HEAD
         A
         <a href="{{url('/AddCompany')}}"><div class="element-button-2"><button class="mybtn" >Add Invoice</button></div></a>
         <a href="{{url('/CompanyReport')}}"><div class="element-button-2" style="margin-top:-215px;"><button class="mybtn" >Report</button></div></a>
+=======
+        
+        <a href="{{url('/AddCompany')}}"><div class="element-button-2"><button class="mybtn" >Add Invoice</button></div></a>
+>>>>>>> 5f6be0a9118c740d2be776789a2d39bc2c44e702
         
 
 
