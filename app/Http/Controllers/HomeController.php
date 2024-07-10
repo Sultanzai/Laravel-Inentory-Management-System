@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use App\Models\Company;
+use App\Models\ProductPriceView;
 use App\Models\OrderView;
 use App\Models\Expances;
 use App\Models\ProductOrderDetailView;
@@ -20,7 +21,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        // Product Count
+        // Product Count/////////////////////////////////////////////////////////////////////////////////////////////
         $totalproducts = ProductOrderDetailView::sum('P_Units');
         $totalavailableproducts = ProductOrderDetailView::sum('Available_Units');
         $totalValue = DB::table('view_product_orderdetails')
@@ -30,23 +31,21 @@ class HomeController extends Controller
             ->select(DB::raw('SUM(Available_Units * P_Price) as total_Available_Units'))
             ->value('total_Available_Units');    
 
-        // Order Count
+        // Order Count/////////////////////////////////////////////////////////////////////////////////////////////
         $dailyOrders = Order::whereDate('O_Date', today())->count();
         $weeklyOrders = Order::whereBetween('O_Date', [now()->startOfWeek(), now()->endOfWeek()])->count();
         $monthlyOrders = Order::whereMonth('O_Date', now()->month)->count();
         $totalOrders = Order::count();
 
-        // Sales Count
+        // Sales Count/////////////////////////////////////////////////////////////////////////////////////////////
         $dailySales = DB::table('Order_View')
         ->whereDate('O_Date', today())
         ->sum('TotalPrice');
 
-        // Calculate weekly sales
         $weeklySales = DB::table('Order_View')
             ->whereBetween('O_Date', [now()->startOfWeek(), now()->endOfWeek()])
             ->sum('TotalPrice');
 
-        // Calculate monthly sales
         $monthlySales = DB::table('Order_View')
             ->whereMonth('O_Date', now()->month)
             ->sum('TotalPrice');
@@ -55,17 +54,15 @@ class HomeController extends Controller
         $totalSales = DB::table('Order_View')
             ->sum('TotalPrice');
 
-        // Company Bills 
+        // Company Bills /////////////////////////////////////////////////////////////////////////////////////////////
         $dailybill = DB::table('tbl_company')
         ->whereDate('created_at', today())
         ->sum('C_Amount');
 
-        // Calculate weekly sales
         $weeklybill = DB::table('tbl_company')
             ->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])
             ->sum('C_Amount');
 
-        // Calculate monthly sales
         $monthlybill = DB::table('tbl_company')
             ->whereMonth('created_at', now()->month)
             ->sum('C_Amount');
@@ -75,28 +72,47 @@ class HomeController extends Controller
             ->sum('C_Amount');
 
 
-        // Expances Count
+        // Net Profit /////////////////////////////////////////////////////////////////////////////////////////////
+        $dailyprofit = DB::table('product_price_view')
+        ->whereDate('latest_order_date', today())
+        ->selectRaw('SUM(P_Price * O_unit) as total')
+        ->value('total');
+    
+        $weeklyprofit = DB::table('product_price_view')
+            ->whereBetween('latest_order_date', [now()->startOfWeek(), now()->endOfWeek()])
+            ->selectRaw('SUM(P_Price * O_unit) as total')
+            ->value('total');
+        
+        $monthlyprofit = DB::table('product_price_view')
+            ->whereMonth('latest_order_date', now()->month)
+            ->selectRaw('SUM(P_Price * O_unit) as total')
+            ->value('total');
+        
+        // Calculate total sales
+        $totalprofit = DB::table('product_price_view')
+            ->selectRaw('SUM(P_Price * O_unit) as total')
+            ->value('total');
+
+
+        // Expances Count/////////////////////////////////////////////////////////////////////////////////////////////
         $dailyexpances = DB::table('tbl_expances')
         ->whereDate('E_Date', today())
         ->sum('E_Amount');
 
-        // Calculate weekly Expances
         $weeklyexpances = DB::table('tbl_expances')
             ->whereBetween('E_Date', [now()->startOfWeek(), now()->endOfWeek()])
             ->sum('E_Amount');
 
-        // Calculate monthly Expances
         $monthlyexpances = DB::table('tbl_expances')
             ->whereMonth('E_Date', now()->month)
             ->sum('E_Amount');
 
-        // Calculate total Expnaces
         $totalexpances = DB::table('tbl_expances')
             ->sum('E_Amount');
 
 
 
-        // Payment Count 
+        // Payment Count /////////////////////////////////////////////////////////////////////////////////////////////
         $completedPayments = DB::table('tbl_payment')
             ->where('P_status', 'Completed')
             ->sum('P_Amount');
@@ -109,7 +125,7 @@ class HomeController extends Controller
         $Unpaid = $totalSales-$Unpaid; 
 
 
-        // Revenue 
+        // Revenue /////////////////////////////////////////////////////////////////////////////////////////////
         $Revenue = $totalSales + $totalAvailiableValue - $totalexpances - $totalbill;
         $TotalRevenue = $totalSales + $totalAvailiableValue - $totalexpances;
 
@@ -121,6 +137,7 @@ class HomeController extends Controller
             'dailyOrders', 'weeklyOrders', 'monthlyOrders','totalOrders',
             'totalproducts', 'totalavailableproducts', 'totalValue', 'totalAvailiableValue',
             'dailySales','weeklySales','monthlySales','totalSales',
+            'dailyprofit','weeklyprofit','monthlyprofit','totalprofit',
             'completedPayments','Underprocess','Unpaid','Revenue','TotalRevenue',
             'dailyexpances','weeklyexpances','monthlyexpances','totalexpances',
             'dailybill','weeklybill','monthlybill','totalbill'

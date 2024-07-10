@@ -94,28 +94,27 @@
           </div>
         </div>
          
-        {{-- Net Profit Report
         <div class="cards" style="margin-top:800px;">
           <div class="card">
             <div class="text-wrapper-15">Daily Profit</div>
-            <div class="text-wrapper-16">${{ $dailySales }}</div>
+            <div class="text-wrapper-16">${{ $dailySales - $dailyprofit }}</div>
           </div>
           <div class="card-2">
             <div class="text-wrapper-15">Weekly Profit</div>
-            <div class="text-wrapper-16">${{ $weeklySales }}</div>
+            <div class="text-wrapper-16">${{ $weeklySales - $weeklyprofit }}</div>
           </div>
           <div class="card-3">
             <div class="text-wrapper-15">Monthly Profit</div>
-            <div class="text-wrapper-16">${{ $monthlySales }}</div>
+            <div class="text-wrapper-16">${{ $monthlySales - $monthlyprofit }}</div>
           </div>
           <div class="card-3">
             <div class="text-wrapper-15">Total Profit</div>
-            <div class="text-wrapper-16">${{ $totalSales }}</div>
+            <div class="text-wrapper-16">${{ $totalSales - $totalprofit }}</div>
           </div>
-        </div> --}}
+        </div>
 
         {{-- Expances Report --}}
-        <div class="cards" style="margin-top:800px;">
+        <div class="cards" style="margin-top:1000px;">
           <div class="card">
             <div class="text-wrapper-15">Daily Expenses</div>
             <div class="text-wrapper-16">${{ $dailyexpances }}</div>
@@ -135,7 +134,7 @@
         </div>
 
         {{-- Payment Report --}}
-        <div class="cards" style="margin-top:1000px;">
+        <div class="cards" style="margin-top:1200px;">
           <div class="card">
             <div class="text-wrapper-15">Payment Completed</div>
             <div class="text-wrapper-16">${{ $completedPayments }}</div>
