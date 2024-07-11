@@ -102,7 +102,7 @@
     </table>
 
     <div class="mt-4 no-print" style="padding-bottom:100px;">
-        <a href="{{ url('/Company-Page') }}" class="btn">Back</a>
+        <a href="{{ url('/Company-page') }}" class="btn">Back</a>
         <button onclick="window.print()" class="btn">Print</button>
     </div>
 </div>
