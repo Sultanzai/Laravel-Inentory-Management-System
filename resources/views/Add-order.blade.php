@@ -7,17 +7,24 @@
     <link rel="stylesheet" href="{{ asset('css/add_order.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/order-style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/MainStyle.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         .container {
             margin-top: 200px;
             background-color: #f7f7f7;
-            font-family: 'Inter';
             padding: 50px;
             border-radius: 5px;
             box-shadow: 2px 2px 5px rgba(160, 160, 160, 0.5);
+        }
+        select{
+            width: 100%;
+            height: 30px;
+            font-size: 20px;
+        }
+        textarea{
+            width: 100%;
+            font-size: 20px;
         }
         .row {
             padding-top: 10px;
@@ -26,24 +33,8 @@
             font-size: 20px;
             font-weight: 200;
         }
-        #totalPrice {
-            font-size: 20px;
-            font-weight: 200;
-        }
-        #customer {
-            width: 200px;
-            height: 30px;
-            font-size: 18px;
-            border-radius: 3px;
-        }
-        textarea {
-            width: 520px;
-            height: 250px;
-            font-size: 18px;
-            border-radius: 3px;
-        }
         #products {
-            width: 350px;
+            width: 100%;
             height: 250px;
             font-size: 18px;
             border-radius: 3px;
@@ -63,17 +54,25 @@
             padding: 10px;
             border-radius: 5px;
         }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+        }
+        .delete-button {
+            margin-top: 25px;
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+        }
     </style>
 </head>
 <body>
 <div class="dashboard">
     <div class="div">
         <div class="navigation">
-            <div class="avatar">
-                <div class="rectangle-wrapper"><img class="rectangle" src="img/rectangle-1.png" /></div>
-                <img class="img" src="img/chevron-down.svg" />
-            </div>
-            <img class="buttons" src="img/buttons.svg" />
             <div class="text-wrapper-2">Customer Orders</div>
         </div>
         <a href="{{ url('/order') }}"><button class="element-button"><div class="text-wrapper-3">Back</div></button></a>
@@ -81,12 +80,8 @@
         <div class="container">
             <form action="{{ route('orderstore') }}" method="POST">
                 @csrf
-
-                <!-- Select Customer -->
                 <div class="row">
                     <label for="customer">Select Customer</label>
-                </div>
-                <div class="row">
                     <select name="Customer_ID" id="customer" required>
                         @foreach($customers as $cus)
                             <option value="{{ $cus->id }}">{{ $cus->Name }}</option>
@@ -94,53 +89,33 @@
                     </select>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="row">
-                            <label>Description</label>
-                        </div>
-                        <div class="row">
-                            <textarea type="text" name="description" id="description">.</textarea>
-                        </div>
-                    </div>
-                    <!-- Select Products -->
-                    <div class="col-md-6" style="margin-top: -30px;">
-                        <div class="row"> 
-                            <label for="products">Products</label>
-                        </div>
-                        <div class="row">ID &nbsp;&nbsp;&nbsp;&nbsp; Name &nbsp;&nbsp;&nbsp;&nbsp; Available Units</div>
-                        <div class="row">
-                            <select name="products[]" id="products" multiple required style=" height:70vh;">
-                                @foreach($products as $product)
-                                    @if($product->Available_Units > 0)
-                                        <option value="{{ $product->ID }}" data-available-units="{{ $product->Available_Units }}">
-                                            {{ $product->ID }} &nbsp;&nbsp;&nbsp; {{ $product->P_Name }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $product->Available_Units }}
-                                        </option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+                    <label>Description</label>
+                    <textarea type="text" name="description" id="description">.</textarea>
                 </div>
                 <div class="row">
-                    <!-- Enter Prices -->
-                    <label for="prices">Prices</label>
-                    <div id="priceInputs"></div>
+                    <label for="products">Products</label>
+                    <div>ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Available Units</div>
+                    <select id="products" multiple required>
+                        @foreach($products as $product)
+                            @if($product->Available_Units > 0)
+                                <option value="{{ $product->ID }}" data-name="{{ $product->P_Name }}" data-available-units="{{ $product->Available_Units }}">
+                                    {{ $product->ID }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  {{ $product->P_Name }} &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $product->Available_Units }}
+                                </option>
+                            @endif
+                        @endforeach
+                    </select>
                 </div>
                 <div class="row">
-                    <!-- Enter Units -->
-                    <label for="units">Units</label>
-                    <div id="unitInputs"></div>
+                    <label>Selected Products</label>
+                    <div id="selectedProducts"></div>
                 </div>
                 <div class="row">
-                    <!-- Total Price -->
                     <label>Total Price</label>
-                    <div id="totalPrice"></div>
+                    <div id="totalPrice">Total Price: $0.00</div>
                     <input type="hidden" name="totalPrice" id="hiddenTotalPrice">
                 </div>
                 <div class="row">
-                    <button type="submit" class="element-button2">
-                        <div class="text-wrapper-3">Submit Order</div>
-                    </button>
+                    <button type="submit" class="element-button2"><div class="text-wrapper-3">Submit Order</div></button>
                 </div>
             </form>
         </div>
@@ -148,74 +123,51 @@
 </div>
 
 <script>
-    document.getElementById('products').addEventListener('change', function () {
-        var selectedProducts = Array.from(this.selectedOptions).map(option => ({
-            id: option.value,
-            availableUnits: option.getAttribute('data-available-units')
-        }));
-        var priceInputs = document.getElementById('priceInputs');
-        var unitInputs = document.getElementById('unitInputs');
-        var totalPriceElement = document.getElementById('totalPrice');
+$(document).ready(function() {
+    $('#products').on('dblclick', 'option', function() {
+        var productId = $(this).val();
+        var productName = $(this).data('name');
+        var availableUnits = $(this).data('available-units');
 
-        // Clear previous inputs
-        priceInputs.innerHTML = '';
-        unitInputs.innerHTML = '';
-
-        selectedProducts.forEach(product => {
-            var priceInput = document.createElement('input');
-            priceInput.type = 'number';
-            priceInput.step = '0.01';
-            priceInput.name = 'prices[' + product.id + ']';
-            priceInput.placeholder = 'Price for product ' + product.id;
-            priceInput.required = true;
-            priceInput.addEventListener('input', calculateTotalPrice);
-            priceInputs.appendChild(priceInput);
-
-            var unitInput = document.createElement('input');
-            unitInput.type = 'number';
-            unitInput.name = 'units[' + product.id + ']';
-            unitInput.placeholder = 'Units for product ' + product.id;
-            unitInput.required = true;
-            unitInput.setAttribute('data-available-units', product.availableUnits);
-            unitInput.addEventListener('input', function() {
-                if (parseFloat(this.value) > parseFloat(product.availableUnits)) {
-                    alert('Units entered exceed available units for product ' + product.id);
-                    this.value = '';
-                }
-                calculateTotalPrice();
-            });
-            unitInputs.appendChild(unitInput);
-        });
-
-        // Calculate the total price initially
-        calculateTotalPrice();
+        if ($('#product-' + productId).length === 0) {
+            var productRow = `
+                <div id="product-${productId}" class="row">
+                    <input type="hidden" name="products[]" value="${productId}">
+                    <div class="col-md-3">
+                        <label>${productName}</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" name="units[${productId}]" placeholder="Units" required min="1" max="${availableUnits}" class="form-control" onchange="calculateTotalPrice()">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" name="prices[${productId}]" placeholder="Price" step="0.01" required class="form-control" onchange="calculateTotalPrice()">
+                    </div>
+                    <div class="col-md-3" style="margin-top:-25px;">
+                        <button type="button" class="delete-button" onclick="removeProduct(${productId})">Delete</button>
+                    </div>
+                </div>`;
+            $('#selectedProducts').append(productRow);
+        }
     });
 
     function calculateTotalPrice() {
-        var priceInputs = Array.from(document.querySelectorAll('#priceInputs input'));
-        var unitInputs = Array.from(document.querySelectorAll('#unitInputs input'));
         var totalPrice = 0;
-
-        priceInputs.forEach((priceInput, index) => {
-            var price = parseFloat(priceInput.value) || 0;
-            var units = parseFloat(unitInputs[index].value) || 0;
-            totalPrice += price * units;
+        $('#selectedProducts .row').each(function() {
+            var units = parseFloat($(this).find('input[name^="units"]').val()) || 0;
+            var price = parseFloat($(this).find('input[name^="prices"]').val()) || 0;
+            totalPrice += units * price;
         });
-
-        var totalPriceElement = document.getElementById('totalPrice');
-        totalPriceElement.textContent = 'Total Price: $' + totalPrice.toFixed(2);
-
-        // Update the hidden input field with the total price
-        document.getElementById('hiddenTotalPrice').value = totalPrice.toFixed(2);
+        $('#totalPrice').text('Total Price: $' + totalPrice.toFixed(2));
+        $('#hiddenTotalPrice').val(totalPrice.toFixed(2));
     }
 
-    // Ensure that the total price element is present in the HTML
-    document.addEventListener('DOMContentLoaded', function () {
-        var totalPriceElement = document.createElement('div');
-        totalPriceElement.id = 'totalPrice';
-        totalPriceElement.textContent = 'Total Price: $0.00';
-        document.body.appendChild(totalPriceElement);
-    });
+    window.calculateTotalPrice = calculateTotalPrice;
+
+    window.removeProduct = function(productId) {
+        $('#product-' + productId).remove();
+        calculateTotalPrice();
+    };
+});
 </script>
 </body>
 </html>
