@@ -11,6 +11,7 @@ use App\Http\Controllers\ExpancesController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BackupController;
 use App\Models\Customers;
 use App\Models\Expances;
 use App\Models\Payment;
@@ -161,6 +162,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/PaymentReport', [PaymentController::class, 'report']);
     Route::get('/ExpensesReport', [ExpancesController::class, 'report']);
     Route::get('/CompanyReport', [CompanyController::class, 'report']);
+
+
+    // Backup Router    ///////////////////////////////////////////////////////
+    Route::get('/backup', [BackupController::class,'createBackup'])->name('backup.create');
+
 
 
 

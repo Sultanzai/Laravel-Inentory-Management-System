@@ -186,7 +186,28 @@
           <a href="{{url('/product')}}"><button class="btn2" >Products</button></a>
           <a href="{{url('/Company-page')}}"><button class="btn2" >Company</button></a>
         </div>
+        <div class="element-button-2" style="margin-top: -200px; margin-left:-22px;"><button class="mybtn" id="backupButton">Backup</button></div>
       </div>
     </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#backupButton').click(function() {
+                $.ajax({
+                    url: '{{ route("backup.create") }}',
+                    type: 'GET',
+                    success: function(response) {
+                        alert(response.message);
+                        $('#backupPath').text('Backup file created at: ' + response.path);
+                    },
+                    error: function(xhr) {
+                        alert('Error: ' + xhr.status + ' ' + xhr.statusText);
+                    }
+                });
+            });
+        });
+    </script>
   </body>
 </html>
