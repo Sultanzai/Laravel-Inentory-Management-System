@@ -105,6 +105,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('Paymentform', [PaymentController::class, 'create'])->name('Paymentform');
     Route::post('/Paymentform', [PaymentController::class, 'store'])->name('Paymentform');
 
+    Route::delete('/payment/{pay}', [PaymentController::class, 'destroy'])->name('payment.destroy');
+
+
 
 
     // PRODUCT ROUTES

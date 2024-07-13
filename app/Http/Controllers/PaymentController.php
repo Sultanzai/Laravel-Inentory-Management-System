@@ -99,11 +99,23 @@ class PaymentController extends Controller
             'Order_ID' => 'required|integer',
             'P_Date' => 'required|date'
         ]);
-
-        // Find the payment record and update it
+    
+        // Find the payment record
         $payment = Payment::findOrFail($id);
+    
+        // Update the payment record with the validated data
         $payment->update($validatedData);
-
+    
+        // Calculate the total sum of P_Amount for the given Order_ID
+        $totalAmount = Payment::where('Order_ID', $payment->Order_ID)->sum('P_Amount');
+    
+        // Calculate the new remaining amount
+        // If you want P_Remining to be the difference between the total amount and the current payment amount, you can adjust accordingly
+        $payment->P_Remining = $totalAmount - $payment->P_Amount;
+    
+        // Save the updated payment record with the new remaining amount
+        $payment->save();
+    
         return redirect('/payment')->with('success', 'Payment updated successfully');
     }
 
@@ -141,6 +153,14 @@ class PaymentController extends Controller
     
         // Redirect or return a success response
         return redirect('/payment')->with('success', 'Payment created successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $payment = Payment::findOrFail($id);
+        $payment->delete();
+
+        return redirect('/payment')->with('success', 'Payment Delete successfully');
     }
 
 }
