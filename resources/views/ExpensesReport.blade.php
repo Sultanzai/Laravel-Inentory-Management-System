@@ -96,7 +96,7 @@
                 <td>{{ $exp->E_Name }}</td>
                 <td>{{ $exp->E_Descriptio }}</td>
                 <td>{{ $exp->E_Amount }}</td>
-                <td>{{ $exp->E_Date }}</td>
+                <td class="orderDate">{{ $exp->E_Date }}</td>
                 
             </tr>
             @endforeach

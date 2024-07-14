@@ -83,6 +83,7 @@
                 <th>Status</th>
                 <th>Type</th>
                 <th>Payment</th>
+                <th>Date</th>
             </tr>
         </thead>
         <tbody id="reportTableBody">
@@ -94,6 +95,7 @@
                 <td>{{ $comp->C_Status }}</td>
                 <td>{{ $comp->C_Type }}</td>
                 <td>{{ $comp->C_Amount }}</td>
+                <td class="orderDate">{{ $comp->created_at }}</td>
             </tr>
             @endforeach
         </tbody>

@@ -90,7 +90,7 @@
                 </div>
                 <div class="row">
                     <label>Description</label>
-                    <textarea type="text" name="description" id="description">.</textarea>
+                    <textarea type="text" name="description" id="description"></textarea>
                 </div>
                 <div class="row">
                     <label for="products">Products</label>
