@@ -87,6 +87,7 @@
                 <th>Barcode</th>
                 <th>Price</th>
                 <th>Available Units</th>
+                <th>Total Price</th>
                 <th>Status</th>
                 <th>Date</th>
             </tr>
@@ -99,6 +100,7 @@
                 <td>{{ $pro->Barcode }}</td>
                 <td>${{ $pro->P_Price }}</td>
                 <td>{{ $pro->Available_Units }}</td>
+                <td>${{ $pro->Available_Units * $pro->P_Price }}</td>
                 <td>{{ $pro->P_Status }}</td>
                 <td class="orderDate">{{ $pro->P_Date }}</td>
             </tr>

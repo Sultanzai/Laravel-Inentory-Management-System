@@ -147,7 +147,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/updatecompany/{bill}', [CompanyController::class, 'update'])->name('company.update');
 
     Route::get('/Company-page', [CompanyController::class, 'index']);
-    // Add payment
+    // Add Company
     Route::post('/AddCompany', function () {
         Company::create([
             'C_Name' => request('companyname'),

@@ -84,10 +84,10 @@
           </div>
           <form action="{{ route('Paymentform') }}" method="POST">
             @csrf
-            <div class="row">
-                <select name="OrderID" id="OrderID" required style="width: 100px;">
+            <div class="row form-group">
+                <select name="OrderID" id="OrderID" required>
                     @foreach($order as $ord)
-                        <option  value="{{ $ord->Order_ID }}" data-totalprice="{{ $ord->TotalPrice }}">{{ $ord->Order_ID }} </option>
+                        <option  value="{{ $ord->Order_ID }}" data-totalprice="{{ $ord->TotalPrice }}">{{ $ord->Order_ID }} - {{ $ord->Customer_Name }}</option>
                     @endforeach
                 </select>
                 <input type="hidden" id="TotalPrice" name="TotalPrice" value="">

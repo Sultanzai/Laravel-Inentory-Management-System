@@ -54,8 +54,9 @@ class ProductController extends Controller
                 'regex:/^\d+(\.\d{1,3})?$/'
             ],
             'P_Status' => 'required',
-            'Barcode' => 'required|numeric'
+            'Barcode' => 'nullable|numeric'
         ]);
+        
 
         // Find the Product record and update it
         $product = Product::findOrFail($id);

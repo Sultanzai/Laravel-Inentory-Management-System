@@ -89,7 +89,7 @@
             </div>
             <div class="form-group">
                 <label for="phone">Phone</label>
-                <input type="tel" id="phone" name="Phone" required>
+                <input type="tel" id="phone" name="Phone" >
             </div>
             <div class="form-group">
                 <button type="submit" class="btn">Submit</button>

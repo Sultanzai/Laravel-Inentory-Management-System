@@ -36,6 +36,19 @@
             </div>
             {{-- Dispaying Product Data form database --}}
             @foreach ($product as $pro)
+
+            @php
+              $statusColor = '';
+              if ($pro->P_Status == 'Out Of stock' || $pro->P_Status == 'Unpaid') {
+                  $statusColor = 'color: red;';
+              } elseif ($pro->P_Status == 'In Stock') {
+                  $statusColor = 'color: green;';
+              }
+                elseif ($pro->P_Status == 'Shipped') {
+                  $statusColor = 'color: Yellow;';
+              }
+            @endphp
+
             <div class="task"  data-href="{{ route('product-view', $pro->ID) }}">
               <div class="text-wrapper-9">{{ $pro->ID }}</div>
               <div class="text-wrapper-10">{{ $pro->P_Name }}</div>
@@ -44,8 +57,23 @@
                 <div class="tag"  style="margin-left:-90px;"><div class="label-2">{{ $pro->P_Price }}</div></div>
               </div>
               <div class="text-wrapper-12" style="margin-left:-40px;">{{ $pro->P_Units }}</div>
-              <div class="text-wrapper-12" style="margin-left:-40px;">{{ $pro->Available_Units }}</div>
-              <div class="text-wrapper-13" style="margin-left:-60px;">{{ $pro->P_Status }}</div>
+              @php
+              if($pro->Available_Units!=0){
+                echo
+                "
+                <div class='text-wrapper-12' style='margin-left:-40px;'> $pro->Available_Units </div>
+                <div class='text-wrapper-13' style='margin-left:-60px;  $statusColor '> $pro->P_Status </div>
+                ";
+              }
+              else {
+                echo
+                "
+                <div class='text-wrapper-12' style='margin-left:-40px;'> $pro->Available_Units </div>
+                <div class='text-wrapper-13' style='margin-left:-60px; color:red;'>Out Of stock </div>";
+              }
+
+                @endphp
+
               <div class="text-wrapper-14" style="margin-left:-20px;">{{ $pro->P_Date }}</div>
               <div class="text-wrapper-14" style="width:20px;" onclick="viewPayment({{ $pro->ID  }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
               <form id="delete-form-{{ $pro->ID }}" action="{{ route('Product.destroy', $pro->ID) }}" method="POST" style="display:inline;">

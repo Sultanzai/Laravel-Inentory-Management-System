@@ -87,7 +87,7 @@
                 <label for="status">Status</label>
                 <select id="status" name="status">
                     <option value="Completed">Completed</option>
-                    <option value="Undre Process">Under Process</option>
+                    <option value="Under Process">Under Process</option>
                     <option value="Unpaid">Unpaid</option>
                 </select>
             </div>

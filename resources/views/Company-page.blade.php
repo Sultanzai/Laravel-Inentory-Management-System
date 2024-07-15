@@ -56,6 +56,7 @@
               <div class="text-wrapper-8" style="margin-left:-80px;">Status</div>
               <div class="text-wrapper-9" style="margin-left:-100px;">Type</div>
               <div class="text-wrapper-9" style="margin-left:50px;">Amount</div>
+              <div class="text-wrapper-9" style="margin-left: 80px;">Date</div>
               <div class="text-wrapper-9" style="margin-left: 80px;">Edit</div>
               <div class="text-wrapper-9">Delete</div>
             </div>
@@ -65,18 +66,20 @@
                 <div class="text-wrapper-10">{{ $comp->id }}</div>
                 <div class="text-wrapper-11">{{ $comp->C_Name }}</div>
                 <p class="p">{{ $comp->C_Phone }}</p>
-                <div class="text-wrapper-12" style="margin-left:-80px;">{{ $comp->C_Status }}</div>
+                <div class="text-wrapper-12" style="margin-left:-170px;">{{ $comp->C_Status }}</div>
                 <div class="text-wrapper-13" style="margin-left:-100px; width: 50px; color:#909090; font-size:14px;">{{ $comp->C_Type }}</div>
                 <div class="pill">
-                  <div class="tag"  style="margin-left:85px; width:80px; text-align: left;">
+                  <div class="tag"  style="margin-left:70px; width:80px; text-align: left;">
                     <div class="label-2">${{ $comp->C_Amount }}</div>
                   </div>
-                  <div class="text-wrapper-14" style="margin-left:270px; margin-top:-20px; color:black;" onclick="viewcompany({{ $comp->id  }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
+                  <div class="ltext-wrapper-13" style="margin-left:230px; width:80px; margin-top:-30px;">{{ $comp->created_at }}</div>
+                  
+                    <div class="text-wrapper-14" style="margin-left:415px; margin-top:-30px; color:black;" onclick="viewcompany({{ $comp->id  }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
                   @method('DELETE')
                   <form id="delete-form-{{ $comp->id }}" action="{{ route('Company-page.destroy', $comp->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
-                    <div class="text-wrapper-15" style="margin-left:370px; margin-top:-20px; color:black;" onclick="confirmDelete({{ $comp->id }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
+                    <div class="text-wrapper-15" style="margin-left:510px; margin-top:-20px; color:black;" onclick="confirmDelete({{ $comp->id }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
                   </form>
 
                 </div>
