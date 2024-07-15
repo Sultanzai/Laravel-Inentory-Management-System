@@ -178,7 +178,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('3Jhh2g1g9CWpxlf4mc0cIDxexbqkYH8v4zvZYy1F',2,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiU0p2TUh4dHpBZFJ3d09uYkNVNW5MZXdvcnQwTmtWNlhvU21nTldyViI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO30=',1720948962),('fl3E9xvRERKmoR6lVGG7mwevONo3NUFKucauU2xz',2,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRXptY1BaZU5hd2pJWTNqVVRjcDRBZHI1WGJuOXk3T25jejJmSzZEdiI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI5OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvcGF5bWVudCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7fQ==',1720936450);
+INSERT INTO `sessions` VALUES ('r0lcdMBPVjJIQKi7YyxOZbW4EmRNB5qv1rK0YWSe',2,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSzJ1SjlnQ2V4R3dyejg5OXlrQWhJZExDdUc0NTlQTGV4R3B5NXpQNiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO30=',1721030993),('suD1A6hfgzYPVGxVOHa3sayEzJGB1vyedZCyHmhG',2,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZjBKclUxcjVnemtzS3ZXYVhnc1QxRGlMMFh1QlZCTEtuTzJBYmpWMCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9',1721038298);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,10 +197,10 @@ CREATE TABLE `tbl_company` (
   `C_Amount` int(11) NOT NULL,
   `C_Status` varchar(255) NOT NULL,
   `C_Type` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp(),
+  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  `updated_at` date DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -209,7 +209,6 @@ CREATE TABLE `tbl_company` (
 
 LOCK TABLES `tbl_company` WRITE;
 /*!40000 ALTER TABLE `tbl_company` DISABLE KEYS */;
-INSERT INTO `tbl_company` VALUES (1,'META BAR Company','4465434','asdasda',50,'Completed','Cash','2024-07-11 07:15:25','2024-07-11 07:15:25'),(2,'Geek Bar 15K company','5465165154','asas',59,'Completed','ZELLE','2024-07-11 07:16:28','2024-07-11 07:16:28'),(3,'eadas','123123',NULL,4000,'Completed','Cash','2024-07-14 01:00:46','2024-07-14 01:00:46');
 /*!40000 ALTER TABLE `tbl_company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,9 +226,9 @@ CREATE TABLE `tbl_customer` (
   `Balance` double NOT NULL DEFAULT 0,
   `Phone` varchar(255) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` date DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,7 +237,6 @@ CREATE TABLE `tbl_customer` (
 
 LOCK TABLES `tbl_customer` WRITE;
 /*!40000 ALTER TABLE `tbl_customer` DISABLE KEYS */;
-INSERT INTO `tbl_customer` VALUES (1,'Emran','1650 undercliff avenue',0,'12312512123125','2024-07-11 07:09:59','2024-07-11 07:09:59'),(2,'Alex','ABC',220,'4564621651','2024-07-14 00:36:18','2024-07-11 07:10:12');
 /*!40000 ALTER TABLE `tbl_customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,9 +254,9 @@ CREATE TABLE `tbl_expances` (
   `E_Amount` int(11) NOT NULL,
   `E_Date` date NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` date DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -267,7 +265,6 @@ CREATE TABLE `tbl_expances` (
 
 LOCK TABLES `tbl_expances` WRITE;
 /*!40000 ALTER TABLE `tbl_expances` DISABLE KEYS */;
-INSERT INTO `tbl_expances` VALUES (1,'NEW','Testing insertion data',2000,'2024-07-14','2024-07-14 01:02:25','2024-07-14 01:02:25'),(2,'Emran','Testing insertion data',2000,'2024-07-14','2024-07-14 01:02:33','2024-07-14 01:02:33'),(3,'NEW','Testing insertion data',2000,'2024-07-14','2024-07-14 01:02:42','2024-07-14 01:02:42');
 /*!40000 ALTER TABLE `tbl_expances` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,7 +287,7 @@ CREATE TABLE `tbl_orderdetail` (
   KEY `tbl_orderdetail_product_id_foreign` (`Product_ID`),
   CONSTRAINT `tbl_orderdetail_order_id_foreign` FOREIGN KEY (`Order_ID`) REFERENCES `tbl_orders` (`id`) ON DELETE CASCADE,
   CONSTRAINT `tbl_orderdetail_product_id_foreign` FOREIGN KEY (`Product_ID`) REFERENCES `tbl_product` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -299,7 +296,6 @@ CREATE TABLE `tbl_orderdetail` (
 
 LOCK TABLES `tbl_orderdetail` WRITE;
 /*!40000 ALTER TABLE `tbl_orderdetail` DISABLE KEYS */;
-INSERT INTO `tbl_orderdetail` VALUES (1,20,5,1,2,'2024-07-11'),(2,20,5,1,1,'2024-07-11'),(3,20,1,2,1,'2024-07-14');
 /*!40000 ALTER TABLE `tbl_orderdetail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,12 +311,12 @@ CREATE TABLE `tbl_orders` (
   `O_Description` text DEFAULT NULL,
   `O_Date` date DEFAULT current_timestamp(),
   `Customer_ID` bigint(20) unsigned NOT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` date DEFAULT current_timestamp(),
+  `created_at` date DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `tbl_orders_customer_id_foreign` (`Customer_ID`),
   CONSTRAINT `tbl_orders_customer_id_foreign` FOREIGN KEY (`Customer_ID`) REFERENCES `tbl_customer` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -329,7 +325,6 @@ CREATE TABLE `tbl_orders` (
 
 LOCK TABLES `tbl_orders` WRITE;
 /*!40000 ALTER TABLE `tbl_orders` DISABLE KEYS */;
-INSERT INTO `tbl_orders` VALUES (1,'Mix flavor,','2024-07-11',2,'2024-07-11 07:13:08','2024-07-11 07:13:08'),(2,NULL,'2024-07-14',2,'2024-07-14 00:36:18','2024-07-14 00:36:18');
 /*!40000 ALTER TABLE `tbl_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -349,14 +344,14 @@ CREATE TABLE `tbl_payment` (
   `P_Date` date NOT NULL DEFAULT current_timestamp(),
   `Order_ID` bigint(20) unsigned NOT NULL,
   `Customer_ID` bigint(20) unsigned DEFAULT NULL,
-  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` date DEFAULT current_timestamp(),
+  `created_at` date DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `tbl_payment_order_id_foreign` (`Order_ID`),
   KEY `tbl_payment_customer_id_foreign` (`Customer_ID`),
   CONSTRAINT `tbl_payment_customer_id_foreign` FOREIGN KEY (`Customer_ID`) REFERENCES `tbl_customer` (`id`) ON DELETE CASCADE,
   CONSTRAINT `tbl_payment_order_id_foreign` FOREIGN KEY (`Order_ID`) REFERENCES `tbl_orders` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -365,7 +360,6 @@ CREATE TABLE `tbl_payment` (
 
 LOCK TABLES `tbl_payment` WRITE;
 /*!40000 ALTER TABLE `tbl_payment` DISABLE KEYS */;
-INSERT INTO `tbl_payment` VALUES (1,0,200,'N/A','Unpaid','2024-07-11',1,2,'2024-07-11 11:43:08.000000','2024-07-11 11:43:08'),(7,100,0,'Cash','Completed','2024-07-13',1,NULL,'2024-07-14 05:54:10.000000','2024-07-13 12:04:01'),(8,10,0,'Cash','Completed','2024-07-14',2,2,'2024-07-14 07:43:24.000000','2024-07-14 05:06:18');
 /*!40000 ALTER TABLE `tbl_payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -386,9 +380,9 @@ CREATE TABLE `tbl_product` (
   `P_Date` date NOT NULL DEFAULT current_timestamp(),
   `Barcode` varchar(255) DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` date DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -397,7 +391,6 @@ CREATE TABLE `tbl_product` (
 
 LOCK TABLES `tbl_product` WRITE;
 /*!40000 ALTER TABLE `tbl_product` DISABLE KEYS */;
-INSERT INTO `tbl_product` VALUES (1,'Geek Bar 15K',NULL,10,5.92,'In Stock','2024-07-11','546546531315','2024-07-11 07:11:25','2024-07-11 07:10:56'),(2,'META BAR',NULL,10,4.99,'In Stock','2024-07-11',NULL,'2024-07-11 07:11:51','2024-07-11 07:11:51');
 /*!40000 ALTER TABLE `tbl_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -514,4 +507,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-14 14:34:35
+-- Dump completed on 2024-07-15 18:12:09

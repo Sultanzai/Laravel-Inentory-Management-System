@@ -31,8 +31,8 @@
               <div class="text-wrapper-7">Paid Amount</div>
               <div class="text-wrapper-8" style="width:150px;">Remining Amount</div>
               <div class="text-wrapper-8">Date</div>
-              <div class="text-wrapper-8" style="margin-left: 75px; margin-right:20px;">Edit</div>
-              <div class="text-wrapper-8" style="margin-left: 0px; margin-right:20px;">Delete</div>
+              {{-- <div class="text-wrapper-8" style="margin-left: 75px; margin-right:20px;">Edit</div> --}}
+              <div class="text-wrapper-8" style="margin-left: 80px; margin-right:20px;">Delete</div>
             </div>
             @foreach ($sortedData as $data)
               @php
@@ -55,11 +55,11 @@
                   <div class="text-wrapper-13">${{ $data['P_Amount'] }}</div>
                   <div class="text-wrapper-13" style="margin-left: 30px;">${{ $data['P_Remining'] }}</div>
                   <div class="text-wrapper-14" style="margin-left: 20px;">{{ $data['P_Date'] }}</div>
-                  <div class="text-wrapper-14" onclick="viewPayment({{ $data['PaymentID'] }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
+                  {{-- <div class="text-wrapper-14" onclick="viewPayment({{ $data['PaymentID'] }})"><i class="fa fa-edit" style="font-size:20px"></i></div> --}}
                   <form id="delete-form-{{ $data['PaymentID'] }}" action="{{ route('payment.destroy', $data['PaymentID']) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
-                    <div class="text-wrapper-15" style="margin-left:0px; margin-top:0px; color:black;" onclick="confirmDelete({{ $data['PaymentID'] }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
+                    <div class="text-wrapper-15" style="margin-left:70px; margin-top:0px; color:black;" onclick="confirmDelete({{ $data['PaymentID'] }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
                   </form>            
                 </div>
             @endforeach

@@ -104,13 +104,13 @@
             </tr>
         @endforeach
         </tbody>
-        <tfoot>
+        {{-- <tfoot>
             <tr>
                 <td colspan="3"><strong>Total Amount/ Total Order</strong></td>
                 <td id="totalAmount"></td>
                 <td id="totalOrders"></td>
             </tr>
-        </tfoot>
+        </tfoot> --}}
     </table>
 
     <div class="mt-4 no-print" style="padding-bottom:100px;">
