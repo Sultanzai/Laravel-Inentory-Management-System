@@ -104,7 +104,7 @@
             <div class="report-nav">
                 <a class="nav-link" href="#product-report" onclick="showReport('product-report')">Product</a>
                 <a class="nav-link" href="#order-report" onclick="showReport('order-report')">Order</a>
-                <a class="nav-link" href="#bill-report" onclick="showReport('bill-report')">Bill</a>
+                <a class="nav-link" href="#bill-report" onclick="showReport('bill-report')">Company Bill</a>
                 <a class="nav-link" href="#sales-report" onclick="showReport('sales-report')">Sales</a>
                 <a class="nav-link" href="#profit-report" onclick="showReport('profit-report')">Profit</a>
                 <a class="nav-link" href="#expenses-report" onclick="showReport('expenses-report')">Expenses</a>
