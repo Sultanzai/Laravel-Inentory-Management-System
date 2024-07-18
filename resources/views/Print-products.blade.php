@@ -98,21 +98,21 @@
                 <td>{{ $pro->ID }}</td>
                 <td>{{ $pro->P_Name }}</td>
                 <td>{{ $pro->Barcode }}</td>
-                <td>${{ $pro->P_Price }}</td>
+                <td class="unitPrice">${{ $pro->P_Price }}</td>
                 <td>{{ $pro->Available_Units }}</td>
-                <td>${{ $pro->Available_Units * $pro->P_Price }}</td>
+                <td class="totalPrice">${{ $pro->Available_Units * $pro->P_Price }}</td>
                 <td>{{ $pro->P_Status }}</td>
                 <td class="orderDate">{{ $pro->P_Date }}</td>
             </tr>
-        @endforeach
+            @endforeach
         </tbody>
-        {{-- <tfoot>
+        <tfoot>
             <tr>
-                <td colspan="3"><strong>Total Amount/ Total Order</strong></td>
+                <td colspan="5"><strong>Total Amount/ Total Order</strong></td>
                 <td id="totalAmount"></td>
                 <td id="totalOrders"></td>
             </tr>
-        </tfoot> --}}
+        </tfoot>
     </table>
 
     <div class="mt-4 no-print" style="padding-bottom:100px;">
@@ -130,7 +130,28 @@
             format: 'yyyy-mm-dd',
             autoclose: true
         });
+        calculateTotalAmountAndOrders();
     });
+
+    function calculateTotalAmountAndOrders() {
+        let totalAmount = 0;
+        let totalOrders = 0;
+        $('#reportTableBody tr:visible').each(function() {
+            const totalPrice = parseFloat($(this).find('.totalPrice').text().replace('$', ''));
+            const unitPrice = parseFloat($(this).find('.unitPrice').text().replace('$', ''));
+            const availableUnits = parseFloat($(this).find('.availableUnits').text());
+
+            if (!isNaN(totalPrice)) {
+                totalAmount += totalPrice;
+            }
+
+            if (!isNaN(unitPrice) && !isNaN(availableUnits)) {
+                totalOrders += availableUnits;
+            }
+        });
+        $('#totalAmount').text('$' + totalAmount.toFixed(2));
+        $('#totalOrders').text(totalOrders);
+    }
 
     function filterReports() {
         const startDate = new Date($('#startDate').val());
@@ -138,7 +159,6 @@
 
         $('#reportTableBody tr').each(function() {
             const orderDate = new Date($(this).find('.orderDate').text());
-            const totalPrice = parseFloat($(this).find('.totalPrice').text());
 
             if (orderDate >= startDate && orderDate <= endDate) {
                 $(this).show();
@@ -146,6 +166,7 @@
                 $(this).hide();
             }
         });
+        calculateTotalAmountAndOrders();
     }
 
     function filterOrders() {
@@ -163,6 +184,7 @@
                 task.style.display = "none";
             }
         }
+        calculateTotalAmountAndOrders();
     }
 </script>
 </body>

@@ -95,12 +95,17 @@
                 <td>{{ $exp->id }}</td>
                 <td>{{ $exp->E_Name }}</td>
                 <td>{{ $exp->E_Descriptio }}</td>
-                <td>{{ $exp->E_Amount }}</td>
+                <td class="totalPrice">{{ $exp->E_Amount }}</td>
                 <td class="orderDate">{{ $exp->E_Date }}</td>
-                
             </tr>
             @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"><strong>Total Amount</strong></td>
+                <td id="totalAmount"></td>
+            </tr>
+        </tfoot>
     </table>
 
     <div class="mt-4 no-print" style="padding-bottom:100px;">
@@ -118,7 +123,19 @@
             format: 'yyyy-mm-dd',
             autoclose: true
         });
+        calculateTotalAmount();
     });
+
+    function calculateTotalAmount() {
+        let totalAmount = 0;
+        $('#reportTableBody tr:visible').each(function() {
+            const totalPrice = parseFloat($(this).find('.totalPrice').text());
+            if (!isNaN(totalPrice)) {
+                totalAmount += totalPrice;
+            }
+        });
+        $('#totalAmount').text(totalAmount.toFixed(2));
+    }
 
     function filterReports() {
         const startDate = new Date($('#startDate').val());
@@ -126,7 +143,6 @@
 
         $('#reportTableBody tr').each(function() {
             const orderDate = new Date($(this).find('.orderDate').text());
-            const totalPrice = parseFloat($(this).find('.totalPrice').text());
 
             if (orderDate >= startDate && orderDate <= endDate) {
                 $(this).show();
@@ -134,6 +150,7 @@
                 $(this).hide();
             }
         });
+        calculateTotalAmount();
     }
 
     function filterOrders() {
@@ -151,6 +168,7 @@
                 task.style.display = "none";
             }
         }
+        calculateTotalAmount();
     }
 </script>
 </body>
