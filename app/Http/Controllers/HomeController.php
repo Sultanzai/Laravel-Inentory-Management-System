@@ -73,26 +73,48 @@ class HomeController extends Controller
 
 
         // Net Profit /////////////////////////////////////////////////////////////////////////////////////////////
-        $dailyprofit = DB::table('product_price_view')
-        ->whereDate('latest_order_date', today())
+        $dailyO = DB::table('order_product_view')
+        ->whereDate('OrderDetail_CreatedAt', today())
+        ->selectRaw('SUM(O_Price * O_unit) as total')
+        ->value('total');
+        $xd = DB::table('order_product_view')
+        ->whereDate('OrderDetail_CreatedAt', today())
         ->selectRaw('SUM(P_Price * O_unit) as total')
         ->value('total');
+
+        $dailynet = $dailyO - $xd;  
     
-        $weeklyprofit = DB::table('product_price_view')
-            ->whereBetween('latest_order_date', [now()->startOfWeek(), now()->endOfWeek()])
+        $weeklyo = DB::table('order_product_view')
+            ->whereBetween('OrderDetail_CreatedAt', [now()->startOfWeek(), now()->endOfWeek()])
+            ->selectRaw('SUM(O_Price * O_unit) as total')
+            ->value('total');
+        $xw = DB::table('order_product_view')
+            ->whereBetween('OrderDetail_CreatedAt', [now()->startOfWeek(), now()->endOfWeek()])
+            ->selectRaw('SUM(P_Price * O_unit) as total')
+            ->value('total');
+            
+        $weeklynet = $weeklyo - $xw;
+       
+        $monthlyO = DB::table('order_product_view')
+            ->whereMonth('OrderDetail_CreatedAt', now()->month)
+            ->selectRaw('SUM(O_Price * O_unit) as total')
+            ->value('total');
+        $xm = DB::table('order_product_view')
+            ->whereMonth('OrderDetail_CreatedAt', now()->month)
             ->selectRaw('SUM(P_Price * O_unit) as total')
             ->value('total');
         
-        $monthlyprofit = DB::table('product_price_view')
-            ->whereMonth('latest_order_date', now()->month)
-            ->selectRaw('SUM(P_Price * O_unit) as total')
-            ->value('total');
-        
+        $monthlynet = $monthlyO - $xm; 
+
         // Calculate total sales
-        $totalprofit = DB::table('product_price_view')
+        $totalo = DB::table('order_product_view')
+            ->selectRaw('SUM(O_Price * O_unit) as total')
+            ->value('total');
+        $xt = DB::table('order_product_view')
             ->selectRaw('SUM(P_Price * O_unit) as total')
             ->value('total');
 
+        $totalnet = $totalo - $xt;
 
         // Expances Count/////////////////////////////////////////////////////////////////////////////////////////////
         $dailyexpances = DB::table('tbl_expances')
@@ -126,7 +148,7 @@ class HomeController extends Controller
 
 
         // Revenue /////////////////////////////////////////////////////////////////////////////////////////////
-        $Revenue = $totalSales + $totalAvailiableValue - $totalexpances - $totalbill;
+        $Revenue = $totalnet - $totalexpances;
         $TotalRevenue = $totalSales + $totalAvailiableValue - $totalexpances;
 
 
@@ -137,7 +159,7 @@ class HomeController extends Controller
             'dailyOrders', 'weeklyOrders', 'monthlyOrders','totalOrders',
             'totalproducts', 'totalavailableproducts', 'totalValue', 'totalAvailiableValue',
             'dailySales','weeklySales','monthlySales','totalSales',
-            'dailyprofit','weeklyprofit','monthlyprofit','totalprofit',
+            'dailynet','weeklynet','monthlynet','totalnet',
             'completedPayments','Underprocess','Unpaid','Revenue','TotalRevenue',
             'dailyexpances','weeklyexpances','monthlyexpances','totalexpances',
             'dailybill','weeklybill','monthlybill','totalbill'

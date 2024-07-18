@@ -212,19 +212,19 @@
                 <div class="cards">
                     <div class="card">
                         <div class="text-wrapper-15">Daily Profit</div>
-                        <div class="text-wrapper-16">${{ $dailySales - $dailyprofit }}</div>
+                        <div class="text-wrapper-16">${{ $dailynet }}</div>
                     </div>
                     <div class="card-2">
                         <div class="text-wrapper-15">Weekly Profit</div>
-                        <div class="text-wrapper-16">${{ $weeklySales - $weeklyprofit }}</div>
+                        <div class="text-wrapper-16">${{ $weeklynet }}</div>
                     </div>
                     <div class="card-3">
                         <div class="text-wrapper-15">Monthly Profit</div>
-                        <div class="text-wrapper-16">${{ $monthlySales - $monthlyprofit }}</div>
+                        <div class="text-wrapper-16">${{ $monthlynet }}</div>
                     </div>
                     <div class="card-3">
                         <div class="text-wrapper-15">Total Profit</div>
-                        <div class="text-wrapper-16">${{ $totalSales - $totalprofit }}</div>
+                        <div class="text-wrapper-16">${{ $totalnet }}</div>
                     </div>
                 </div>
                 {{-- Graph view --}}
