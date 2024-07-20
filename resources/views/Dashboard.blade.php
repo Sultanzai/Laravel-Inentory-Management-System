@@ -312,6 +312,29 @@
             // Show the first report section by default
             showReport('product-report');
         });
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const backupButton = document.getElementById('backupButton');
+            
+            // Check if the button was clicked today
+            const lastClickDate = localStorage.getItem('backupButtonLastClickDate');
+            const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+            
+            if (lastClickDate === today) {
+                backupButton.disabled = true; // Disable the button if it was clicked today
+            }
+            
+            backupButton.addEventListener('click', function() {
+                // Update the last click date in local storage
+                localStorage.setItem('backupButtonLastClickDate', today);
+                backupButton.disabled = true; // Disable the button after clicking
+
+                // Your backup logic here
+                alert('Backup started!');
+            });
+        });
     </script>
 </body>
 </html>

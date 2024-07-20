@@ -61,18 +61,18 @@
 {{-- Displaying Record from database --}}
             @foreach ($customer as $cus)
               <div class="task">
-                <div class="text-wrapper-10">{{ $cus->id }}</div>
+                <div class="text-wrapper-10">{{ $cus->Customer_ID }}</div>
                 <div class="text-wrapper-11">{{ $cus->Name }}</div>
                 <p class="p">{{ $cus->Address }}</p>
                 <div class="text-wrapper-12">{{ $cus->Phone }}</div>
                 <div class="pill">
-                  <div class="tag"><div class="label-2">${{ $cus->Balance }}</div></div>
-                  <div class="text-wrapper-14" style="margin-left:150px; margin-top:-20px; color:black;" onclick="viewPayment({{ $cus->id  }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
+                  <div class="tag"><div class="label-2">${{ $cus->Total_Amount }}</div></div>
+                  <div class="text-wrapper-14" style="margin-left:150px; margin-top:-20px; color:black;" onclick="viewPayment({{ $cus->Customer_ID }})"><i class="fa fa-edit" style="font-size:20px"></i></div>
                   @method('DELETE')
-                  <form id="delete-form-{{ $cus->id }}" action="{{ route('customers.destroy', $cus->id) }}" method="POST" style="display:inline;">
+                  <form id="delete-form-{{ $cus->Customer_ID }}" action="{{ route('customers.destroy', $cus->Customer_ID) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
-                    <div class="text-wrapper-15" style="margin-left:250px; margin-top:-20px; color:black;" onclick="confirmDelete({{ $cus->id }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
+                    <div class="text-wrapper-15" style="margin-left:250px; margin-top:-20px; color:black;" onclick="confirmDelete({{ $cus->Customer_ID }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
                   </form>
 
                 </div>

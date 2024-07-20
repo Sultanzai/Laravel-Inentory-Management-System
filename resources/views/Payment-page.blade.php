@@ -55,7 +55,7 @@
                   <div class="text-wrapper-13">${{ $data['P_Amount'] }}</div>
                   <div class="text-wrapper-13" style="margin-left: 30px;">${{ $data['P_Remining'] }}</div>
                   <div class="text-wrapper-14" style="margin-left: 20px;">{{ $data['P_Date'] }}</div>
-                  {{-- <div class="text-wrapper-14" onclick="viewPayment({{ $data['PaymentID'] }})"><i class="fa fa-edit" style="font-size:20px"></i></div> --}}
+                  {{-- <div class="text-wrapper-14" onclick="viewPayment({{ $data['Pay.50mentID'] }})"><i class="fa fa-edit" style="font-size:20px"></i></div> --}}
                   <form id="delete-form-{{ $data['PaymentID'] }}" action="{{ route('payment.destroy', $data['PaymentID']) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
