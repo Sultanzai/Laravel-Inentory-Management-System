@@ -106,7 +106,7 @@
 
     
     <div class="invoice-footer" style="font-weight: 400; font-size:20px;">
-        <p><strong>Total Amount:</strong> ${{ $order->TotalPrice }}</p>
+        <p style="font-weight: 800; font-size: 28px;"><strong>Total Amount:</strong> ${{ $order->TotalPrice }}</p>
         <p>Thank you for your choosing US!</p>
     </div>
     
