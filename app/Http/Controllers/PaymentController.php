@@ -93,10 +93,10 @@ class PaymentController extends Controller
     {
         // Validate the request data
         $validatedData = $request->validate([
-            'P_Amount' => 'required|numeric',
+            'P_Amount' => 'nullable|numeric',
             'P_Type' => 'required|string',
             'P_Status' => 'required|string',
-            'Order_ID' => 'required|integer',
+            'Order_ID' => 'nullable|integer',
             'P_Date' => 'required|date'
         ]);
     
@@ -141,6 +141,7 @@ class PaymentController extends Controller
             'P_Type' => $request->P_Type,
             'P_Status' => $request->P_Status,
             'Customer_ID' => $request->Customer_ID,
+            'P_Date' => $request->P_Date,
         ]);
     
         // Check if the payment was created successfully

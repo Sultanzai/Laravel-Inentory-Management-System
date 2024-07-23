@@ -31,38 +31,44 @@
               <div class="text-wrapper-7">Paid Amount</div>
               <div class="text-wrapper-8" style="width:150px;">Remining Amount</div>
               <div class="text-wrapper-8">Date</div>
-              {{-- <div class="text-wrapper-8" style="margin-left: 75px; margin-right:20px;">Edit</div> --}}
-              <div class="text-wrapper-8" style="margin-left: 80px; margin-right:20px;">Delete</div>
+              <div class="text-wrapper-8" style="margin-left: 70px;">Edit</div>
+              <div class="text-wrapper-8" style="margin-left: 20px; margin-right:0px;">Delete</div>
             </div>
             @foreach ($sortedData as $data)
-              @php
-                  $statusColor = '';
-                  if ($data['P_Status'] == 'Under Process' || $data['P_Status'] == 'Unpaid') {
-                      $statusColor = 'color: red;';
-                  } elseif ($data['P_Status'] == 'Completed') {
-                      $statusColor = 'color: green;';
-                  }
-              @endphp
-          
-              <div class="task">
-                  <div class="text-wrapper-9">{{ $data['Order_ID'] }}</div>
-                  <div class="text-wrapper-10">{{ $data['Customer_Name'] }}</div>
-                  <div class="pill">
-                      <div class="label-2" style="margin-top: 7px;">{{ $data['P_Type'] }}</div>
-                  </div>
-                  <div class="text-wrapper-12" style="{{ $statusColor }}">{{ $data['P_Status'] }}</div>
-                  <div class="text-wrapper-13" style="margin-left: -30px;">${{ $data['TotalPrice'] }}</div>
-                  <div class="text-wrapper-13">${{ $data['P_Amount'] }}</div>
-                  <div class="text-wrapper-13" style="margin-left: 30px;">${{ $data['P_Remining'] }}</div>
-                  <div class="text-wrapper-14" style="margin-left: 20px;">{{ $data['P_Date'] }}</div>
-                  {{-- <div class="text-wrapper-14" onclick="viewPayment({{ $data['Pay.50mentID'] }})"><i class="fa fa-edit" style="font-size:20px"></i></div> --}}
-                  <form id="delete-form-{{ $data['PaymentID'] }}" action="{{ route('payment.destroy', $data['PaymentID']) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <div class="text-wrapper-15" style="margin-left:70px; margin-top:0px; color:black;" onclick="confirmDelete({{ $data['PaymentID'] }})"><i class="fa fa-trash-o" style="font-size:20px"></i></div>
-                  </form>            
+            @if($data['P_Amount'] != 0)
+                @php
+                    $statusColor = '';
+                    if ($data['P_Status'] == 'Under Process' || $data['P_Status'] == 'Unpaid') {
+                        $statusColor = 'color: red;';
+                    } elseif ($data['P_Status'] == 'Completed') {
+                        $statusColor = 'color: green;';
+                    }
+                @endphp
+                <div class="task">
+                    <div class="text-wrapper-9">{{ $data['Order_ID'] }}</div>
+                    <div class="text-wrapper-10">{{ $data['Customer_Name'] }}</div>
+                    <div class="pill">
+                        <div class="label-2" style="margin-top: 7px;">{{ $data['P_Type'] }}</div>
+                    </div>
+                    <div class="text-wrapper-12" style="{{ $statusColor }}">{{ $data['P_Status'] }}</div>
+                    <div class="text-wrapper-13" style="margin-left: -30px;">${{ $data['TotalPrice'] }}</div>
+                    <div class="text-wrapper-13">${{ $data['P_Amount'] }}</div>
+                    <div class="text-wrapper-13" style="margin-left: 30px;">${{ $data['P_Remining'] }}</div>
+                    <div class="text-wrapper-14" style="margin-left: 20px;">{{ $data['P_Date'] }}</div>
+                    <div class="text-wrapper-14" style="left: 0px;" onclick="viewPayment({{ $data['PaymentID'] }})">
+                        <i class="fa fa-edit" style="font-size:20px"></i>
+                    </div>
+                    <form id="delete-form-{{ $data['PaymentID'] }}" action="{{ route('payment.destroy', $data['PaymentID']) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <div class="text-wrapper-15" style="margin-left:0px; margin-top:0px; color:black;" onclick="confirmDelete({{ $data['PaymentID'] }})">
+                            <i class="fa fa-trash-o" style="font-size:20px"></i>
+                        </div>
+                    </form>
                 </div>
-            @endforeach
+            @endif
+        @endforeach
+        
         
           </div>
         </div>

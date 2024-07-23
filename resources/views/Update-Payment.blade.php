@@ -74,10 +74,10 @@
         <h2>Update Payment</h2>
         <form action="{{ route('payment.update', $payment->id) }}" method="POST">
             @csrf
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="P_Amount">Payment Amount:</label>
                 <input type="text" id="P_Amount" name="P_Amount" value="{{ old('P_Amount', $payment->P_Amount) }}" required>
-            </div>
+            </div> --}}
             <div class="form-group">
                 <label for="P_Type">Payment Type:</label>
                 <select id="P_Type" name="P_Type" required>
@@ -94,10 +94,10 @@
                     <option value="Completed" {{ old('P_Status', $payment->P_Status) == 'Completed' ? 'selected' : '' }}>Completed</option>
                 </select>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="Order_ID">Order ID:</label>
                 <input type="text" id="Order_ID" name="Order_ID" value="{{ old('Order_ID', $payment->Order_ID) }}" required>
-            </div>
+            </div> --}}
             <div class="form-group">
                 <label for="P_Date">Payment Date:</label>
                 <input type="date" id="P_Date" name="P_Date" value="{{ old('P_Date', $payment->P_Date) }}" required>

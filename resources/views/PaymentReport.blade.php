@@ -88,36 +88,40 @@
                 <th>Type</th>
                 <th>Status</th>
                 <th>Order Amount</th>
+                <th>Paid</th>
                 <th>Remaining</th>
                 <th>Date</th>
             </tr>
         </thead>
         <tbody id="reportTableBody">
             @foreach ($sortedData as $sort)
-            @php
-                $statusColor = '';
-                if ($sort['P_Status'] == 'Under Process' || $sort['P_Status'] == 'Unpaid') {
-                    $statusColor = 'color: red;';
-                } elseif ($sort['P_Status'] == 'Completed') {
-                    $statusColor = 'color: green;';
-                }
-            @endphp
-            <tr class="task">
-                <td>{{ $sort['PaymentID'] }}</td>
-                <td>{{ $sort['Customer_Name'] }}</td>
-                <td>{{ $sort['Order_ID'] }}</td>
-                <td>{{ $sort['P_Type'] }}</td>
-                <td style="{{ $statusColor }}">{{ $sort['P_Status'] }}</td>
-                <td class="totalPrice">{{ $sort['TotalPrice'] }}</td>
-                <td>{{ $sort['P_Remining'] }}</td>
-                <td class="orderDate">{{ $sort['P_Date'] }}</td>
-            </tr>
+            @if ($sort['TotalPrice'] != $sort['P_Remining'] )
+                @php
+                    $statusColor = '';
+                    if ($sort['P_Status'] == 'Under Process' || $sort['P_Status'] == 'Unpaid') {
+                        $statusColor = 'color: red;';
+                    } elseif ($sort['P_Status'] == 'Completed') {
+                        $statusColor = 'color: green;';
+                    }
+                @endphp
+                <tr class="task">
+                    <td>{{ $sort['PaymentID'] }}</td>
+                    <td>{{ $sort['Customer_Name'] }}</td>
+                    <td>{{ $sort['Order_ID'] }}</td>
+                    <td>{{ $sort['P_Type'] }}</td>
+                    <td style="{{ $statusColor }}">{{ $sort['P_Status'] }}</td>
+                    <td >{{ $sort['TotalPrice'] }}</td>
+                    <td class="totalPrice">{{ $sort['TotalPrice']-$sort['P_Remining'] }}</td>
+                    <td>{{ $sort['P_Remining'] }}</td>
+                    <td class="orderDate">{{ $sort['P_Date'] }}</td>
+                </tr>
+            @endif
             @endforeach
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="6"><strong>Total Amount</strong></td>
-                <td id="totalAmount"></td>
+                <td colspan="5"><strong>Paid Amount</strong></td>
+                <td colspan="4" id="totalAmount"></td>
             </tr>
         </tfoot>
     </table>
