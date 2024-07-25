@@ -38,20 +38,20 @@ class HomeController extends Controller
         $totalOrders = Order::count();
 
         // Sales Count/////////////////////////////////////////////////////////////////////////////////////////////
-        $dailySales = DB::table('Order_View')
+        $dailySales = DB::table('order_view')
         ->whereDate('O_Date', today())
         ->sum('TotalPrice');
 
-        $weeklySales = DB::table('Order_View')
+        $weeklySales = DB::table('order_view')
             ->whereBetween('O_Date', [now()->startOfWeek(), now()->endOfWeek()])
             ->sum('TotalPrice');
 
-        $monthlySales = DB::table('Order_View')
+        $monthlySales = DB::table('order_view')
             ->whereMonth('O_Date', now()->month)
             ->sum('TotalPrice');
 
         // Calculate total sales
-        $totalSales = DB::table('Order_View')
+        $totalSales = DB::table('order_view')
             ->sum('TotalPrice');
 
         // Company Bills /////////////////////////////////////////////////////////////////////////////////////////////
@@ -133,23 +133,28 @@ class HomeController extends Controller
             ->sum('E_Amount');
 
 
-
         // Payment Count /////////////////////////////////////////////////////////////////////////////////////////////
         $completedPayments = DB::table('tbl_payment')
             ->where('P_status', 'Completed')
             ->sum('P_Amount');
+
             
         $Underprocess = DB::table('tbl_payment')
             ->where('P_status', 'Under Process')
             ->sum('P_Amount');
 
+
         $Unpaid = DB::table('tbl_payment')->sum('P_Amount');
         $Unpaid = $totalSales-$Unpaid; 
 
 
+
         // Revenue /////////////////////////////////////////////////////////////////////////////////////////////
         $Revenue = $totalnet - $totalexpances;
+        $Revenue = number_format($Revenue, 2);
+
         $TotalRevenue = $totalSales + $totalAvailiableValue - $totalexpances;
+        $TotalRevenue = number_format($TotalRevenue, 2);
 
 
 
