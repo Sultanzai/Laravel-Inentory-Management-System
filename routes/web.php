@@ -82,7 +82,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
 
-
+    
     // ORDER ROUTES
     Route::get('/order', [OrderController::class, 'index']);
     Route::get('Add-Order', [OrderController::class, 'create'])->name('Add-Order');
@@ -95,6 +95,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/orderupdate/{id}', [OrderController::class, 'update'])->name('order.update');
     // Delete Order
     Route::delete('/order/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
+    // Net Profit Report
+    Route::get('/NetProfitReport', [OrderController::class, 'netprofit'])->name('NetProfitReport');
 
 
     // PAYMENT ROUTES

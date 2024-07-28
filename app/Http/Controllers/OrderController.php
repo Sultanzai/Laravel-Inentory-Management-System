@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 
+use DB;
 
 
 class OrderController extends Controller
@@ -171,6 +172,45 @@ class OrderController extends Controller
         $order->delete();
 
         return redirect('/order')->with('success', 'Order Deleted successfully');
+    }
+
+
+    public function netprofit(Request $request)
+    { // Initialize query
+        $query = DB::table('order_product_view')
+        ->select(
+            'Order_ID',
+            DB::raw('SUM(O_Price * O_unit) as total_order_price'),
+            DB::raw('SUM(P_Units * P_Price) as total_product_cost'),
+            DB::raw('GROUP_CONCAT(OrderDetail_ID) as OrderDetail_IDs'),
+            DB::raw('GROUP_CONCAT(O_Price) as O_Prices'),
+            DB::raw('GROUP_CONCAT(O_unit) as O_units'),
+            DB::raw('GROUP_CONCAT(OrderDetail_ProductID) as OrderDetail_ProductIDs'),
+            DB::raw('GROUP_CONCAT(OrderDetail_CreatedAt) as OrderDetail_CreatedAts'),
+            DB::raw('GROUP_CONCAT(Product_ID) as Product_IDs'),
+            DB::raw('GROUP_CONCAT(P_Units) as P_Unitss'),
+            DB::raw('GROUP_CONCAT(P_Price) as P_Prices'),
+            DB::raw('GROUP_CONCAT(P_Date) as P_Dates'),
+            DB::raw('GROUP_CONCAT(Product_UpdatedAt) as Product_UpdatedAts'),
+            DB::raw('GROUP_CONCAT(Product_CreatedAt) as Product_CreatedAts')
+        )
+        ->groupBy('Order_ID')
+        ->orderBy('Order_ID', 'asc');
+
+    // Apply filters based on request inputs
+    if ($request->has('order_id')) {
+        $query->where('Order_ID', $request->input('order_id'));
+    }
+
+    if ($request->has('start_date') && $request->has('end_date')) {
+        $query->whereBetween('OrderDetail_CreatedAt', [$request->input('start_date'), $request->input('end_date')]);
+    }
+
+    // Retrieve data
+    $orders = $query->get();
+
+    // Return the view with data
+    return view('NetProfitReport', compact('orders'));
     }
 
 }

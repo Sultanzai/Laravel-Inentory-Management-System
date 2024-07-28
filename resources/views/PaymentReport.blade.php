@@ -111,7 +111,7 @@
                     <td>{{ $sort['P_Type'] }}</td>
                     <td style="{{ $statusColor }}">{{ $sort['P_Status'] }}</td>
                     <td >{{ $sort['TotalPrice'] }}</td>
-                    <td class="totalPrice">{{ $sort['TotalPrice']-$sort['P_Remining'] }}</td>
+                    <td class="totalPrice">{{ $sort['P_Amount'] }}</td>
                     <td>{{ $sort['P_Remining'] }}</td>
                     <td class="orderDate">{{ $sort['P_Date'] }}</td>
                 </tr>
