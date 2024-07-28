@@ -96,7 +96,9 @@ Route::middleware(['auth'])->group(function () {
     // Delete Order
     Route::delete('/order/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
     // Net Profit Report
-    Route::get('/NetProfitReport', [OrderController::class, 'netprofit'])->name('NetProfitReport');
+    // Route::get('/NetProfitReport', [OrderController::class, 'netprofit'])->name('NetProfitReport');
+    Route::get('/NetProfitReport', [OrderController::class, 'netprofit']);
+
 
 
     // PAYMENT ROUTES

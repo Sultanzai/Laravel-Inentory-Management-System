@@ -11,6 +11,7 @@ use App\Models\Customers;
 use App\Models\Product;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
+use Carbon\Carbon;
 
 use DB;
 
@@ -176,41 +177,54 @@ class OrderController extends Controller
 
 
     public function netprofit(Request $request)
-    { // Initialize query
-        $query = DB::table('order_product_view')
-        ->select(
-            'Order_ID',
-            DB::raw('SUM(O_Price * O_unit) as total_order_price'),
-            DB::raw('SUM(P_Units * P_Price) as total_product_cost'),
-            DB::raw('GROUP_CONCAT(OrderDetail_ID) as OrderDetail_IDs'),
-            DB::raw('GROUP_CONCAT(O_Price) as O_Prices'),
-            DB::raw('GROUP_CONCAT(O_unit) as O_units'),
-            DB::raw('GROUP_CONCAT(OrderDetail_ProductID) as OrderDetail_ProductIDs'),
-            DB::raw('GROUP_CONCAT(OrderDetail_CreatedAt) as OrderDetail_CreatedAts'),
-            DB::raw('GROUP_CONCAT(Product_ID) as Product_IDs'),
-            DB::raw('GROUP_CONCAT(P_Units) as P_Unitss'),
-            DB::raw('GROUP_CONCAT(P_Price) as P_Prices'),
-            DB::raw('GROUP_CONCAT(P_Date) as P_Dates'),
-            DB::raw('GROUP_CONCAT(Product_UpdatedAt) as Product_UpdatedAts'),
-            DB::raw('GROUP_CONCAT(Product_CreatedAt) as Product_CreatedAts')
-        )
-        ->groupBy('Order_ID')
-        ->orderBy('Order_ID', 'asc');
+    { 
+        $query = DB::table('order_product_view');
 
-    // Apply filters based on request inputs
-    if ($request->has('order_id')) {
-        $query->where('Order_ID', $request->input('order_id'));
-    }
+        // Apply date filtering if provided
+        if ($request->has('start_date') && $request->has('end_date') && $request->start_date && $request->end_date) {
+            $startDate = Carbon::parse($request->input('start_date'))->startOfDay();
+            $endDate = Carbon::parse($request->input('end_date'))->endOfDay();
+            $query->whereBetween('OrderDetail_CreatedAt', [$startDate, $endDate]);
+        }
 
-    if ($request->has('start_date') && $request->has('end_date')) {
-        $query->whereBetween('OrderDetail_CreatedAt', [$request->input('start_date'), $request->input('end_date')]);
-    }
+        // Apply search filtering if provided
+        if ($request->has('search') && $request->search) {
+            $search = $request->input('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('Order_ID', 'like', "%$search%");
+                //   ->orWhere('O_Price', 'like', "%$search%")
+                //   ->orWhere('O_unit', 'like', "%$search%")
+                //   ->orWhere('P_Price', 'like', "%$search%")
+            });
+        }
 
-    // Retrieve data
-    $orders = $query->get();
+        $orderProducts = $query->get();
 
-    // Return the view with data
-    return view('NetProfitReport', compact('orders'));
+        $processedData = [];
+        $totalProductAmount = 0;
+        $productCost = 0;
+
+        foreach ($orderProducts as $orderProduct) {
+            if (!isset($processedData[$orderProduct->Order_ID])) {
+                $processedData[$orderProduct->Order_ID] = [
+                    'Order_ID' => $orderProduct->Order_ID,
+                    'Total_Product_Amount' => 0,
+                    'Product_Cost' => 0,
+                    'Details' => [],
+                ];
+            }
+
+            $totalProductAmount += $orderProduct->O_Price * $orderProduct->O_unit;
+            $productCost += $orderProduct->P_Price * $orderProduct->O_unit;
+
+            $processedData[$orderProduct->Order_ID]['Total_Product_Amount'] += $orderProduct->O_Price * $orderProduct->O_unit;
+            $processedData[$orderProduct->Order_ID]['Product_Cost'] += $orderProduct->P_Price * $orderProduct->O_unit;
+            $processedData[$orderProduct->Order_ID]['Details'][] = $orderProduct;
+        }
+
+        $processedData = collect($processedData);
+
+        return view('NetProfitReport', compact('processedData', 'totalProductAmount', 'productCost'));
     }
 
 }

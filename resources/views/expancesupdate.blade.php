@@ -72,7 +72,7 @@
 
 <body>
     <div class="form-container">
-        <h2>Update Expances</h2>
+        <h2>Update Expenses</h2>
         <form action="{{ route('expances.update', $expances->id) }}" method="POST">
             @csrf
             <div class="form-group">

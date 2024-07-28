@@ -3,76 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Products</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <title>Net Profit Report</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
+<style>
+    .btn{
+        background-color: #1f1f1f;
+        border-color: #000000;
+    }
+    .btn:hover {
+        background-color: #000000;
+    }
+</style>
 <body>
-    <div class="container">
-        <h1>Order Products</h1>
+    <div class="container mt-5">
+        <h1>Net Profit Report</h1>
 
-        <!-- Search and Date Selection Form -->
-        <form action="{{ route('NetProfitReport') }}" method="GET">
-            <div class="form-group">
-                <label for="order_id">Order ID</label>
-                <input type="text" name="order_id" id="order_id" class="form-control" value="{{ request('order_id') }}">
-            </div>
-            <div class="form-group">
-                <label for="start_date">Start Date</label>
-                <input type="date" name="start_date" id="start_date" class="form-control" value="{{ request('start_date') }}">
-            </div>
-            <div class="form-group">
-                <label for="end_date">End Date</label>
-                <input type="date" name="end_date" id="end_date" class="form-control" value="{{ request('end_date') }}">
-            </div>
-            <button type="submit" class="btn btn-primary">Search</button>
+        <form method="GET" action="{{ url('/NetProfitReport') }}" class="form-inline mb-3">
+            <input type="text" name="search" class="form-control mr-2" placeholder="Search..." value="{{ request('search') }}">
+            <input type="date" name="start_date" class="form-control mr-2" value="{{ request('start_date') }}">
+            <input type="date" name="end_date" class="form-control mr-2" value="{{ request('end_date') }}">
+            <button type="submit" class="btn btn-primary">Filter</button>
         </form>
 
-        <!-- Display Results -->
-        @if ($orders->isEmpty())
-            <p>No orders found.</p>
-        @else
-            <table class="table table-bordered">
-                <thead>
+        <a href="{{url('/order')}}"><button class="btn btn-primary">Back</button></a>
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Order / Invoice ID</th>
+                    <th>Total Order Amount</th>
+                    <th>Total Product Cost</th>
+                    <th>Net Profit</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($processedData as $data)
                     <tr>
-                        <th>Order ID</th>
-                        <th>Total Order Price</th>
-                        <th>Total Product Cost</th>
-                        <th>OrderDetail IDs</th>
-                        <th>O Prices</th>
-                        <th>O Units</th>
-                        <th>OrderDetail Product IDs</th>
-                        <th>OrderDetail Created Ats</th>
-                        <th>Product IDs</th>
-                        <th>P Units</th>
-                        <th>P Prices</th>
-                        <th>P Dates</th>
-                        <th>Product Updated Ats</th>
-                        <th>Product Created Ats</th>
+                        <td>{{ $data['Order_ID'] }}</td>
+                        <td>{{ number_format($data['Total_Product_Amount'], 2) }}</td>
+                        <td>{{ number_format($data['Product_Cost'], 2) }}</td>
+                        <td>{{ number_format( $data['Total_Product_Amount'] - $data['Product_Cost']) }}</td>
+                        <td>{{ $data['Details'][0]->OrderDetail_CreatedAt }}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach ($orders as $order)
-                        <tr>
-                            <td>{{ $order->Order_ID }}</td>
-                            <td>{{ $order->total_order_price }}</td>
-                            <td>{{ $order->total_product_cost }}</td>
-                            <td>{{ $order->OrderDetail_IDs }}</td>
-                            <td>{{ $order->O_Prices }}</td>
-                            <td>{{ $order->O_units }}</td>
-                            <td>{{ $order->OrderDetail_ProductIDs }}</td>
-                            <td>{{ $order->OrderDetail_CreatedAts }}</td>
-                            <td>{{ $order->Product_IDs }}</td>
-                            <td>{{ $order->P_Unitss }}</td>
-                            <td>{{ $order->P_Prices }}</td>
-                            <td>{{ $order->P_Dates }}</td>
-                            <td>{{ $order->Product_UpdatedAts }}</td>
-                            <td>{{ $order->Product_CreatedAts }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @endif
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>{{ number_format($totalProductAmount, 2) }}</strong></td>
+                    <td><strong>{{ number_format($productCost, 2) }}</strong></td>
+                    <td><strong>{{ number_format($totalProductAmount - $productCost) }}</strong></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
-    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
