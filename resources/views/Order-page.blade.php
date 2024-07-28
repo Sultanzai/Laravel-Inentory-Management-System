@@ -86,7 +86,7 @@
       </div>
           </div>
         <a href="{{url('/SalesReport')}}"><div class="element-button-2" style="margin-top: -215px; margin-left:-100px; width:120px;"><button class="mybtn">Report</button></div></a>
-        <a href="{{url('/NetProfitReport')}}"><div class="element-button-2" style="margin-top: -215px; margin-left: 50px; width:120px;"><button class="mybtn">Net Profit</button></div></a>
+        <a href="{{url('/NetProfitReport')}}"><div class="element-button-2" style="margin-top: -215px; margin-left: 50px; width:120px;"><button class="mybtn">Profit</button></div></a>
         <a href="{{url('/Add-Order')}}"><div class="element-button-2"><button class="mybtn">Add New Order</button></div></a>
       </div>
     </div>

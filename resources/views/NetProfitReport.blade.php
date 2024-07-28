@@ -17,7 +17,7 @@
 </style>
 <body>
     <div class="container mt-5">
-        <h1>Net Profit Report</h1>
+        <h1>Profit Report</h1>
 
         <form method="GET" action="{{ url('/NetProfitReport') }}" class="form-inline mb-3">
             <input type="text" name="search" class="form-control mr-2" placeholder="Search..." value="{{ request('search') }}">
@@ -35,7 +35,7 @@
                     <th>Order / Invoice ID</th>
                     <th>Total Order Amount</th>
                     <th>Total Product Cost</th>
-                    <th>Net Profit</th>
+                    <th>Profit</th>
                     <th>Date</th>
                 </tr>
             </thead>
@@ -60,6 +60,9 @@
                 </tr>
             </tfoot>
         </table>
+
+        <button onclick="window.print()" class="btn btn-primary">Print</button> <br><br><br>
+
     </div>
 </body>
 </html>
