@@ -266,10 +266,10 @@
                         <div class="text-wrapper-15">Pending Payments & Cheque Remaining</div>
                         <div class="text-wrapper-16" style="color: red">${{ $Unpaid + $Underprocess }}</div>
                     </div>
-                    <div class="card-3">
+                    {{-- <div class="card-3">
                         <div class="text-wrapper-15">Total Revenue</div>
                         <div class="text-wrapper-16">${{ $TotalRevenue }}</div>
-                    </div>
+                    </div> --}}
                     <div class="card-3">
                         <div class="text-wrapper-15">Net Profit</div>
                         <div class="text-wrapper-16">${{ $Revenue }}</div>
