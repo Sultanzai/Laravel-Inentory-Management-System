@@ -79,6 +79,7 @@
                 </thead>
                 <tbody>
                     @php
+                    $totalUnit = 0;
                         $productNames = explode(',', $order->ProductNames);
                         $productBarcodes = explode(',', $order->ProductBarcodes);
                         $orderUnits = explode(',', $order->OrderUnits);
@@ -88,6 +89,9 @@
                     @endphp
         
                     @for($i = 0; $i < $maxRows; $i++)
+                    @php
+                        $totalUnit = $orderUnits[$i]+ $totalUnit;
+                    @endphp
                         <tr>
                             <td>{{ $productNames[$i] ?? '' }}</td>
                             <td>{{ $order->O_Description }}</td>
@@ -106,8 +110,9 @@
 
     
     <div class="invoice-footer" style="font-weight: 400; font-size:20px;">
-        <p style="font-weight: 700; font-size: 26px;"><strong>Total Amount:</strong> ${{ $order->TotalPrice }}</p>
-        <p style="font-weight: 700;">Thank you for choosing US!</p>
+        <p style="font-weight: 400; font-size: 22px;"><strong>Total Unit:</strong> {{ $totalUnit }}</p>
+        <p style="font-weight: 600; font-size: 26px;"><strong>Total Amount:</strong> ${{ $order->TotalPrice }}</p>
+        <p style="font-weight: 600;">Thank you for choosing US!</p>
     </div>
     <br>
     <div class="mt-4 no-print">
